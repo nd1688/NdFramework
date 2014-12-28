@@ -1,9 +1,0 @@
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\bin\Debug\Nd.Tests.exe
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\bin\Debug\Nd.Tests.pdb
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.dll
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.pdb
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\obj\Debug\Nd.Tests.csprojResolveAssemblyReference.cache
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\obj\Debug\Nd.Tests.exe
-G:\Nd\NdFramework\NdFramework\src\Nd.Tests\obj\Debug\Nd.Tests.pdb
-G:\Nd\NdFramework\src\Nd.Tests\obj\Debug\Nd.Tests.exe
-G:\Nd\NdFramework\src\Nd.Tests\obj\Debug\Nd.Tests.pdb
