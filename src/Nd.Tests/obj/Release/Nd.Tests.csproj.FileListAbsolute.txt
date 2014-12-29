@@ -5,3 +5,5 @@ G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.pdb
 G:\Nd\NdFramework\src\Nd.Tests\obj\Release\Nd.Tests.csprojResolveAssemblyReference.cache
 G:\Nd\NdFramework\src\Nd.Tests\obj\Release\Nd.Tests.exe
 G:\Nd\NdFramework\src\Nd.Tests\obj\Release\Nd.Tests.pdb
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Services.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Services.pdb

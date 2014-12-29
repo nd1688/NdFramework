@@ -47,6 +47,10 @@
     <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nd.Framework.Services\Nd.Framework.Services.csproj">
+      <Project>{2b5ca336-8159-4537-8005-9385268b4ad6}</Project>
+      <Name>Nd.Framework.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nd.Framework\Nd.Framework.csproj">
       <Project>{9a98f357-31f3-4735-bf5c-65272d6fb039}</Project>
       <Name>Nd.Framework</Name>

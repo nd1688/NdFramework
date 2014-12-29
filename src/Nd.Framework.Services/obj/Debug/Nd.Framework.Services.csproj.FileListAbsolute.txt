@@ -1,0 +1,7 @@
+G:\Nd\NdFramework\src\bin\Debug\Nd.Framework.Services.dll
+G:\Nd\NdFramework\src\bin\Debug\Nd.Framework.Services.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Services\obj\Debug\Nd.Framework.Services.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.Services\obj\Debug\Nd.Framework.Services.dll
+G:\Nd\NdFramework\src\Nd.Framework.Services\obj\Debug\Nd.Framework.Services.pdb
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Services.dll
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Services.pdb

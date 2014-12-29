@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework", "Nd.Framewor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Tests", "Nd.Tests\Nd.Tests.csproj", "{32369284-0520-4477-B529-31FB2D573034}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Services", "Nd.Framework.Services\Nd.Framework.Services.csproj", "{2B5CA336-8159-4537-8005-9385268B4AD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{32369284-0520-4477-B529-31FB2D573034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32369284-0520-4477-B529-31FB2D573034}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32369284-0520-4477-B529-31FB2D573034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B5CA336-8159-4537-8005-9385268B4AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5CA336-8159-4537-8005-9385268B4AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5CA336-8159-4537-8005-9385268B4AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5CA336-8159-4537-8005-9385268B4AD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

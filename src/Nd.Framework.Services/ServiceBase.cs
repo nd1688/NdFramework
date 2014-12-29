@@ -1,4 +1,4 @@
-﻿using Nd.Framework.Config;
+﻿using Nd.Framework.Services.Config;
 using System;
 
 namespace Nd.Framework.Services
@@ -32,7 +32,7 @@ namespace Nd.Framework.Services
         /// <param name="serviceName">服务名称</param>
         public ServiceBase(string serviceName)
         {
-            _configSource = new AppConfigSource();
+            _configSource = new ServicesConfigSource();
 
             if (_configSource.Config == null)
                 return;

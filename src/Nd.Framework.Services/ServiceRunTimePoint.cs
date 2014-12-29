@@ -9,102 +9,102 @@ namespace Nd.Framework.Services
         /// <summary>
         /// 不指定
         /// </summary>
-        None = 0,
+        None = 1,
         /// <summary>
         /// 表示1点
         /// </summary>
-        H1 = 1,
+        H1 = 2,
         /// <summary>
         /// 表示2点
         /// </summary>
-        H2 = 2,
+        H2 = 4,
         /// <summary>
         /// 表示3点
         /// </summary>
-        H3 = 4,
+        H3 = 8,
         /// <summary>
         /// 表示4点
         /// </summary>
-        H4 = 8,
+        H4 = 16,
         /// <summary>
         /// 表示5点
         /// </summary>
-        H5 = 16,
+        H5 = 32,
         /// <summary>
         /// 表示6点
         /// </summary>
-        H6 = 32,
+        H6 = 64,
         /// <summary>
         /// 表示7点
         /// </summary>
-        H7 = 64,
+        H7 = 128,
         /// <summary>
         /// 表示8点
         /// </summary>
-        H8 = 128,
+        H8 = 256,
         /// <summary>
         /// 表示9点
         /// </summary>
-        H9 = 256,
+        H9 = 512,
         /// <summary>
         /// 表示10点
         /// </summary>
-        H10 = 512,
+        H10 = 1024,
         /// <summary>
         /// 表示11点
         /// </summary>
-        H11 = 1024,
+        H11 = 2048,
         /// <summary>
         /// 表示12点
         /// </summary>
-        H12 = 2048,
+        H12 = 4096,
         /// <summary>
         /// 表示13点
         /// </summary>
-        H13 = 4096,
+        H13 = 8192,
         /// <summary>
         /// 表示14点
         /// </summary>
-        H14 = 8192,
+        H14 = 16384,
         /// <summary>
         /// 表示15点
         /// </summary>
-        H15 = 16384,
+        H15 = 32768,
         /// <summary>
         /// 表示16点
         /// </summary>
-        H16 = 32768,
+        H16 = 65536,
         /// <summary>
         /// 表示17点
         /// </summary>
-        H17 = 65536,
+        H17 = 131072,
         /// <summary>
         /// 表示18点
         /// </summary>
-        H18 = 131072,
+        H18 = 262144,
         /// <summary>
         /// 表示19点
         /// </summary>
-        H19 = 262144,
+        H19 = 524288,
         /// <summary>
         /// 表示20点
         /// </summary>
-        H20 = 524288,
+        H20 = 1048576,
         /// <summary>
         /// 表示21点
         /// </summary>
-        H21 = 1048576,
+        H21 = 2097152,
         /// <summary>
         /// 表示22点
         /// </summary>
-        H22 = 2097152,
+        H22 = 4194304,
         /// <summary>
         /// 表示23点
         /// </summary>
-        H23 = 4194304,
+        H23 = 8388608,
         /// <summary>
         /// 表示24点
         /// </summary>
-        H24 = 8388608
+        H24 = 16777216
     }
 }

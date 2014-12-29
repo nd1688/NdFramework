@@ -40,7 +40,7 @@ namespace Nd.Framework.Services.Agents
         /// <param name="e"></param>
         private void Execute(object sender, DoWorkEventArgs e)
         {
-            base.Execute();
+            base.Handle();
         }
         /// <summary>
         /// 执行完成服务代理

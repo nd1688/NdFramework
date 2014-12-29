@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9A98F357-31F3-4735-BF5C-65272D6FB039}</ProjectGuid>
+    <ProjectGuid>{2B5CA336-8159-4537-8005-9385268B4AD6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nd.Framework</RootNamespace>
-    <AssemblyName>Nd.Framework</AssemblyName>
+    <RootNamespace>Nd.Framework.Services</RootNamespace>
+    <AssemblyName>Nd.Framework.Services</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,38 +40,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\ICommandHandler.cs" />
-    <Compile Include="Config\AppConfigSource.cs" />
+    <Compile Include="Agents\BackgroundWorkerRunAgent.cs" />
+    <Compile Include="Agents\TimerRunAgent.cs" />
+    <Compile Include="Config\ServicesConfigSource.cs" />
     <Compile Include="Config\ConfigException.cs" />
     <Compile Include="Config\IConfigSource.cs" />
-    <Compile Include="Config\NdFrameworkConfiguration.csd.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Include="Config\ServicesConfiguration.cs">
+      <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
+      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Events\IEvent.cs" />
-    <Compile Include="Events\IEventHandler.cs" />
-    <Compile Include="IAggregateRoot.cs" />
-    <Compile Include="IEntity.cs" />
-    <Compile Include="IHandler.cs" />
-    <Compile Include="NdFrameworkException.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="IServiceAgent.cs" />
+    <Compile Include="IServiceHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="ServiceAgent.cs" />
+    <Compile Include="ServiceBase.cs" />
+    <Compile Include="ServiceException.cs" />
+    <Compile Include="ServiceRunAgentBase.cs" />
+    <Compile Include="ServiceRunMode.cs" />
+    <Compile Include="ServiceRunStatus.cs" />
+    <Compile Include="ServiceRunTimePoint.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\Nd.Framework\Nd.Framework.csproj">
+      <Project>{9a98f357-31f3-4735-bf5c-65272d6fb039}</Project>
+      <Name>Nd.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Config\NdFrameworkConfiguration.csd">
-      <Generator>CsdFileGenerator</Generator>
-      <LastGenOutput>NdFrameworkConfiguration.csd.cs</LastGenOutput>
-    </None>
-    <None Include="Config\NdFrameworkConfiguration.csd.diagram">
-      <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

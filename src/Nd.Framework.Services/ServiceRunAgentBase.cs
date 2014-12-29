@@ -48,6 +48,20 @@ namespace Nd.Framework.Services
             AsyncCallback executeCompleted = new AsyncCallback(ExecuteCompleted);
             IAsyncResult asyncResult = serviceHandler.BeginInvoke(executeCompleted, serviceHandler);
         }
+        /// <summary>
+        /// 运行服务处理程序
+        /// </summary>
+        protected void Handle()
+        {
+            try
+            {
+                if (this.Service.ServiceRunStatus == ServiceRunStatus.Run && CheckRunTimePoint())
+                {
+                    this._handler.Handle(this.Service);
+                }
+            }
+            catch (Exception) { }
+        }
         #endregion
 
         #region 私有方法
@@ -61,26 +75,12 @@ namespace Nd.Framework.Services
             serviceHandler.EndInvoke(objAsyncResult);
         }
         /// <summary>
-        /// 运行服务处理程序
-        /// </summary>
-        private void Handle()
-        {
-            try
-            {
-                if (this.Service.ServiceRunStatus == ServiceRunStatus.Run && CheckRunTimePoint())
-                {
-                    this._handler.Handle(this.Service);
-                }
-            }
-            catch (Exception) { }
-        }
-        /// <summary>
         /// 检查运行时间点
         /// </summary>
         /// <returns>true可以运行，false不可以运行</returns>
         private bool CheckRunTimePoint()
         {
-            if (this.Service.ServiceRunTimePoint == ServiceRunTimePoint.None)
+            if ((this.Service.ServiceRunTimePoint & ServiceRunTimePoint.None) > 0)
                 return true;
 
             int currentHour = DateTime.Now.Hour;
