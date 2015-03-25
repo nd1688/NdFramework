@@ -5,7 +5,7 @@ namespace Nd.Tests
     {
         static void Main(string[] args)
         {
-            Service.Test();
+            Core.Test();
         }
     }
 }

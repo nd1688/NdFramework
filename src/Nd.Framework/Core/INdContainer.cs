@@ -14,6 +14,7 @@ namespace Nd.Framework.Core
         bool HasRegister<TService>() where TService : class;
         bool HasRegister(Type serviceType);
         void Release(object objInstance);
+        INdContainer AddFacility(INdFacility facility);
 
         #region 组件注册
         void Register(Type serviceType);

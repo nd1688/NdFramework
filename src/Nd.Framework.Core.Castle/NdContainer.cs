@@ -1,4 +1,6 @@
 ﻿using Castle.Core;
+using Castle.DynamicProxy;
+using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -16,6 +18,8 @@ namespace Nd.Framework.Core.Castle
         #region Ctor
         public NdContainer()
         {
+            //this.container.AddFacility<NdInterceptorFacility>();
+            //this.container.Register(Component.For<IInterceptor>().ImplementedBy<NdInterceptor>().Named("NdInterceptor").LifestyleSingleton());
         }
         #endregion
 
@@ -43,6 +47,12 @@ namespace Nd.Framework.Core.Castle
         public void Release(object objInstance)
         {
             this.container.Release(objInstance);
+        }
+
+        public INdContainer AddFacility(INdFacility facility)
+        {
+            this.container.AddFacility((ICastleFacility)facility);
+            return this;
         }
 
         public void Register(Type serviceType)

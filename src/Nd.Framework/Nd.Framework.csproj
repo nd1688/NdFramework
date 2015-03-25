@@ -51,6 +51,8 @@
       <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
     </Compile>
     <Compile Include="Core\INdContainer.cs" />
+    <Compile Include="Core\INdFacility.cs" />
+    <Compile Include="Core\INdInterceptor.cs" />
     <Compile Include="Core\NdLifeStyle.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventHandler.cs" />
