@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Nd.Framework.Core
 {
     /// <summary>
-    /// 表示IOC接口协定
+    /// IOC服务
     /// </summary>
     public interface INdContainer
     {

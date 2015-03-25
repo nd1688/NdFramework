@@ -42,10 +42,10 @@
   <ItemGroup>
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
-    <Compile Include="Config\AppConfigSource.cs" />
-    <Compile Include="Config\ConfigException.cs" />
-    <Compile Include="Config\IConfigSource.cs" />
-    <Compile Include="Config\NdFrameworkConfiguration.csd.cs">
+    <Compile Include="Configuration\AppConfigSource.cs" />
+    <Compile Include="Configuration\ConfigException.cs" />
+    <Compile Include="Configuration\IConfigSource.cs" />
+    <Compile Include="Configuration\NdFrameworkConfiguration.csd.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
@@ -59,6 +59,7 @@
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IHandler.cs" />
+    <Compile Include="Logging\INdLogger.cs" />
     <Compile Include="NdFrameworkException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />
@@ -67,11 +68,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\NdFrameworkConfiguration.csd">
+    <None Include="Configuration\NdFrameworkConfiguration.csd">
       <Generator>CsdFileGenerator</Generator>
       <LastGenOutput>NdFrameworkConfiguration.csd.cs</LastGenOutput>
     </None>
-    <None Include="Config\NdFrameworkConfiguration.csd.diagram">
+    <None Include="Configuration\NdFrameworkConfiguration.csd.diagram">
       <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
     </None>
   </ItemGroup>
