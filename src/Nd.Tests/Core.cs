@@ -1,6 +1,8 @@
 ﻿using Castle.DynamicProxy;
 using Nd.Framework.Core;
 using Nd.Framework.Core.Castle;
+using Nd.Framework.Logging;
+using Nd.Framework.Logging.Log4Net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +16,14 @@ namespace Nd.Tests
     {
         public static void Test()
         {
-            INdContainer container = new NdContainer();
-            container.AddFacility(new NdInterceptorFacility());
-            container.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
+            INdContainer container = AppRuntime.Current.Container;
+            //container.AddFacility(new NdInterceptorFacility());
+            //container.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
+            container.Register<INdLogger, NdLogger>();
             container.Register<ITT, TT>();
 
             ITT tt = container.Resolve<ITT>();
-            tt.Op();
+            tt.Op("hhhh");
 
             Console.ReadLine();
         }
@@ -28,14 +31,14 @@ namespace Nd.Tests
 
     public class TT : ITT
     {
-        public void Op()
+        public void Op(string message)
         {
-            Console.WriteLine("TT.Op()");
+            Console.WriteLine("TT.Op():" + message);
         }
     }
 
     public interface ITT
     {
-        void Op();
+        void Op(string message);
     }
 }

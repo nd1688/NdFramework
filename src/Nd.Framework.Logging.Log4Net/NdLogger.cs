@@ -12,7 +12,7 @@ namespace Nd.Framework.Logging.Log4Net
     public class NdLogger : INdLogger
     {
         #region Private Field
-        private IConfigSource configSource;
+        private readonly IConfigSource configSource = new AppConfigSource();
         private ILog errorLogger;
         private ILog infoLogger;
         #endregion
@@ -24,7 +24,6 @@ namespace Nd.Framework.Logging.Log4Net
         }
         public NdLogger(string configFile, bool watch = true)
         {
-            this.configSource = new AppConfigSource();
             this.errorLogger = LogManager.GetLogger(this.configSource.Config.Logging.ErrorLogger);
             this.infoLogger = LogManager.GetLogger(this.configSource.Config.Logging.InfoLogger);
 

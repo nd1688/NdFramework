@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Logging;
+﻿using Nd.Framework.Configuration;
+using Nd.Framework.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

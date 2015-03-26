@@ -43,7 +43,7 @@
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Configuration\AppConfigSource.cs" />
-    <Compile Include="Configuration\ConfigException.cs" />
+    <Compile Include="Configuration\ConfigurationException.cs" />
     <Compile Include="Configuration\IConfigSource.cs" />
     <Compile Include="Configuration\NdFrameworkConfiguration.csd.cs">
       <AutoGen>True</AutoGen>

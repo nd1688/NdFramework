@@ -19,7 +19,6 @@ namespace Nd.Framework.Core.Castle
             stopwatch.Start();
             this.BeforeAdvice(invocation);
             this.PerformProceed(invocation);
-            this.AfterAdvice(invocation);
             stopwatch.Stop();
             this.logger.InfoFormat("Source:{0}.{1}() Return,Elapsed {2}ms",
                 invocation.Method.ReflectedType.FullName, invocation.Method.Name, stopwatch.ElapsedMilliseconds);
@@ -42,11 +41,6 @@ namespace Nd.Framework.Core.Castle
         public virtual void BeforeAdvice(IInvocation invocation)
         {
             this.LogInfo(invocation);
-        }
-        public virtual void AfterAdvice(IInvocation invocation)
-        {
-            this.logger.InfoFormat("Source:{0}.{1}() Return",
-                invocation.Method.ReflectedType.FullName, invocation.Method.Name);
         }
         public virtual void ThrowsAdvice(IInvocation invocation, Exception exception)
         {

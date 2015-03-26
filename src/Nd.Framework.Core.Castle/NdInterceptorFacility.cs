@@ -25,7 +25,6 @@ namespace Nd.Framework.Core.Castle
             sysAssembly.Add("vjs");
             sysAssembly.Add("Vslang");
             sysAssembly.Add("EnvDTE");
-            sysAssembly.Add("Nd.");
         }
 
         public void Init(IKernel kernel, IConfiguration facilityConfig)
