@@ -16,7 +16,7 @@ namespace Nd.Tests
         {
             INdContainer container = new NdContainer();
             container.AddFacility(new NdInterceptorFacility());
-            container.Register(typeof(NdInterceptor), NdLifeStyle.Singleton);
+            container.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
             container.Register<ITT, TT>();
 
             ITT tt = container.Resolve<ITT>();

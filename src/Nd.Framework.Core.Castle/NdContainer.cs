@@ -4,6 +4,7 @@ using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Nd.Framework.Configuration;
 using System;
 using System.Collections.Generic;
 
@@ -12,21 +13,26 @@ namespace Nd.Framework.Core.Castle
     public class NdContainer : INdContainer
     {
         #region Private Field
+        private readonly IConfigSource configSource = new AppConfigSource();
+        private readonly NdInterceptorFacility interceptorFacility = new NdInterceptorFacility();
         private readonly WindsorContainer container = new WindsorContainer(new DefaultConfigurationStore());
         #endregion
 
         #region Ctor
         public NdContainer()
         {
-            //this.container.AddFacility<NdInterceptorFacility>();
-            //this.container.Register(Component.For<IInterceptor>().ImplementedBy<NdInterceptor>().Named("NdInterceptor").LifestyleSingleton());
+            if (this.configSource.Config.Core.HasAOP)
+            {
+                this.AddFacility(interceptorFacility);
+                this.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
+            }
         }
         #endregion
 
         #region INdContainer Member
         public NdLifeStyle DefaultLifeStyle
         {
-            get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), "Thread")); }
+            get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), this.configSource.Config.Core.DefaultLifeStyle)); }
         }
 
         public bool HasRegister(string name)
@@ -177,6 +183,11 @@ namespace Nd.Framework.Core.Castle
         {
             return this.container.Resolve<TService>(name, args);
         }
+
+        public void Dispose()
+        {
+            this.container.Dispose();
+        }
         #endregion
 
         #region Private Method
@@ -184,7 +195,7 @@ namespace Nd.Framework.Core.Castle
         {
             switch (lifeStyle)
             {
-                case NdLifeStyle.Pool: return LifestyleType.Pooled;
+                case NdLifeStyle.Pooled: return LifestyleType.Pooled;
                 case NdLifeStyle.Scoped: return LifestyleType.Scoped;
                 case NdLifeStyle.Thread: return LifestyleType.Thread;
                 case NdLifeStyle.Transient: return LifestyleType.Transient;

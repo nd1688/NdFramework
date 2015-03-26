@@ -6,7 +6,7 @@ namespace Nd.Framework.Core
     /// <summary>
     /// IOC服务
     /// </summary>
-    public interface INdContainer
+    public interface INdContainer : IDisposable
     {
         NdLifeStyle DefaultLifeStyle { get; }
 

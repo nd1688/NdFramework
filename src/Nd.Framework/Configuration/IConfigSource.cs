@@ -1,5 +1,5 @@
 ﻿
-namespace Nd.Framework.Config
+namespace Nd.Framework.Configuration
 {
     /// <summary>
     /// 表示该实现类为Nd.Framework框架的配置源
@@ -7,7 +7,7 @@ namespace Nd.Framework.Config
     public interface IConfigSource
     {
         /// <summary>
-        /// 获取<see cref="Nd.Framework.Config.NdFrameworkConfigSection"/>实例
+        /// 获取<see cref="Nd.Framework.Configuration.NdFrameworkConfigSection"/>实例
         /// </summary>
         NdFrameworkConfigSection Config { get; }
     }

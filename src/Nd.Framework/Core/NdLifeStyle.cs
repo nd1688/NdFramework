@@ -25,7 +25,7 @@ namespace Nd.Framework.Core
         /// <summary>
         /// 对象池
         /// </summary>
-        Pool,
+        Pooled,
         /// <summary>
         /// 请求
         /// </summary>

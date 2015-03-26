@@ -1,16 +1,32 @@
 ﻿using Castle.DynamicProxy;
+using Nd.Framework.Logging;
 using System;
+using System.Diagnostics;
+using System.Text;
 
 namespace Nd.Framework.Core.Castle
 {
     public class NdInterceptor : ICastleInterceptor
     {
-        public void Intercept(IInvocation objInvocation)
+        #region Private Field
+        private INdLogger logger = AppRuntime.Current.Logger;
+        #endregion
+
+        #region ICastleInterceptor Member
+        public void Intercept(IInvocation invocation)
         {
-            this.BeforeAdvice(objInvocation);
-            this.PerformProceed(objInvocation);
-            this.AfterAdvice(objInvocation);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            this.BeforeAdvice(invocation);
+            this.PerformProceed(invocation);
+            this.AfterAdvice(invocation);
+            stopwatch.Stop();
+            this.logger.InfoFormat("Source:{0}.{1}() Return,Elapsed {2}ms",
+                invocation.Method.ReflectedType.FullName, invocation.Method.Name, stopwatch.ElapsedMilliseconds);
         }
+        #endregion
+
+        #region Public Method
         public virtual void PerformProceed(IInvocation invocation)
         {
             try
@@ -23,17 +39,60 @@ namespace Nd.Framework.Core.Castle
                 throw exc;
             }
         }
-        public virtual void BeforeAdvice(IInvocation objInvocation)
+        public virtual void BeforeAdvice(IInvocation invocation)
         {
-            Console.WriteLine("BeforeAdvice");
+            this.LogInfo(invocation);
         }
-        public virtual void AfterAdvice(IInvocation objInvocation)
+        public virtual void AfterAdvice(IInvocation invocation)
         {
-            Console.WriteLine("AfterAdvice");
+            this.logger.InfoFormat("Source:{0}.{1}() Return",
+                invocation.Method.ReflectedType.FullName, invocation.Method.Name);
         }
-        public virtual void ThrowsAdvice(IInvocation objInvocation, Exception objException)
+        public virtual void ThrowsAdvice(IInvocation invocation, Exception exception)
         {
-            Console.WriteLine("ThrowsAdvice");
+            this.LogError(invocation, exception);
         }
+        #endregion
+
+        #region Private Method
+        private void LogInfo(IInvocation invocation)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Source:{0}.{1}", invocation.Method.ReflectedType.FullName, invocation.Method.Name);
+            sb.Append(",Params:[");
+            if (invocation.Arguments != null && invocation.Arguments.Length > 0)
+            {
+                for (int i = 0; i < invocation.Arguments.Length; i++)
+                {
+                    if (i > 0)
+                    {
+                        sb.AppendFormat(",");
+                    }
+                    sb.AppendFormat("{0}", invocation.Arguments[i] ?? "null");
+                }
+            }
+            sb.Append("]");
+            this.logger.Info(sb.ToString());
+        }
+        private void LogError(IInvocation invocation, Exception ex)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Source:{0}.{1}", invocation.Method.ReflectedType.FullName, invocation.Method.Name);
+            sb.Append(",Params:[");
+            if (invocation.Arguments != null && invocation.Arguments.Length > 0)
+            {
+                for (int i = 0; i < invocation.Arguments.Length; i++)
+                {
+                    if (i > 0)
+                    {
+                        sb.AppendFormat(",");
+                    }
+                    sb.AppendFormat("{0}", invocation.Arguments[i] ?? "null");
+                }
+            }
+            sb.AppendFormat("],Exception:{0}", ex.ToString());
+            this.logger.Error(sb.ToString());
+        }
+        #endregion
     }
 }

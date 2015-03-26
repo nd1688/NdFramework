@@ -2,11 +2,9 @@
 using Castle.Core.Configuration;
 using Castle.DynamicProxy;
 using Castle.MicroKernel;
-using System;
+using Nd.Framework.Logging;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nd.Framework.Core.Castle
 {
@@ -27,7 +25,7 @@ namespace Nd.Framework.Core.Castle
             sysAssembly.Add("vjs");
             sysAssembly.Add("Vslang");
             sysAssembly.Add("EnvDTE");
-            sysAssembly.Add("EnvDTE");          
+            sysAssembly.Add("Nd.");
         }
 
         public void Init(IKernel kernel, IConfiguration facilityConfig)
@@ -40,6 +38,10 @@ namespace Nd.Framework.Core.Castle
         private void OnComponentRegistered(string key, IHandler handler)
         {
             if (handler.ComponentModel.Services.Any(t => t == typeof(IInterceptor)))
+            {
+                return;
+            }
+            if (handler.ComponentModel.Services.Any(t => t == typeof(INdLogger)))
             {
                 return;
             }

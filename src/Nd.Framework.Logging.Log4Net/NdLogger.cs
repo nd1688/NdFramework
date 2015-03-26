@@ -1,5 +1,6 @@
 ﻿using log4net;
 using log4net.Config;
+using Nd.Framework.Configuration;
 using System;
 using System.IO;
 
@@ -11,24 +12,36 @@ namespace Nd.Framework.Logging.Log4Net
     public class NdLogger : INdLogger
     {
         #region Private Field
-        private readonly ILog errorLogger = LogManager.GetLogger("");
-        private readonly ILog infoLogger = LogManager.GetLogger("");
+        private IConfigSource configSource;
+        private ILog errorLogger;
+        private ILog infoLogger;
         #endregion
 
         #region Ctor
         public NdLogger()
+            : this(null)
         {
-            XmlConfigurator.Configure();
         }
         public NdLogger(string configFile, bool watch = true)
         {
-            if (watch)
+            this.configSource = new AppConfigSource();
+            this.errorLogger = LogManager.GetLogger(this.configSource.Config.Logging.ErrorLogger);
+            this.infoLogger = LogManager.GetLogger(this.configSource.Config.Logging.InfoLogger);
+
+            if (!string.IsNullOrEmpty(configFile))
             {
-                XmlConfigurator.ConfigureAndWatch(new FileInfo(configFile));
+                if (watch)
+                {
+                    XmlConfigurator.ConfigureAndWatch(new FileInfo(configFile));
+                }
+                else
+                {
+                    XmlConfigurator.Configure(new FileInfo(configFile));
+                }
             }
             else
             {
-                XmlConfigurator.Configure(new FileInfo(configFile));
+                XmlConfigurator.Configure();
             }
         }
         #endregion

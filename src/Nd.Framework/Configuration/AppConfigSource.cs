@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Nd.Framework.Config
+namespace Nd.Framework.Configuration
 {
     /// <summary>
     /// Nd.Framework框架的配置源，使用application/web配置文件

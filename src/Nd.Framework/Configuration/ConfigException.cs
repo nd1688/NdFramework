@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nd.Framework.Config
+namespace Nd.Framework.Configuration
 {
     /// <summary>
     /// 表示错误发生在配置里

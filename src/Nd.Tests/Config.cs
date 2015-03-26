@@ -1,4 +1,4 @@
-﻿using Nd.Framework.Config;
+﻿using Nd.Framework.Configuration;
 
 namespace Nd.Tests
 {

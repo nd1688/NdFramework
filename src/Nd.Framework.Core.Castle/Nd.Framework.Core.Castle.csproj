@@ -40,6 +40,7 @@
       <HintPath>..\..\dll\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppRuntime.cs" />
     <Compile Include="ICastleFacility.cs" />
     <Compile Include="ICastleInterceptor.cs" />
+    <Compile Include="NdApp.cs" />
     <Compile Include="NdContainer.cs" />
     <Compile Include="NdInterceptor.cs" />
     <Compile Include="NdInterceptorFacility.cs" />
