@@ -55,22 +55,22 @@ namespace Nd.Framework.Core.Castle
             return this;
         }
 
-        public void Register(Type serviceType)
+        public void RegisterType(Type serviceType)
         {
             this.Register<object>(o => o.ImplementedBy(serviceType));
         }
 
-        public void Register(Type serviceType, string name)
+        public void RegisterType(Type serviceType, string name)
         {
             this.Register<object>(o => o.ImplementedBy(serviceType).Named(name));
         }
 
-        public void Register(Type serviceType, NdLifeStyle lifeStyle)
+        public void RegisterType(Type serviceType, NdLifeStyle lifeStyle)
         {
             this.Register<object>(o => o.ImplementedBy(serviceType).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
 
-        public void Register(Type serviceType, string name, NdLifeStyle lifeStyle)
+        public void RegisterType(Type serviceType, string name, NdLifeStyle lifeStyle)
         {
             this.Register<object>(o => o.ImplementedBy(serviceType).Named(name).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
@@ -123,22 +123,22 @@ namespace Nd.Framework.Core.Castle
             this.Register<TService>(o => o.ImplementedBy<TComponent>().Named(name).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
 
-        public void Register<TService>(TService objInstance) where TService : class
+        public void RegisterInstance<TService>(TService objInstance) where TService : class
         {
             this.Register<TService>(o => o.Instance(objInstance));
         }
 
-        public void Register<TService>(TService objInstance, string name) where TService : class
+        public void RegisterInstance<TService>(TService objInstance, string name) where TService : class
         {
             this.Register<TService>(o => o.Instance(objInstance).Named(name));
         }
 
-        public void Register<TService>(TService objInstance, NdLifeStyle lifeStyle) where TService : class
+        public void RegisterInstance<TService>(TService objInstance, NdLifeStyle lifeStyle) where TService : class
         {
             this.Register<TService>(o => o.Instance(objInstance).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
 
-        public void Register<TService>(TService objInstance, string name, NdLifeStyle lifeStyle) where TService : class
+        public void RegisterInstance<TService>(TService objInstance, string name, NdLifeStyle lifeStyle) where TService : class
         {
             this.Register<TService>(o => o.Instance(objInstance).Named(name).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Services", "Nd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Core.Castle", "Nd.Framework.Core.Castle\Nd.Framework.Core.Castle.csproj", "{FF261FCE-B204-40A7-BA38-9A781DD31496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Logging.Log4Net", "Nd.Framework.Logging.Log4Net\Nd.Framework.Logging.Log4Net.csproj", "{46272284-A37D-4AD1-B9C5-351240B189C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FF261FCE-B204-40A7-BA38-9A781DD31496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF261FCE-B204-40A7-BA38-9A781DD31496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF261FCE-B204-40A7-BA38-9A781DD31496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46272284-A37D-4AD1-B9C5-351240B189C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46272284-A37D-4AD1-B9C5-351240B189C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46272284-A37D-4AD1-B9C5-351240B189C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46272284-A37D-4AD1-B9C5-351240B189C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

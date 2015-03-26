@@ -17,10 +17,10 @@ namespace Nd.Framework.Core
         INdContainer AddFacility(INdFacility facility);
 
         #region 组件注册
-        void Register(Type serviceType);
-        void Register(Type serviceType, string name);
-        void Register(Type serviceType, NdLifeStyle lifeStyle);
-        void Register(Type serviceType, string name, NdLifeStyle lifeStyle);
+        void RegisterType(Type serviceType);
+        void RegisterType(Type serviceType, string name);
+        void RegisterType(Type serviceType, NdLifeStyle lifeStyle);
+        void RegisterType(Type serviceType, string name, NdLifeStyle lifeStyle);
 
         void Register<TService>() where TService : class;
         void Register<TService>(string name) where TService : class;
@@ -40,10 +40,10 @@ namespace Nd.Framework.Core
             where TService : class
             where TComponent : class,TService;
 
-        void Register<TService>(TService objInstance) where TService : class;
-        void Register<TService>(TService objInstance, string name) where TService : class;
-        void Register<TService>(TService objInstance, NdLifeStyle lifeStyle) where TService : class;
-        void Register<TService>(TService objInstance, string name, NdLifeStyle lifeStyle) where TService : class;
+        void RegisterInstance<TService>(TService objInstance) where TService : class;
+        void RegisterInstance<TService>(TService objInstance, string name) where TService : class;
+        void RegisterInstance<TService>(TService objInstance, NdLifeStyle lifeStyle) where TService : class;
+        void RegisterInstance<TService>(TService objInstance, string name, NdLifeStyle lifeStyle) where TService : class;
         #endregion
 
         #region 组件获取
