@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Nd.Framework.Logging
 {
-    public class TraceLogger : INdLogger
+    public class TraceLogger : ILogger
     {
         #region Ctor
         public TraceLogger() { }

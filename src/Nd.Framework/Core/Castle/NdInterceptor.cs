@@ -9,7 +9,7 @@ namespace Nd.Framework.Core.Castle
     public class NdInterceptor : ICastleInterceptor
     {
         #region Private Field
-        private INdLogger logger = AppRuntime.Current.Logger;
+        private ILogger logger = AppRuntime.Current.Logger;
         #endregion
 
         #region ICastleInterceptor Member

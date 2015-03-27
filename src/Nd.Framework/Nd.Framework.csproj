@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRuntime.cs" />
+    <Compile Include="Caching\ICache.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Configuration\AppConfigSource.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="IHandler.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Logging\INdLogger.cs" />
+    <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\TraceLogger.cs" />
     <Compile Include="NdApp.cs" />
     <Compile Include="NdFrameworkException.cs" />

@@ -25,13 +25,13 @@ namespace Nd.Framework
                 return this.app.Container;
             }
         }
-        public INdLogger Logger
+        public ILogger Logger
         {
             get
             {
-                if (this.Container.HasRegister<INdLogger>())
+                if (this.Container.HasRegister<ILogger>())
                 {
-                    return this.Container.Resolve<INdLogger>();
+                    return this.Container.Resolve<ILogger>();
                 }
                 return new TraceLogger();
             }

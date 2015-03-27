@@ -13,7 +13,7 @@ namespace Nd.Tests
             INdContainer container = AppRuntime.Current.Container;
             //container.AddFacility(new NdInterceptorFacility());
             //container.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
-            container.Register<INdLogger, NdLogger>();
+            container.Register<ILogger, LoggerManager>();
             container.Register<ITT, TT>();
 
             ITT tt = container.Resolve<ITT>();

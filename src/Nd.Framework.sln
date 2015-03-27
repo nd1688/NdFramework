@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Logging.Log4Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Repositories.EntityFramework", "Nd.Framework.Repositories.EntityFramework\Nd.Framework.Repositories.EntityFramework.csproj", "{21AF91FA-0C3A-48B5-8C39-6D5FE1910971}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Caching.Redis", "Nd.Framework.Caching.Redis\Nd.Framework.Caching.Redis.csproj", "{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{21AF91FA-0C3A-48B5-8C39-6D5FE1910971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21AF91FA-0C3A-48B5-8C39-6D5FE1910971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21AF91FA-0C3A-48B5-8C39-6D5FE1910971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

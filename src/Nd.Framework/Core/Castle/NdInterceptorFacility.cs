@@ -40,7 +40,7 @@ namespace Nd.Framework.Core.Castle
             {
                 return;
             }
-            if (handler.ComponentModel.Services.Any(t => t == typeof(INdLogger)))
+            if (handler.ComponentModel.Services.Any(t => t == typeof(ILogger)))
             {
                 return;
             }

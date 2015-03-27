@@ -9,7 +9,7 @@ namespace Nd.Framework.Logging.Log4Net
     /// <summary>
     /// 日志记录器组件
     /// </summary>
-    public class NdLogger : INdLogger
+    public class LoggerManager : ILogger
     {
         #region Private Field
         private readonly IConfigSource configSource = new AppConfigSource();
@@ -18,11 +18,11 @@ namespace Nd.Framework.Logging.Log4Net
         #endregion
 
         #region Ctor
-        public NdLogger()
+        public LoggerManager()
             : this(null)
         {
         }
-        public NdLogger(string configFile, bool watch = true)
+        public LoggerManager(string configFile, bool watch = true)
         {
             this.errorLogger = LogManager.GetLogger(this.configSource.Config.Logging.ErrorLogger);
             this.infoLogger = LogManager.GetLogger(this.configSource.Config.Logging.InfoLogger);

@@ -5,7 +5,7 @@ namespace Nd.Framework.Logging
     /// <summary>
     /// 日志记录器服务
     /// </summary>
-    public interface INdLogger
+    public interface ILogger
     {
         void Debug(object message);
         void Debug(object message, Exception exception);
