@@ -40,6 +40,5 @@ namespace Nd.Framework.Application
             this.ObjectContainer = objectContainer;
         }
         #endregion
-
     }
 }
