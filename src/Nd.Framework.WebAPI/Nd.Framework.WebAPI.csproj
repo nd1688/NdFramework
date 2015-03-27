@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF261FCE-B204-40A7-BA38-9A781DD31496}</ProjectGuid>
+    <ProjectGuid>{5626D4C8-32FF-4C19-ABDC-B7F491D470CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nd.Framework.Core.Castle</RootNamespace>
-    <AssemblyName>Nd.Framework.Core.Castle</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Nd.Framework.WebAPI</RootNamespace>
+    <AssemblyName>Nd.Framework.WebAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,18 +28,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\dll\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\..\dll\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,20 +40,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppRuntime.cs" />
-    <Compile Include="ICastleFacility.cs" />
-    <Compile Include="ICastleInterceptor.cs" />
-    <Compile Include="NdApp.cs" />
-    <Compile Include="NdContainer.cs" />
-    <Compile Include="NdInterceptor.cs" />
-    <Compile Include="NdInterceptorFacility.cs" />
+    <Compile Include="AppHostBase.cs" />
+    <Compile Include="Enums\Format.cs" />
+    <Compile Include="Enums\HttpVerbs.cs" />
+    <Compile Include="HostContext.cs" />
+    <Compile Include="Host\IMethodRoute.cs" />
+    <Compile Include="Host\MethodRoute.cs" />
+    <Compile Include="HttpHandlerFactory.cs" />
+    <Compile Include="IAppHost.cs" />
+    <Compile Include="IPlugin.cs" />
+    <Compile Include="IRequest.cs" />
+    <Compile Include="IResponse.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="NdHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="Serialization\StringMapTypeDeserializer.cs" />
+    <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nd.Framework\Nd.Framework.csproj">
       <Project>{9a98f357-31f3-4735-bf5c-65272d6fb039}</Project>
       <Name>Nd.Framework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugins\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

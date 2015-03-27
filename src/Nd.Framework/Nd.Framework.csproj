@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nd.Framework</RootNamespace>
     <AssemblyName>Nd.Framework</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,11 +30,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\dll\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\dll\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppRuntime.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Configuration\AppConfigSource.cs" />
@@ -50,6 +61,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
     </Compile>
+    <Compile Include="Core\Castle\ICastleFacility.cs" />
+    <Compile Include="Core\Castle\ICastleInterceptor.cs" />
+    <Compile Include="Core\Castle\NdContainer.cs" />
+    <Compile Include="Core\Castle\NdInterceptor.cs" />
+    <Compile Include="Core\Castle\NdInterceptorFacility.cs" />
     <Compile Include="Core\INdContainer.cs" />
     <Compile Include="Core\INdDisposable.cs" />
     <Compile Include="Core\INdFacility.cs" />
@@ -63,8 +79,11 @@
     <Compile Include="IHandler.cs" />
     <Compile Include="Logging\INdLogger.cs" />
     <Compile Include="Logging\TraceLogger.cs" />
+    <Compile Include="NdApp.cs" />
     <Compile Include="NdFrameworkException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DAL\MSSqlDAL.cs" />
+    <Compile Include="Repositories\IDAL.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>

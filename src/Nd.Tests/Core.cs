@@ -1,14 +1,8 @@
-﻿using Castle.DynamicProxy;
+﻿using Nd.Framework;
 using Nd.Framework.Core;
-using Nd.Framework.Core.Castle;
 using Nd.Framework.Logging;
 using Nd.Framework.Logging.Log4Net;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nd.Tests
 {

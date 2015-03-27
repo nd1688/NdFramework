@@ -61,10 +61,6 @@
     <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nd.Framework.Core.Castle\Nd.Framework.Core.Castle.csproj">
-      <Project>{ff261fce-b204-40a7-ba38-9a781dd31496}</Project>
-      <Name>Nd.Framework.Core.Castle</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nd.Framework.Logging.Log4Net\Nd.Framework.Logging.Log4Net.csproj">
       <Project>{46272284-a37d-4ad1-b9c5-351240b189c1}</Project>
       <Name>Nd.Framework.Logging.Log4Net</Name>

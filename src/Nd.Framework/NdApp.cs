@@ -1,5 +1,7 @@
-﻿
-namespace Nd.Framework.Core.Castle
+﻿using Nd.Framework.Core;
+using Nd.Framework.Core.Castle;
+
+namespace Nd.Framework
 {
     public class NdApp : NdDisposable
     {
