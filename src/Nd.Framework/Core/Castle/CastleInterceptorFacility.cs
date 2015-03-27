@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace Nd.Framework.Core.Castle
 {
-    public class NdInterceptorFacility : ICastleFacility
+    public class CastleInterceptorFacility : ICastleFacility
     {
         private static List<string> sysAssembly = new List<string>();
-        static NdInterceptorFacility()
+        static CastleInterceptorFacility()
         {
             sysAssembly.Add("msco");
             sysAssembly.Add("System");
@@ -36,7 +36,7 @@ namespace Nd.Framework.Core.Castle
         }
         private void OnComponentRegistered(string key, IHandler handler)
         {
-            if (handler.ComponentModel.Services.Any(t => t == typeof(IInterceptor)))
+            if (handler.ComponentModel.Services.Any(t => t == typeof(INdInterceptor)))
             {
                 return;
             }
@@ -52,7 +52,7 @@ namespace Nd.Framework.Core.Castle
             {
                 return;
             }
-            handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(NdInterceptor)));
+            handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(CastleInterceptor)));
         }
     }
 }

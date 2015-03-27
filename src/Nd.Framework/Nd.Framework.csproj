@@ -64,14 +64,14 @@
     </Compile>
     <Compile Include="Core\Castle\ICastleFacility.cs" />
     <Compile Include="Core\Castle\ICastleInterceptor.cs" />
-    <Compile Include="Core\Castle\NdContainer.cs" />
-    <Compile Include="Core\Castle\NdInterceptor.cs" />
-    <Compile Include="Core\Castle\NdInterceptorFacility.cs" />
+    <Compile Include="Core\Castle\CastleContainer.cs" />
+    <Compile Include="Core\Castle\CastleInterceptor.cs" />
+    <Compile Include="Core\Castle\CastleInterceptorFacility.cs" />
     <Compile Include="Core\INdContainer.cs" />
-    <Compile Include="Core\INdDisposable.cs" />
+    <Compile Include="Core\IBooleanDisposable.cs" />
     <Compile Include="Core\INdFacility.cs" />
     <Compile Include="Core\INdInterceptor.cs" />
-    <Compile Include="Core\NdDisposable.cs" />
+    <Compile Include="Core\BooleanDisposable.cs" />
     <Compile Include="Core\NdLifeStyle.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventHandler.cs" />
@@ -81,8 +81,8 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\TraceLogger.cs" />
-    <Compile Include="NdApp.cs" />
-    <Compile Include="NdFrameworkException.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="NdException.cs" />
     <Compile Include="PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DAL\MSSqlDAL.cs" />

@@ -6,13 +6,13 @@ using System.Threading;
 namespace Nd.Framework.Core
 {
     [Serializable]
-    public class NdDisposable : CriticalFinalizerObject, INdDisposable
+    public class BooleanDisposable : CriticalFinalizerObject, IBooleanDisposable
     {
         [NonSerialized]
         private int currentDisposedFlag;
         private const int DISPOSED_FLAG = 1;
 
-        ~NdDisposable()
+        ~BooleanDisposable()
         {
             this.Dispose(false);
         }

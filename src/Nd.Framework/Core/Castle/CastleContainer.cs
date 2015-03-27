@@ -10,21 +10,21 @@ using System.Collections.Generic;
 
 namespace Nd.Framework.Core.Castle
 {
-    public class NdContainer : INdContainer
+    public class CastleContainer : INdContainer
     {
         #region Private Field
         private readonly IConfigSource configSource = new AppConfigSource();
-        private readonly NdInterceptorFacility interceptorFacility = new NdInterceptorFacility();
+        private readonly CastleInterceptorFacility interceptorFacility = new CastleInterceptorFacility();
         private readonly WindsorContainer container = new WindsorContainer(new DefaultConfigurationStore());
         #endregion
 
         #region Ctor
-        public NdContainer()
+        public CastleContainer()
         {
             if (this.configSource.Config.Core.HasAOP)
             {
                 this.AddFacility(interceptorFacility);
-                this.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
+                this.RegisterType(typeof(CastleInterceptor), NdLifeStyle.Singleton);
             }
         }
         #endregion

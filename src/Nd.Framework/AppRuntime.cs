@@ -7,7 +7,7 @@ namespace Nd.Framework
     {
         #region Private Field
         private static readonly AppRuntime instance = new AppRuntime();
-        private readonly NdApp app = new NdApp();
+        private readonly App app = new App();
         #endregion
 
         #region Public Property

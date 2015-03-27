@@ -12,7 +12,7 @@ namespace Nd.Framework.Repositories.DAL
     /// <summary>
     /// 数据库访问类，包含了数据库的各种操作。
     /// </summary>
-    public class MSSqlDAL : NdDisposable, IDAL
+    public class MSSqlDAL : BooleanDisposable, IDAL
     {
         #region 常量
         private const string ResultName = "Data";

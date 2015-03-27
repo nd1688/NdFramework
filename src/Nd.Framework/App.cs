@@ -3,10 +3,10 @@ using Nd.Framework.Core.Castle;
 
 namespace Nd.Framework
 {
-    public class NdApp : NdDisposable
+    public class App : BooleanDisposable
     {
         #region Private Field
-        private INdContainer container = new NdContainer();
+        private INdContainer container = new CastleContainer();
         #endregion
 
         #region Public Property
@@ -20,7 +20,7 @@ namespace Nd.Framework
         #endregion
 
         #region Ctor
-        public NdApp() { }
+        public App() { }
         #endregion
 
         #region Public Method

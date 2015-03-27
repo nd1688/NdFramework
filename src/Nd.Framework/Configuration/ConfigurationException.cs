@@ -6,7 +6,7 @@ namespace Nd.Framework.Configuration
     /// 表示错误发生在配置里
     /// </summary>
     [Serializable]
-    public class ConfigurationException : NdFrameworkException
+    public class ConfigurationException : NdException
     {
         #region 构造函数
         public ConfigurationException() : base() { }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nd.Framework.Core.Castle
 {
-    public class NdInterceptor : ICastleInterceptor
+    public class CastleInterceptor : ICastleInterceptor
     {
         #region Private Field
         private ILogger logger = AppRuntime.Current.Logger;

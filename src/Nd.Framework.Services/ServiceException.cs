@@ -8,7 +8,7 @@ namespace Nd.Framework.Services
     /// <summary>
     /// 表示错误发生在服务里
     /// </summary>
-    public class ServiceException : NdFrameworkException
+    public class ServiceException : NdException
     {
         #region 构造函数
         public ServiceException() : base() { }

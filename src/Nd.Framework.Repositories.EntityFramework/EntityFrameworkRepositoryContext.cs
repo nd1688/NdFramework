@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Nd.Framework.Repositories.EntityFramework
 {
-    public class EntityFrameworkRepositoryContext : NdDisposable, IEntityFrameworkRepositoryContext
+    public class EntityFrameworkRepositoryContext : BooleanDisposable, IEntityFrameworkRepositoryContext
     {
         #region 私有字段
         private Guid objUniquedID = Guid.NewGuid();
