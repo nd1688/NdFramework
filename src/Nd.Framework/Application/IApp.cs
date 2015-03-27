@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Configuration;
+﻿using Nd.Framework.Caching;
+using Nd.Framework.Configuration;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
 using System;
@@ -26,6 +27,16 @@ namespace Nd.Framework.Application
         /// 日志记录器
         /// </summary>
         ILogger Logger { get; }
+
+        /// <summary>
+        /// 获取<see cref="Nd.Framework.Caching.ICache"/>实例
+        /// </summary>
+        ICache Cache { get; }
+
+        /// <summary>
+        /// 获取系统平台类型
+        /// </summary>
+        Platform Platform { get; }
 
         /// <summary>
         /// 启动应用

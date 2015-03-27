@@ -4,6 +4,7 @@ using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Nd.Framework.Application;
 using Nd.Framework.Configuration;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,15 @@ namespace Nd.Framework.Core.Castle
     public class CastleContainer : INdContainer
     {
         #region Private Field
-        private readonly IConfigSource configSource = new AppConfigSource();
+        private readonly IConfigSource configSource;
         private readonly CastleInterceptorFacility interceptorFacility = new CastleInterceptorFacility();
         private readonly WindsorContainer container = new WindsorContainer(new DefaultConfigurationStore());
         #endregion
 
         #region Ctor
-        public CastleContainer()
+        public CastleContainer(IConfigSource configSource)
         {
+            this.configSource = configSource;
             if (this.configSource.Config.Core.HasAOP)
             {
                 this.AddFacility(interceptorFacility);

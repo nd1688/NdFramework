@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Configuration;
+﻿using Nd.Framework.Caching;
+using Nd.Framework.Configuration;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
 
@@ -44,6 +45,22 @@ namespace Nd.Framework.Application
         public ILogger Logger
         {
             get { return this.currentApplication.Logger; }
+        }
+
+        /// <summary>
+        /// 缓存服务
+        /// </summary>
+        public ICache Cache
+        {
+            get { return this.currentApplication.Cache; }
+        }
+
+        /// <summary>
+        /// 获取系统平台类型
+        /// </summary>
+        public Platform Platform
+        {
+            get { return this.currentApplication.Platform; }
         }
         #endregion
 

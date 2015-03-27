@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Configuration;
+﻿using Nd.Framework.Caching;
+using Nd.Framework.Configuration;
 using Nd.Framework.Core;
 using Nd.Framework.Core.Castle;
 using Nd.Framework.Logging;
@@ -23,8 +24,15 @@ namespace Nd.Framework.Application
         /// <param name="configSource">应用配置</param>
         public App(IConfigSource configSource)
         {
+            if (configSource == null)
+                throw new ArgumentNullException("配置源不能为空");
+            if (configSource.Config == null)
+                throw new ConfigurationException("框架配置节未定义");
+            if (configSource.Config.Core == null)
+                throw new ConfigurationException("框架配置节中未找到核心配置节点");
+
             this.configSource = configSource;
-            this.objectContainer = new CastleContainer();
+            this.objectContainer = new CastleContainer(this.configSource);
         }
         #endregion
 
@@ -48,6 +56,31 @@ namespace Nd.Framework.Application
                     return this.objectContainer.Resolve<ILogger>();
                 }
                 return new TraceLogger();
+            }
+        }
+
+        public ICache Cache
+        {
+            get
+            {
+                if (this.objectContainer.HasRegister<ICache>())
+                {
+                    return this.objectContainer.Resolve<ICache>();
+                }
+                return null;
+            }
+        }
+
+        public Platform Platform
+        {
+            get
+            {
+                switch (IntPtr.Size)
+                {
+                    case 4: return Platform.Win32;
+                    case 8: return Platform.Win64;
+                    default: return Platform.Other;
+                }
             }
         }
 

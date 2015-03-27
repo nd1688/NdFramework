@@ -1,5 +1,6 @@
 ﻿using log4net;
 using log4net.Config;
+using Nd.Framework.Application;
 using Nd.Framework.Configuration;
 using System;
 using System.IO;
@@ -12,9 +13,9 @@ namespace Nd.Framework.Logging.Log4Net
     public class LoggerManager : ILogger
     {
         #region Private Field
-        private readonly IConfigSource configSource = new AppConfigSource();
-        private ILog errorLogger;
-        private ILog infoLogger;
+        private readonly IConfigSource configSource;
+        private readonly ILog errorLogger;
+        private readonly ILog infoLogger;
         #endregion
 
         #region Ctor
@@ -24,6 +25,7 @@ namespace Nd.Framework.Logging.Log4Net
         }
         public LoggerManager(string configFile, bool watch = true)
         {
+            this.configSource = AppRuntime.Instance.CurrentApplication.ConfigSource;
             this.errorLogger = LogManager.GetLogger(this.configSource.Config.Logging.ErrorLogger);
             this.infoLogger = LogManager.GetLogger(this.configSource.Config.Logging.InfoLogger);
 
