@@ -17,10 +17,10 @@ namespace Nd.Framework
         /// <summary>
         /// Commits the transaction.
         /// </summary>
-        void Commit();
+        bool Commit();
         /// <summary>
         /// Rollback the transaction.
         /// </summary>
-        void Rollback();
+        bool Rollback();
     }
 }
