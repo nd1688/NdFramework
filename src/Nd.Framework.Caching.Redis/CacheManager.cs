@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Logging;
+﻿using Nd.Framework.Application;
+using Nd.Framework.Logging;
 using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace Nd.Framework.Caching.Redis
 {
     public class CacheManager : ICache
     {
-        private ILogger objLogger = AppRuntime.Current.Logger;
+        private ILogger objLogger = AppRuntime.Instance.Logger;
         private RedisClient objRedisClient = null;
         public CacheManager()
         {

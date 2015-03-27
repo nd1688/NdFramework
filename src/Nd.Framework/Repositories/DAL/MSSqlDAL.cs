@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Core;
+﻿using Nd.Framework.Application;
+using Nd.Framework.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -504,7 +505,7 @@ namespace Nd.Framework.Repositories.DAL
                     objBuilder.AppendFormat("{0}={1}", objParam.ParameterName, objParam.Value);
                 }
             }
-            AppRuntime.Current.Logger.Info(objBuilder.ToString());
+            AppRuntime.Instance.Logger.Info(objBuilder.ToString());
         }
         #endregion
     }

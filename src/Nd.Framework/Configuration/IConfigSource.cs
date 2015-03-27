@@ -2,7 +2,7 @@
 namespace Nd.Framework.Configuration
 {
     /// <summary>
-    /// 表示该实现类为Nd.Framework框架的配置源
+    /// Nd.Framework框架配置源服务
     /// </summary>
     public interface IConfigSource
     {

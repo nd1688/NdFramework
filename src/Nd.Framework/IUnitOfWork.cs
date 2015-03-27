@@ -1,25 +1,28 @@
 ﻿
 namespace Nd.Framework
 {
+    /// <summary>
+    /// 工作单元服务
+    /// </summary>
     public interface IUnitOfWork
     {
         /// <summary>
-        /// Gets a <see cref="System.Boolean"/> value which indicates
-        /// whether the Unit of Work could support Microsoft Distributed
-        /// Transaction Coordinator (MS-DTC).
+        /// 获取是否支持微软分布式事务（MS-DTC）
         /// </summary>
         bool DistributedTransactionSupported { get; }
+
         /// <summary>
-        /// Gets a <see cref="System.Boolean"/> value which indicates
-        /// whether the Unit of Work was successfully committed.
+        /// 获取是否成功提交事务
         /// </summary>
         bool Committed { get; }
+
         /// <summary>
-        /// Commits the transaction.
+        /// 提交事务
         /// </summary>
         bool Commit();
+
         /// <summary>
-        /// Rollback the transaction.
+        /// 回滚事务
         /// </summary>
         bool Rollback();
     }

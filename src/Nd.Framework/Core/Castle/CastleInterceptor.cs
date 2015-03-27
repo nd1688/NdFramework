@@ -1,4 +1,5 @@
 ﻿using Castle.DynamicProxy;
+using Nd.Framework.Application;
 using Nd.Framework.Logging;
 using System;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ namespace Nd.Framework.Core.Castle
     public class CastleInterceptor : ICastleInterceptor
     {
         #region Private Field
-        private ILogger logger = AppRuntime.Current.Logger;
+        private ILogger logger = AppRuntime.Instance.Logger;
         #endregion
 
         #region ICastleInterceptor Member

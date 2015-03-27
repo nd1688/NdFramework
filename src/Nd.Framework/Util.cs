@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nd.Framework.Application;
+using System;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
@@ -290,7 +291,7 @@ namespace Nd.Framework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Util.WebMethodExecute Execute Exception:{0}", ex);
+                AppRuntime.Instance.Logger.ErrorFormat("Util.WebMethodExecute Execute Exception:{0}", ex);
             }
             return strResponse;
         }

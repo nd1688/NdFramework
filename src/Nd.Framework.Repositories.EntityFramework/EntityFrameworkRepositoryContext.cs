@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Core;
+﻿using Nd.Framework.Application;
+using Nd.Framework.Core;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -85,7 +86,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Create(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
+                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Create(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
                 if (!Util.IsNull(this.Connection))
                 {
                     this.Connection.Close();
@@ -104,7 +105,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Update(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
+                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Update(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
                 if (!Util.IsNull(this.Connection))
                 {
                     this.Connection.Close();
@@ -123,7 +124,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Delete(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
+                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Delete(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
                 if (!Util.IsNull(this.Connection))
                 {
                     this.Connection.Close();
@@ -144,7 +145,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.CreateRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
+                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.CreateRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
                 if (!Util.IsNull(this.Connection))
                 {
                     this.Connection.Close();
@@ -166,7 +167,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.UpdateRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
+                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.UpdateRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
                 if (!Util.IsNull(this.Connection))
                 {
                     this.Connection.Close();
@@ -188,7 +189,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             catch (Exception ex)
             {
-                AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.DeleteRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
+                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.DeleteRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
                 if (!Util.IsNull(this.Connection))
                 {
                     this.Connection.Close();
@@ -230,7 +231,7 @@ namespace Nd.Framework.Repositories.EntityFramework
                     }
                     catch (Exception ex)
                     {
-                        AppRuntime.Current.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Commit(),Exception:{0}", ex.ToString());
+                        AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Commit(),Exception:{0}", ex.ToString());
                         throw ex;
                     }
                     finally
