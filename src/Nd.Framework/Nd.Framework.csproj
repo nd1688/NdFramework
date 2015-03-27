@@ -77,6 +77,8 @@
     <Compile Include="Core\BooleanDisposable.cs" />
     <Compile Include="Core\NdLifeStyle.cs" />
     <Compile Include="Core\Platform.cs" />
+    <Compile Include="Events\IDomainEvent.cs" />
+    <Compile Include="Events\IDomainEventHandler.cs" />
     <Compile Include="Events\IEvent.cs" />
     <Compile Include="Events\IEventHandler.cs" />
     <Compile Include="IAggregateRoot.cs" />
