@@ -12,11 +12,6 @@ namespace Nd.Tests
     {
         public static void Test()
         {
-            AppRuntime.Create(new AppConfigSource()).Register(o =>
-            {
-                o.Register<ILogger, LoggerManager>();
-                o.Register<ITT, TT>();
-            });
             INdContainer container = AppRuntime.Instance.Container;
             //container.AddFacility(new NdInterceptorFacility());
             //container.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
