@@ -44,6 +44,11 @@ namespace Nd.Framework.Application
         void Start();
 
         /// <summary>
+        /// 注册框架组件
+        /// </summary>
+        IApp Register(Action<INdContainer> handler);
+
+        /// <summary>
         /// 应用初始化事件
         /// </summary>
         event EventHandler<AppInitEventArgs> Initialize;

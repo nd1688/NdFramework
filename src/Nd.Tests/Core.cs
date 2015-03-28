@@ -1,5 +1,6 @@
 ﻿using Nd.Framework;
 using Nd.Framework.Application;
+using Nd.Framework.Configuration;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
 using Nd.Framework.Logging.Log4Net;
@@ -11,11 +12,14 @@ namespace Nd.Tests
     {
         public static void Test()
         {
+            AppRuntime.Create(new AppConfigSource()).Register(o =>
+            {
+                o.Register<ILogger, LoggerManager>();
+                o.Register<ITT, TT>();
+            });
             INdContainer container = AppRuntime.Instance.Container;
             //container.AddFacility(new NdInterceptorFacility());
             //container.RegisterType(typeof(NdInterceptor), NdLifeStyle.Singleton);
-            container.Register<ILogger, LoggerManager>();
-            container.Register<ITT, TT>();
 
             ITT tt = container.Resolve<ITT>();
             tt.Op("hhhh");

@@ -90,6 +90,12 @@ namespace Nd.Framework.Application
             this.OnStart();
         }
 
+        public IApp Register(Action<INdContainer> handler)
+        {
+            handler(this.objectContainer);
+            return this;
+        }
+
         public event EventHandler<AppInitEventArgs> Initialize;
         #endregion
 
