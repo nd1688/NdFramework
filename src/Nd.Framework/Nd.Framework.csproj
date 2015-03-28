@@ -33,12 +33,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\dll\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\..\dll\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -65,11 +59,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
     </Compile>
-    <Compile Include="Core\Castle\ICastleFacility.cs" />
-    <Compile Include="Core\Castle\ICastleInterceptor.cs" />
-    <Compile Include="Core\Castle\CastleContainer.cs" />
-    <Compile Include="Core\Castle\CastleInterceptor.cs" />
-    <Compile Include="Core\Castle\CastleInterceptorFacility.cs" />
     <Compile Include="Core\INdContainer.cs" />
     <Compile Include="Core\IBooleanDisposable.cs" />
     <Compile Include="Core\INdFacility.cs" />

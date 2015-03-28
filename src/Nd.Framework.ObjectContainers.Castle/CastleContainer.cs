@@ -1,15 +1,13 @@
 ﻿using Castle.Core;
-using Castle.DynamicProxy;
-using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Nd.Framework.Application;
 using Nd.Framework.Configuration;
+using Nd.Framework.Core;
 using System;
 using System.Collections.Generic;
 
-namespace Nd.Framework.Core.Castle
+namespace Nd.Framework.ObjectContainers.Castle
 {
     public class CastleContainer : INdContainer
     {

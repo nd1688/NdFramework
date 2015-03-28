@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Repositories.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.Caching.Redis", "Nd.Framework.Caching.Redis\Nd.Framework.Caching.Redis.csproj", "{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nd.Framework.ObjectContainers.Castle", "Nd.Framework.ObjectContainers.Castle\Nd.Framework.ObjectContainers.Castle.csproj", "{CAE1EAF0-BE1E-4BEB-B4E4-17615EAA0ACF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0943FEB-1AB2-487A-B3CC-462E1DDF2983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAE1EAF0-BE1E-4BEB-B4E4-17615EAA0ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAE1EAF0-BE1E-4BEB-B4E4-17615EAA0ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAE1EAF0-BE1E-4BEB-B4E4-17615EAA0ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAE1EAF0-BE1E-4BEB-B4E4-17615EAA0ACF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

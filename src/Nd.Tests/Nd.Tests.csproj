@@ -65,6 +65,10 @@
       <Project>{46272284-a37d-4ad1-b9c5-351240b189c1}</Project>
       <Name>Nd.Framework.Logging.Log4Net</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nd.Framework.ObjectContainers.Castle\Nd.Framework.ObjectContainers.Castle.csproj">
+      <Project>{cae1eaf0-be1e-4beb-b4e4-17615eaa0acf}</Project>
+      <Name>Nd.Framework.ObjectContainers.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nd.Framework.Services\Nd.Framework.Services.csproj">
       <Project>{2b5ca336-8159-4537-8005-9385268b4ad6}</Project>
       <Name>Nd.Framework.Services</Name>

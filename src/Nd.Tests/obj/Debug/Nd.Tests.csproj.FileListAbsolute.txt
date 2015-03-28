@@ -20,3 +20,5 @@ G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Castle.Core.dll
 G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.Logging.Log4Net.dll
 G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\log4net.dll
 G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.Logging.Log4Net.pdb
+G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.ObjectContainers.Castle.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.ObjectContainers.Castle.pdb

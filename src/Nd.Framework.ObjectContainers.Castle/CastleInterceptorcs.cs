@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace Nd.Framework.Core.Castle
+namespace Nd.Framework.ObjectContainers.Castle
 {
     public class CastleInterceptor : ICastleInterceptor
     {

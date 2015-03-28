@@ -1,12 +1,12 @@
 ﻿using Castle.Core;
 using Castle.Core.Configuration;
-using Castle.DynamicProxy;
 using Castle.MicroKernel;
+using Nd.Framework.Core;
 using Nd.Framework.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nd.Framework.Core.Castle
+namespace Nd.Framework.ObjectContainers.Castle
 {
     public class CastleInterceptorFacility : ICastleFacility
     {

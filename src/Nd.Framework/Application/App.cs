@@ -1,7 +1,6 @@
 ﻿using Nd.Framework.Caching;
 using Nd.Framework.Configuration;
 using Nd.Framework.Core;
-using Nd.Framework.Core.Castle;
 using Nd.Framework.Logging;
 using System;
 
@@ -32,7 +31,8 @@ namespace Nd.Framework.Application
                 throw new ConfigurationException("框架配置节中未找到核心配置节点");
 
             this.configSource = configSource;
-            this.objectContainer = new CastleContainer(this.configSource);
+            Type objectContainerType = Type.GetType(configSource.Config.Core.Provider);
+            this.objectContainer = (INdContainer)Activator.CreateInstance(objectContainerType, configSource);
         }
         #endregion
 
