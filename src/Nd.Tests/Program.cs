@@ -8,7 +8,6 @@ namespace Nd.Tests
         static void Main(string[] args)
         {
             AppRuntime.Create(new AppConfigSource());
-            AppRuntime.Instance.CurrentApplication.Start();
 
             Core.Test();
         }

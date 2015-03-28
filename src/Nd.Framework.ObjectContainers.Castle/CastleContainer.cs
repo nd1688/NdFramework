@@ -21,7 +21,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         public CastleContainer(IConfigSource configSource)
         {
             this.configSource = configSource;
-            if (this.configSource.Config.Core.HasAOP)
+            if (this.configSource.Config.ObjectContainers.HasAOP)
             {
                 this.AddFacility(interceptorFacility);
                 this.RegisterType(typeof(CastleInterceptor), NdLifeStyle.Singleton);
@@ -32,7 +32,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         #region INdContainer Member
         public NdLifeStyle DefaultLifeStyle
         {
-            get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), this.configSource.Config.Core.DefaultLifeStyle)); }
+            get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), this.configSource.Config.ObjectContainers.DefaultLifeStyle)); }
         }
 
         public bool HasRegister(string name)

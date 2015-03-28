@@ -106,28 +106,28 @@ namespace Nd.Framework.Configuration
         }
         #endregion
         
-        #region Core Property
+        #region ObjectContainers Property
         /// <summary>
-        /// The XML name of the <see cref="Core"/> property.
+        /// The XML name of the <see cref="ObjectContainers"/> property.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string CorePropertyName = "core";
+        internal const string ObjectContainersPropertyName = "objectContainers";
         
         /// <summary>
-        /// Gets or sets the Core.
+        /// Gets or sets the ObjectContainers.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Core.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.CorePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual global::Nd.Framework.Configuration.CoreElement Core
+        [global::System.ComponentModel.DescriptionAttribute("The ObjectContainers.")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainersPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual global::Nd.Framework.Configuration.ObjectContainersElement ObjectContainers
         {
             get
             {
-                return ((global::Nd.Framework.Configuration.CoreElement)(base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.CorePropertyName]));
+                return ((global::Nd.Framework.Configuration.ObjectContainersElement)(base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainersPropertyName]));
             }
             set
             {
-                base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.CorePropertyName] = value;
+                base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainersPropertyName] = value;
             }
         }
         #endregion
@@ -238,9 +238,9 @@ namespace Nd.Framework.Configuration
     
     
     /// <summary>
-    /// The CoreElement Configuration Element.
+    /// The ObjectContainersElement Configuration Element.
     /// </summary>
-    public partial class CoreElement : global::System.Configuration.ConfigurationElement
+    public partial class ObjectContainersElement : global::System.Configuration.ConfigurationElement
     {
         
         #region IsReadOnly override
@@ -266,16 +266,16 @@ namespace Nd.Framework.Configuration
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
         [global::System.ComponentModel.DescriptionAttribute("The Provider.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.CoreElement.ProviderPropertyName, IsRequired=true, IsKey=true, IsDefaultCollection=false)]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.ProviderPropertyName, IsRequired=true, IsKey=true, IsDefaultCollection=false)]
         public virtual string Provider
         {
             get
             {
-                return ((string)(base[global::Nd.Framework.Configuration.CoreElement.ProviderPropertyName]));
+                return ((string)(base[global::Nd.Framework.Configuration.ObjectContainersElement.ProviderPropertyName]));
             }
             set
             {
-                base[global::Nd.Framework.Configuration.CoreElement.ProviderPropertyName] = value;
+                base[global::Nd.Framework.Configuration.ObjectContainersElement.ProviderPropertyName] = value;
             }
         }
         #endregion
@@ -292,16 +292,16 @@ namespace Nd.Framework.Configuration
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
         [global::System.ComponentModel.DescriptionAttribute("The HasAOP.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.CoreElement.HasAOPPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.HasAOPPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
         public virtual bool HasAOP
         {
             get
             {
-                return ((bool)(base[global::Nd.Framework.Configuration.CoreElement.HasAOPPropertyName]));
+                return ((bool)(base[global::Nd.Framework.Configuration.ObjectContainersElement.HasAOPPropertyName]));
             }
             set
             {
-                base[global::Nd.Framework.Configuration.CoreElement.HasAOPPropertyName] = value;
+                base[global::Nd.Framework.Configuration.ObjectContainersElement.HasAOPPropertyName] = value;
             }
         }
         #endregion
@@ -318,16 +318,16 @@ namespace Nd.Framework.Configuration
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
         [global::System.ComponentModel.DescriptionAttribute("The DefaultLifeStyle.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.CoreElement.DefaultLifeStylePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.DefaultLifeStylePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
         public virtual string DefaultLifeStyle
         {
             get
             {
-                return ((string)(base[global::Nd.Framework.Configuration.CoreElement.DefaultLifeStylePropertyName]));
+                return ((string)(base[global::Nd.Framework.Configuration.ObjectContainersElement.DefaultLifeStylePropertyName]));
             }
             set
             {
-                base[global::Nd.Framework.Configuration.CoreElement.DefaultLifeStylePropertyName] = value;
+                base[global::Nd.Framework.Configuration.ObjectContainersElement.DefaultLifeStylePropertyName] = value;
             }
         }
         #endregion

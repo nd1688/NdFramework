@@ -18,9 +18,9 @@
             <configurationElementMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/LoggingElement" />
           </type>
         </elementProperty>
-        <elementProperty name="Core" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="core" isReadOnly="false">
+        <elementProperty name="ObjectContainers" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="objectContainers" isReadOnly="false">
           <type>
-            <configurationElementMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/CoreElement" />
+            <configurationElementMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/ObjectContainersElement" />
           </type>
         </elementProperty>
       </elementProperties>
@@ -44,7 +44,7 @@
         </attributeProperty>
       </attributeProperties>
     </configurationElement>
-    <configurationElement name="CoreElement">
+    <configurationElement name="ObjectContainersElement">
       <attributeProperties>
         <attributeProperty name="Provider" isRequired="true" isKey="true" isDefaultCollection="false" xmlName="provider" isReadOnly="false">
           <type>

@@ -31,7 +31,7 @@
       </nestedChildShapes>
     </configurationElementShape>
     <configurationElementShape Id="155bd585-07c2-486c-a8c4-5cfa80a18f40" absoluteBounds="6.125, 3.625, 1.5, 1.5879931640624996" outlineDashStyle="Solid" outlineThickness="0.01">
-      <configurationElementMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/CoreElement" />
+      <configurationElementMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/ObjectContainersElement" />
       <nestedChildShapes>
         <elementListCompartment Id="6c152533-739e-468d-9494-b15792393dbd" absoluteBounds="6.14, 4.035, 1.4700000000000002, 0.820526123046875" name="AttributeProperties" titleTextColor="Black" itemTextColor="Black" />
         <elementListCompartment Id="df2ea0f5-30dd-4fba-96d7-aff644ad9bf2" absoluteBounds="6.14, 4.8655261230468749, 1.4700000000000002, 0.247467041015625" name="ElementProperties" titleTextColor="Black" itemTextColor="Black" />

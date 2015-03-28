@@ -27,11 +27,11 @@ namespace Nd.Framework.Application
                 throw new ArgumentNullException("配置源不能为空");
             if (configSource.Config == null)
                 throw new ConfigurationException("框架配置节未定义");
-            if (configSource.Config.Core == null)
+            if (configSource.Config.ObjectContainers == null)
                 throw new ConfigurationException("框架配置节中未找到核心配置节点");
 
             this.configSource = configSource;
-            Type objectContainerType = Type.GetType(configSource.Config.Core.Provider);
+            Type objectContainerType = Type.GetType(configSource.Config.ObjectContainers.Provider);
             this.objectContainer = (INdContainer)Activator.CreateInstance(objectContainerType, configSource);
         }
         #endregion

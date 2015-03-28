@@ -16,9 +16,9 @@
 					<xs:documentation>The Logging.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element minOccurs="0" name="core" type="tns:Nd.Framework.Configuration.CoreElementCT">
+			<xs:element minOccurs="0" name="objectContainers" type="tns:Nd.Framework.Configuration.ObjectContainersElementCT">
 				<xs:annotation>
-					<xs:documentation>The Core.</xs:documentation>
+					<xs:documentation>The ObjectContainers.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:choice>
@@ -40,7 +40,7 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
-	<xs:complexType name="Nd.Framework.Configuration.CoreElementCT">
+	<xs:complexType name="Nd.Framework.Configuration.ObjectContainersElementCT">
 		<xs:attribute name="provider" use="required" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>The Provider.</xs:documentation>
