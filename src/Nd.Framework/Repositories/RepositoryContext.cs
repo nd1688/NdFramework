@@ -22,7 +22,7 @@ namespace Nd.Framework.Repositories
         #endregion
 
         #region IRepositoryContext 成员
-        public Guid UniquedId
+        public Guid Id
         {
             get { return id; }
         }

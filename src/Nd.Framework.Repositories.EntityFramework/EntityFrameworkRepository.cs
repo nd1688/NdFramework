@@ -6,12 +6,12 @@ using System.Linq.Expressions;
 
 namespace Nd.Framework.Repositories.EntityFramework
 {
-    public class EFRepository<TAggregateRoot> : Repository<TAggregateRoot>
+    public class EntityFrameworkRepositoryContext<TAggregateRoot> : Repository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
         private IEntityFrameworkRepositoryContext objContext = null;
 
-        public EFRepository(IRepositoryContext objContext)
+        public EntityFrameworkRepositoryContext(IRepositoryContext objContext)
             : base(objContext)
         {
             this.objContext = base.Context as IEntityFrameworkRepositoryContext;
@@ -65,14 +65,6 @@ namespace Nd.Framework.Repositories.EntityFramework
         #endregion
 
         #region Protected Methods
-        protected override TAggregateRoot DoGet(Expression<Func<TAggregateRoot, bool>> objSpecification)
-        {
-            return this.objContext.Context.Set<TAggregateRoot>().AsNoTracking().Where(objSpecification).FirstOrDefault();
-        }
-        protected override TAggregateRoot DoGet(ISpecification<TAggregateRoot> objSpecification)
-        {
-            return this.objContext.Context.Set<TAggregateRoot>().AsNoTracking().Where(objSpecification.GetExpression()).FirstOrDefault();
-        }
         protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder)
         {
             var query = objContext.Context.Set<TAggregateRoot>().AsNoTracking()
@@ -222,6 +214,10 @@ namespace Nd.Framework.Repositories.EntityFramework
         {
             return this.objContext.Context.Set<TModel>().AsNoTracking().Count(objSpecification) > 0;
         }
+        protected override TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> objSpecification)
+        {
+            return this.objContext.Context.Set<TAggregateRoot>().AsNoTracking().Where(objSpecification).FirstOrDefault();
+        }
         protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> objSpecification)
         {
             return objContext.Context.Set<TAggregateRoot>().AsNoTracking().Where(objSpecification.IsSatisfiedBy).FirstOrDefault();
@@ -247,11 +243,5 @@ namespace Nd.Framework.Repositories.EntityFramework
                 return dbset.AsNoTracking().Where(objSpecification.GetExpression()).FirstOrDefault();
         }
         #endregion
-
-        public override void InitContext(IRepositoryContext objContext)
-        {
-            this.objContext = objContext as IEntityFrameworkRepositoryContext;
-            base.InitContext(objContext);
-        }
     }
 }

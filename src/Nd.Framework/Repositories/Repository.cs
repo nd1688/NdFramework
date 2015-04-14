@@ -36,9 +36,9 @@ namespace Nd.Framework.Repositories
         {
             return this.DoFindAll(new AnySpecification<TAggregateRoot>(), objSortPredicate, iSortOrder, iPageNumber, iPageSize);
         }
-        protected virtual IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification)
+        protected virtual IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification)
         {
-            return this.DoFindAll(objSpecification, null, SortOrder.Unspecified);
+            return this.DoFindAll(specification, null, SortOrder.Unspecified);
         }
         protected virtual IQueryable<TAggregateRoot> DoFindAll(params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
         {
@@ -52,26 +52,25 @@ namespace Nd.Framework.Repositories
         {
             return this.DoFindAll(new AnySpecification<TAggregateRoot>(), objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
         }
-        protected virtual IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        protected virtual IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
         {
-            return this.DoFindAll(objSpecification, null, SortOrder.Unspecified, objEagerLoadingProperties);
+            return this.DoFindAll(specification, null, SortOrder.Unspecified, objEagerLoadingProperties);
         }
-        protected abstract TAggregateRoot DoGet(Expression<Func<TAggregateRoot, bool>> objSpecification);
-        protected abstract TAggregateRoot DoGet(ISpecification<TAggregateRoot> objSpecification);
-        protected abstract IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder);
-        protected abstract PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize);
-        protected abstract IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
-        protected abstract PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
-        protected abstract bool DoExists(ISpecification<TAggregateRoot> objSpecification);
-        protected abstract bool DoExists(Expression<Func<TAggregateRoot, bool>> objSpecification);
-        protected abstract bool DoExists<TModel>(ISpecification<TModel> objSpecification) where TModel : class;
-        protected abstract bool DoExists<TModel>(Expression<Func<TModel, bool>> objSpecification) where TModel : class;
-        protected abstract TAggregateRoot DoFind(ISpecification<TAggregateRoot> objSpecification);
-        protected abstract TAggregateRoot DoFind(ISpecification<TAggregateRoot> objSpecification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
+        protected abstract IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder);
+        protected abstract PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize);
+        protected abstract IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
+        protected abstract PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
+        protected abstract bool DoExists(ISpecification<TAggregateRoot> specification);
+        protected abstract bool DoExists(Expression<Func<TAggregateRoot, bool>> specification);
+        protected abstract bool DoExists<TModel>(ISpecification<TModel> specification) where TModel : class;
+        protected abstract bool DoExists<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class;
+        protected abstract TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> specification);
+        protected abstract TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification);
+        protected abstract TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
         #endregion
 
         #region IRepository<TAggregateRoot> Members
-        public Guid UniquedId
+        public Guid Id
         {
             get
             {
@@ -85,10 +84,6 @@ namespace Nd.Framework.Repositories
                 return this.context;
             }
         }
-        public virtual void InitContext(IRepositoryContext objContext)
-        {
-            this.context = objContext;
-        }
         public virtual void Create(TAggregateRoot objEntity)
         {
             this.context.Create(objEntity);
@@ -100,22 +95,6 @@ namespace Nd.Framework.Repositories
         public virtual void Delete(TAggregateRoot objEntity)
         {
             this.context.Delete(objEntity);
-        }
-        public virtual T CreateSequence<T>()
-        {
-            return default(T);
-        }
-        public virtual T CreateSequence<T>(string strSequenceCode)
-        {
-            return default(T);
-        }
-        public virtual TAggregateRoot Get(Expression<Func<TAggregateRoot, bool>> objSpecification)
-        {
-            return this.DoGet(objSpecification);
-        }
-        public virtual TAggregateRoot Get(ISpecification<TAggregateRoot> objSpecification)
-        {
-            return this.DoGet(objSpecification);
         }
         public IQueryable<TAggregateRoot> FindAll()
         {
@@ -129,15 +108,15 @@ namespace Nd.Framework.Repositories
         {
             return this.DoFindAll(objSortPredicate, iSortOrder, iPageNumber, iPageSize);
         }
-        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> objSpecification)
+        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification)
         {
-            return this.DoFindAll(objSpecification);
+            return this.DoFindAll(specification);
         }
-        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder)
+        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder)
         {
-            return this.DoFindAll(objSpecification, objSortPredicate, iSortOrder);
+            return this.DoFindAll(specification, objSortPredicate, iSortOrder);
         }
-        public PagedResult<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize)
+        public PagedResult<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize)
         {
             return this.DoFindAll(objSortPredicate, iSortOrder, iPageNumber, iPageSize);
         }
@@ -153,41 +132,45 @@ namespace Nd.Framework.Repositories
         {
             return this.DoFindAll(objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
         }
-        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> objSpecification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
         {
-            return this.DoFindAll(objSpecification, objEagerLoadingProperties);
+            return this.DoFindAll(specification, objEagerLoadingProperties);
         }
-        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        public IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
         {
             return this.DoFindAll(objSortPredicate, iSortOrder, objEagerLoadingProperties);
         }
-        public PagedResult<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        public PagedResult<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
         {
-            return this.DoFindAll(objSpecification, objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
+            return this.DoFindAll(specification, objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
         }
-        public bool Exists(ISpecification<TAggregateRoot> objSpecification)
+        public bool Exists(ISpecification<TAggregateRoot> specification)
         {
-            return this.DoExists(objSpecification);
+            return this.DoExists(specification);
         }
-        public bool Exists(Expression<Func<TAggregateRoot, bool>> objSpecification)
+        public bool Exists(Expression<Func<TAggregateRoot, bool>> specification)
         {
-            return this.DoExists(objSpecification);
+            return this.DoExists(specification);
         }
-        public bool Exists<TModel>(ISpecification<TModel> objSpecification) where TModel : class
+        public bool Exists<TModel>(ISpecification<TModel> specification) where TModel : class
         {
-            return this.DoExists<TModel>(objSpecification);
+            return this.DoExists<TModel>(specification);
         }
-        public bool Exists<TModel>(Expression<Func<TModel, bool>> objSpecification) where TModel : class
+        public bool Exists<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class
         {
-            return this.DoExists<TModel>(objSpecification);
+            return this.DoExists<TModel>(specification);
         }
-        public TAggregateRoot Find(ISpecification<TAggregateRoot> objSpecification)
+        public virtual TAggregateRoot Find(Expression<Func<TAggregateRoot, bool>> specification)
         {
-            return this.DoFind(objSpecification);
+            return this.DoFind(specification);
         }
-        public TAggregateRoot Find(ISpecification<TAggregateRoot> objSpecification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        public TAggregateRoot Find(ISpecification<TAggregateRoot> specification)
         {
-            return this.DoFind(objSpecification, objEagerLoadingProperties);
+            return this.DoFind(specification);
+        }
+        public TAggregateRoot Find(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        {
+            return this.DoFind(specification, objEagerLoadingProperties);
         }
         #endregion
     }

@@ -10,7 +10,7 @@ namespace Nd.Framework.Repositories
         /// <summary>
         /// 仓储上下文唯一编号
         /// </summary>
-        Guid UniquedId { get; }
+        Guid Id { get; }
 
         /// <summary>
         /// 创建
