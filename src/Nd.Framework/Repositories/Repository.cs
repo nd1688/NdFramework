@@ -11,18 +11,19 @@ namespace Nd.Framework.Repositories
         where TAggregateRoot : class, IAggregateRoot
     {
         #region Private Fields
-        private IRepositoryContext objContext;
-        private Guid objUniquedID = Guid.NewGuid();
+        private IRepositoryContext context;
+        private Guid id = Guid.NewGuid();
         #endregion
 
         #region Ctor
-        public Repository(IRepositoryContext objContext)
+        public Repository(IRepositoryContext context)
         {
-            this.objContext = objContext;
+            this.context = context;
         }
         #endregion
 
         #region 保护方法
+
         protected virtual IQueryable<TAggregateRoot> DoFindAll()
         {
             return this.DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified);
@@ -70,47 +71,35 @@ namespace Nd.Framework.Repositories
         #endregion
 
         #region IRepository<TAggregateRoot> Members
-        public Guid UniquedID
+        public Guid UniquedId
         {
             get
             {
-                return this.objUniquedID;
+                return this.id;
             }
         }
         public virtual IRepositoryContext Context
         {
             get
             {
-                return this.objContext;
+                return this.context;
             }
         }
         public virtual void InitContext(IRepositoryContext objContext)
         {
-            this.objContext = objContext;
+            this.context = objContext;
         }
-        public virtual bool Create(TAggregateRoot objEntity)
+        public virtual void Create(TAggregateRoot objEntity)
         {
-            return this.objContext.Create(objEntity);
+            this.context.Create(objEntity);
         }
-        public virtual bool Update(TAggregateRoot objEntity)
+        public virtual void Update(TAggregateRoot objEntity)
         {
-            return this.objContext.Update(objEntity);
+            this.context.Update(objEntity);
         }
-        public virtual bool Delete(TAggregateRoot objEntity)
+        public virtual void Delete(TAggregateRoot objEntity)
         {
-            return this.objContext.Delete(objEntity);
-        }
-        public virtual bool CreateRange(ICollection<TAggregateRoot> objEntityList)
-        {
-            return this.objContext.CreateRange(objEntityList);
-        }
-        public virtual bool UpdateRange(ICollection<TAggregateRoot> objEntityList)
-        {
-            return this.objContext.UpdateRange(objEntityList);
-        }
-        public virtual bool DeleteRange(ICollection<TAggregateRoot> objEntityList)
-        {
-            return this.objContext.DeleteRange(objEntityList);
+            this.context.Delete(objEntity);
         }
         public virtual T CreateSequence<T>()
         {

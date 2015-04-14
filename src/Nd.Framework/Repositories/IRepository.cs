@@ -10,7 +10,7 @@ namespace Nd.Framework.Repositories
     public interface IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        Guid UniquedID
+        Guid UniquedId
         {
             get;
         }
@@ -18,12 +18,11 @@ namespace Nd.Framework.Repositories
         void InitContext(IRepositoryContext objContext);
         T CreateSequence<T>();
         T CreateSequence<T>(string strSequenceCode);
-        bool Create(TAggregateRoot aggregateRoot);
-        bool Delete(TAggregateRoot aggregateRoot);
-        bool Update(TAggregateRoot aggregateRoot);
-        bool CreateRange(ICollection<TAggregateRoot> aggregateRootList);
-        bool UpdateRange(ICollection<TAggregateRoot> aggregateRootList);
-        bool DeleteRange(ICollection<TAggregateRoot> aggregateRootList);
+
+        void Create(TAggregateRoot aggregateRoot);
+        void Delete(TAggregateRoot aggregateRoot);
+        void Update(TAggregateRoot aggregateRoot);
+
         TAggregateRoot Get(Expression<Func<TAggregateRoot, bool>> objSpecification);
         TAggregateRoot Get(ISpecification<TAggregateRoot> objSpecification);
         bool Exists(ISpecification<TAggregateRoot> objSpecification);

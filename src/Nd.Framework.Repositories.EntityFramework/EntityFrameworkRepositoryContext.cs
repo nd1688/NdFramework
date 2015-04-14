@@ -1,251 +1,74 @@
-﻿using Nd.Framework.Application;
-using Nd.Framework.Core;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace Nd.Framework.Repositories.EntityFramework
 {
-    public class EntityFrameworkRepositoryContext : BooleanDisposable, IEntityFrameworkRepositoryContext
+    public class EntityFrameworkRepositoryContext : RepositoryContext
     {
         #region 私有字段
-        private Guid objUniquedID = Guid.NewGuid();
-        private DbContext objContext = null;
+        private DbContext context = null;
         private readonly object objLock = new object();
-        private readonly ThreadLocal<bool> bCommitted = new ThreadLocal<bool>(() => true);
         #endregion
 
         #region 构造方法
-        public EntityFrameworkRepositoryContext(DbContext objEFContext)
+        public EntityFrameworkRepositoryContext(DbContext context)
         {
-            this.objContext = objEFContext;
-            this.Context.Configuration.ValidateOnSaveEnabled = false;
+            this.context = context;
+            this.context.Configuration.AutoDetectChangesEnabled = false;
+            this.context.Configuration.ValidateOnSaveEnabled = false;
         }
         #endregion
 
         #region 保护方法
-        protected override void Dispose(bool bDisposed)
+        protected override void Dispose(bool disposing)
         {
-            if (bDisposed)
+            if (disposing)
             {
-                this.objContext.Dispose();
+                this.context.Dispose();
             }
-            base.Dispose(bDisposed);
-        }
-        #endregion
-
-        #region 属性
-        public Guid UniquedID
-        {
-            get
-            {
-                return this.objUniquedID;
-            }
-        }
-        public DbContext Context
-        {
-            get
-            {
-                return this.objContext;
-            }
-        }
-        public bool Committed
-        {
-            get
-            {
-                return this.bCommitted.Value;
-            }
-            protected set
-            {
-                this.bCommitted.Value = value;
-            }
-        }
-        private DbConnection Connection
-        {
-            get
-            {
-                return this.Context.Database.Connection;
-            }
+            base.Dispose(disposing);
         }
         #endregion
 
         #region IRepositoryContext接口方法
-        public virtual bool Create<TDao>(TDao objDao) where TDao : class
+        public override void Create<T>(T obj)
         {
-            try
-            {
-                this.objContext.Entry<TDao>(objDao).State = EntityState.Added;
-                this.Committed = false;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Create(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
-                if (!Util.IsNull(this.Connection))
-                {
-                    this.Connection.Close();
-                }
-                throw ex;
-            }
+            this.context.Entry<T>(obj).State = EntityState.Added;
+            this.Committed = false;
         }
-        public virtual bool Update<TDao>(TDao objDao) where TDao : class
+        public override void Update<T>(T obj)
         {
-            try
-            {
-                this.RemoveHoldingEntity(objDao);
-                this.objContext.Entry<TDao>(objDao).State = EntityState.Modified;
-                this.Committed = false;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Update(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
-                if (!Util.IsNull(this.Connection))
-                {
-                    this.Connection.Close();
-                }
-                throw ex;
-            }
+            this.context.Entry<T>(obj).State = EntityState.Modified;
+            this.Committed = false;
         }
-        public virtual bool Delete<TDao>(TDao objDao) where TDao : class
+        public override void Delete<T>(T obj)
         {
-            try
-            {
-                this.RemoveHoldingEntity(objDao);
-                this.objContext.Entry<TDao>(objDao).State = EntityState.Deleted;
-                this.Committed = false;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Delete(TDao [{0}]),Exception:{1}", objDao.ToString(), ex.ToString());
-                if (!Util.IsNull(this.Connection))
-                {
-                    this.Connection.Close();
-                }
-                throw ex;
-            }
-        }
-        public virtual bool CreateRange<TDao>(ICollection<TDao> objDaoList) where TDao : class
-        {
-            try
-            {
-                foreach (TDao objDao in objDaoList)
-                {
-                    this.objContext.Entry<TDao>(objDao).State = EntityState.Added;
-                }
-                this.Committed = false;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.CreateRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
-                if (!Util.IsNull(this.Connection))
-                {
-                    this.Connection.Close();
-                }
-                throw ex;
-            }
-        }
-        public virtual bool UpdateRange<TDao>(ICollection<TDao> objDaoList) where TDao : class
-        {
-            try
-            {
-                foreach (TDao objDao in objDaoList)
-                {
-                    this.RemoveHoldingEntity(objDao);
-                    this.objContext.Entry<TDao>(objDao).State = EntityState.Modified;
-                }
-                this.Committed = false;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.UpdateRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
-                if (!Util.IsNull(this.Connection))
-                {
-                    this.Connection.Close();
-                }
-                throw ex;
-            }
-        }
-        public virtual bool DeleteRange<TDao>(ICollection<TDao> objDaoList) where TDao : class
-        {
-            try
-            {
-                foreach (TDao objDao in objDaoList)
-                {
-                    this.RemoveHoldingEntity(objDao);
-                    this.objContext.Entry<TDao>(objDao).State = EntityState.Deleted;
-                }
-                this.Committed = false;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.DeleteRange(ICollection<TDao> [{0}]),Exception:{1}", objDaoList.ToString(), ex.ToString());
-                if (!Util.IsNull(this.Connection))
-                {
-                    this.Connection.Close();
-                }
-                throw ex;
-            }
-        }
-        private void RemoveHoldingEntity<TDao>(TDao objDao) where TDao : class
-        {
-            var objCtx = ((IObjectContextAdapter)this.objContext).ObjectContext;
-            var objSet = objCtx.CreateObjectSet<TDao>();
-            var objKey = objCtx.CreateEntityKey(objSet.EntitySet.Name, objDao);
-            object objEntity;
-            if (objCtx.TryGetObjectByKey(objKey, out objEntity))
-            {
-                objCtx.Detach(objEntity);
-            }
+            this.context.Entry<T>(obj).State = EntityState.Deleted;
+            this.Committed = false;
         }
         #endregion
 
         #region IUnitOfWork接口方法
-        public virtual bool DistributedTransactionSupported
+        public override bool DistributedTransactionSupported
         {
             get
             {
                 return true;
             }
         }
-        public virtual bool Commit()
+        public override void Commit()
         {
             if (!this.Committed)
             {
                 lock (this.objLock)
                 {
-                    try
-                    {
-                        this.Context.Configuration.ValidateOnSaveEnabled = false;
-                        return this.objContext.SaveChanges() > 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        AppRuntime.Instance.Logger.ErrorFormat("Source:Basf.EFRepository.EFRepositoryContext.Commit(),Exception:{0}", ex.ToString());
-                        throw ex;
-                    }
-                    finally
-                    {
-                        this.Committed = true;
-                    }
+                    this.context.SaveChanges();
                 }
+                this.Committed = true;
             }
-            return false;
         }
-        public virtual bool Rollback()
+        public override void Rollback()
         {
             this.Committed = false;
-            return true;
         }
         #endregion
     }

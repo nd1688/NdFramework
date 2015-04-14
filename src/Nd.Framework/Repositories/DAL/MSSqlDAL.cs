@@ -505,7 +505,7 @@ namespace Nd.Framework.Repositories.DAL
                     objBuilder.AppendFormat("{0}={1}", objParam.ParameterName, objParam.Value);
                 }
             }
-            AppRuntime.Instance.Logger.Info(objBuilder.ToString());
+            //AppRuntime.Instance.Logger.Info(objBuilder.ToString());
         }
         #endregion
     }

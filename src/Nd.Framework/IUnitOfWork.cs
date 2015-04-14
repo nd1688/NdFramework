@@ -19,11 +19,11 @@ namespace Nd.Framework
         /// <summary>
         /// 提交事务
         /// </summary>
-        bool Commit();
+        void Commit();
 
         /// <summary>
         /// 回滚事务
         /// </summary>
-        bool Rollback();
+        void Rollback();
     }
 }
