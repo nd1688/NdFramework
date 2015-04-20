@@ -88,6 +88,26 @@ namespace Nd.Framework.Repositories.EntityFramework
         {
             return DoFind(specification);
         }
+        protected override TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFind(specification, eagerLoadingProperties);
+        }
+        protected override IQueryable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder);
+        }
+        protected override PagedResult<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize);
+        }
+        protected override IQueryable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
+        }
+        protected override PagedResult<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
+        }
         protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification)
         {
             return DoFind(specification);
@@ -115,23 +135,20 @@ namespace Nd.Framework.Repositories.EntityFramework
         #endregion
 
         #region 操作对象为所有实体
-        protected override bool DoExists<TModel>(ISpecification<TModel> specification)
-        {
-            return this.objContext.Context.Set<TModel>().AsNoTracking().Count(specification.GetExpression()) > 0;
-        }
         protected override bool DoExists<TModel>(Expression<Func<TModel, bool>> specification)
         {
             return this.objContext.Context.Set<TModel>().AsNoTracking().Count(specification) > 0;
         }
+        protected override bool DoExists<TModel>(ISpecification<TModel> specification)
+        {
+            return DoExists(specification.GetExpression());
+        }
+        
         protected override TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification)
         {
             return this.objContext.Context.Set<TModel>().AsNoTracking().Where(specification).FirstOrDefault();
         }
-        protected override TModel DoFind<TModel>(ISpecification<TModel> specification)
-        {
-            return objContext.Context.Set<TModel>().AsNoTracking().Where(specification.IsSatisfiedBy).FirstOrDefault();
-        }
-        protected override TModel DoFind<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        protected override TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
             var dbset = objContext.Context.Set<TModel>();
             if (eagerLoadingProperties != null &&
@@ -146,15 +163,15 @@ namespace Nd.Framework.Repositories.EntityFramework
                     eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                     dbquery = dbquery.Include(eagerLoadingPath);
                 }
-                return dbquery.Where(specification.GetExpression()).FirstOrDefault();
+                return dbquery.Where(specification).FirstOrDefault();
             }
             else
-                return dbset.AsNoTracking().Where(specification.GetExpression()).FirstOrDefault();
+                return dbset.AsNoTracking().Where(specification).FirstOrDefault();
         }
-        protected override IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder)
+        protected override IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder)
         {
             var query = objContext.Context.Set<TModel>().AsNoTracking()
-                .Where(specification.GetExpression());
+                .Where(specification);
             if (sortPredicate != null)
             {
                 switch (sortOrder)
@@ -169,7 +186,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             return query;
         }
-        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
+        protected override PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
         {
             if (pageIndex <= 0)
                 throw new ArgumentOutOfRangeException("pageIndex", pageIndex, "The pageIndex is one-based and should be larger than zero.");
@@ -179,7 +196,7 @@ namespace Nd.Framework.Repositories.EntityFramework
                 throw new ArgumentNullException("sortPredicate");
 
             var query = objContext.Context.Set<TModel>().AsNoTracking()
-                .Where(specification.GetExpression());
+                .Where(specification);
             int skip = (pageIndex - 1) * pageSize;
             int take = pageSize;
 
@@ -201,7 +218,7 @@ namespace Nd.Framework.Repositories.EntityFramework
 
             return null;
         }
-        protected override IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        protected override IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
             var dbset = objContext.Context.Set<TModel>();
             IQueryable<TModel> queryable = null;
@@ -216,10 +233,10 @@ namespace Nd.Framework.Repositories.EntityFramework
                     eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                     dbquery = dbquery.Include(eagerLoadingPath);
                 }
-                queryable = dbquery.Where(specification.GetExpression());
+                queryable = dbquery.Where(specification);
             }
             else
-                queryable = dbset.AsNoTracking().Where(specification.GetExpression());
+                queryable = dbset.AsNoTracking().Where(specification);
 
             if (sortPredicate != null)
             {
@@ -235,7 +252,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             return queryable;
         }
-        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        protected override PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
             if (pageIndex <= 0)
                 throw new ArgumentOutOfRangeException("pageIndex", pageIndex, "The pageIndex is one-based and should be larger than zero.");
@@ -261,10 +278,10 @@ namespace Nd.Framework.Repositories.EntityFramework
                     eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                     dbquery = dbquery.Include(eagerLoadingPath);
                 }
-                queryable = dbquery.Where(specification.GetExpression());
+                queryable = dbquery.Where(specification);
             }
             else
-                queryable = dbset.AsNoTracking().Where(specification.GetExpression());
+                queryable = dbset.AsNoTracking().Where(specification);
 
             switch (sortOrder)
             {
@@ -283,6 +300,30 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
 
             return null;
+        }
+        protected override TModel DoFind<TModel>(ISpecification<TModel> specification)
+        {
+            return DoFind(specification.GetExpression());
+        }
+        protected override TModel DoFind<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFind(specification.GetExpression(), eagerLoadingProperties);
+        }
+        protected override IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder)
+        {
+            return DoFindAll(specification.GetExpression(), sortPredicate, sortOrder);
+        }
+        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
+        {
+            return DoFindAll(specification.GetExpression(), sortPredicate, sortOrder, pageIndex, pageSize);
+        }
+        protected override IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFindAll(specification.GetExpression(), sortPredicate, sortOrder, eagerLoadingProperties);
+        }
+        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFindAll(specification.GetExpression(), sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
         }
         #endregion
 
