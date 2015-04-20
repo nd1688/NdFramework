@@ -33,6 +33,15 @@ namespace Nd.Framework.Repositories.EntityFramework
         #region Private Methods
         private MemberExpression GetMemberInfo(LambdaExpression objLambda)
         {
+            return GetMemberInfo(objLambda);
+        }
+
+        private string GetEagerLoadingPath(Expression<Func<TAggregateRoot, dynamic>> objEagerLoadingProperty)
+        {
+            return GetEagerLoadingPath(objEagerLoadingProperty);
+        }
+        private MemberExpression GetMemberInfo<TModel>(LambdaExpression objLambda)
+        {
             if (objLambda == null)
                 throw new ArgumentNullException("method");
 
@@ -54,7 +63,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             return memberExpr;
         }
 
-        private string GetEagerLoadingPath(Expression<Func<TAggregateRoot, dynamic>> objEagerLoadingProperty)
+        private string GetEagerLoadingPath<TModel>(Expression<Func<TModel, dynamic>> objEagerLoadingProperty)
         {
             MemberExpression memberExpression = this.GetMemberInfo(objEagerLoadingProperty);
             var parameterName = objEagerLoadingProperty.Parameters.First().Name;
@@ -65,183 +74,218 @@ namespace Nd.Framework.Repositories.EntityFramework
         #endregion
 
         #region Protected Methods
-        protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder)
+
+        #region 操作对象为聚合
+        protected override bool DoExists(ISpecification<TAggregateRoot> specification)
         {
-            var query = objContext.Context.Set<TAggregateRoot>().AsNoTracking()
-                .Where(objSpecification.GetExpression());
-            if (objSortPredicate != null)
+            return DoExists(specification);
+        }
+        protected override bool DoExists(Expression<Func<TAggregateRoot, bool>> specification)
+        {
+            return DoExists(specification);
+        }
+        protected override TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> specification)
+        {
+            return DoFind(specification);
+        }
+        protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification)
+        {
+            return DoFind(specification);
+        }
+        protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFind(specification, eagerLoadingProperties);
+        }
+        protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder);
+        }
+        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder, PageIndex, pageSize);
+        }
+        protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
+        }
+        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        {
+            return DoFindAll(specification, sortPredicate, sortOrder, PageIndex, pageSize, eagerLoadingProperties);
+        }
+        #endregion
+
+        #region 操作对象为所有实体
+        protected override bool DoExists<TModel>(ISpecification<TModel> specification)
+        {
+            return this.objContext.Context.Set<TModel>().AsNoTracking().Count(specification.GetExpression()) > 0;
+        }
+        protected override bool DoExists<TModel>(Expression<Func<TModel, bool>> specification)
+        {
+            return this.objContext.Context.Set<TModel>().AsNoTracking().Count(specification) > 0;
+        }
+        protected override TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification)
+        {
+            return this.objContext.Context.Set<TModel>().AsNoTracking().Where(specification).FirstOrDefault();
+        }
+        protected override TModel DoFind<TModel>(ISpecification<TModel> specification)
+        {
+            return objContext.Context.Set<TModel>().AsNoTracking().Where(specification.IsSatisfiedBy).FirstOrDefault();
+        }
+        protected override TModel DoFind<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        {
+            var dbset = objContext.Context.Set<TModel>();
+            if (eagerLoadingProperties != null &&
+                eagerLoadingProperties.Length > 0)
             {
-                switch (iSortOrder)
+                var eagerLoadingProperty = eagerLoadingProperties[0];
+                var eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
+                var dbquery = dbset.AsNoTracking().Include(eagerLoadingPath);
+                for (int i = 1; i < eagerLoadingProperties.Length; i++)
+                {
+                    eagerLoadingProperty = eagerLoadingProperties[i];
+                    eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
+                    dbquery = dbquery.Include(eagerLoadingPath);
+                }
+                return dbquery.Where(specification.GetExpression()).FirstOrDefault();
+            }
+            else
+                return dbset.AsNoTracking().Where(specification.GetExpression()).FirstOrDefault();
+        }
+        protected override IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder)
+        {
+            var query = objContext.Context.Set<TModel>().AsNoTracking()
+                .Where(specification.GetExpression());
+            if (sortPredicate != null)
+            {
+                switch (sortOrder)
                 {
                     case SortOrder.Ascending:
-                        return query.OrderBy(objSortPredicate);
+                        return query.OrderBy(sortPredicate);
                     case SortOrder.Descending:
-                        return query.OrderByDescending(objSortPredicate);
+                        return query.OrderByDescending(sortPredicate);
                     default:
                         break;
                 }
             }
             return query;
         }
-        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize)
+        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize)
         {
-            if (iPageNumber <= 0)
-                throw new ArgumentOutOfRangeException("iPageNumber", iPageNumber, "The iPageNumber is one-based and should be larger than zero.");
-            if (iPageSize <= 0)
-                throw new ArgumentOutOfRangeException("iPageSize", iPageSize, "The iPageSize is one-based and should be larger than zero.");
-            if (objSortPredicate == null)
-                throw new ArgumentNullException("objSortPredicate");
+            if (PageIndex <= 0)
+                throw new ArgumentOutOfRangeException("PageIndex", PageIndex, "The PageIndex is one-based and should be larger than zero.");
+            if (pageSize <= 0)
+                throw new ArgumentOutOfRangeException("pageSize", pageSize, "The pageSize is one-based and should be larger than zero.");
+            if (sortPredicate == null)
+                throw new ArgumentNullException("sortPredicate");
 
-            var query = objContext.Context.Set<TAggregateRoot>().AsNoTracking()
-                .Where(objSpecification.GetExpression());
-            int skip = (iPageNumber - 1) * iPageSize;
-            int take = iPageSize;
+            var query = objContext.Context.Set<TModel>().AsNoTracking()
+                .Where(specification.GetExpression());
+            int skip = (PageIndex - 1) * pageSize;
+            int take = pageSize;
 
-            switch (iSortOrder)
+            switch (sortOrder)
             {
                 case SortOrder.Ascending:
-                    var pagedGroupAscending = query.OrderBy(objSortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
+                    var pagedGroupAscending = query.OrderBy(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
                     if (pagedGroupAscending == null)
                         return null;
-                    return new PagedResult<TAggregateRoot>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + iPageSize - 1) / iPageSize, iPageSize, iPageNumber, pagedGroupAscending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupAscending.Select(p => p).ToList());
                 case SortOrder.Descending:
-                    var pagedGroupDescending = query.OrderByDescending(objSortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
+                    var pagedGroupDescending = query.OrderByDescending(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
                     if (pagedGroupDescending == null)
                         return null;
-                    return new PagedResult<TAggregateRoot>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + iPageSize - 1) / iPageSize, iPageSize, iPageNumber, pagedGroupDescending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupDescending.Select(p => p).ToList());
                 default:
                     break;
             }
 
             return null;
         }
-        protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        protected override IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
-            var dbset = objContext.Context.Set<TAggregateRoot>();
-            IQueryable<TAggregateRoot> queryable = null;
-            if (objEagerLoadingProperties != null && objEagerLoadingProperties.Length > 0)
+            var dbset = objContext.Context.Set<TModel>();
+            IQueryable<TModel> queryable = null;
+            if (eagerLoadingProperties != null && eagerLoadingProperties.Length > 0)
             {
-                var eagerLoadingProperty = objEagerLoadingProperties[0];
+                var eagerLoadingProperty = eagerLoadingProperties[0];
                 var eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                 var dbquery = dbset.AsNoTracking().Include(eagerLoadingPath);
-                for (int i = 1; i < objEagerLoadingProperties.Length; i++)
+                for (int i = 1; i < eagerLoadingProperties.Length; i++)
                 {
-                    eagerLoadingProperty = objEagerLoadingProperties[i];
+                    eagerLoadingProperty = eagerLoadingProperties[i];
                     eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                     dbquery = dbquery.Include(eagerLoadingPath);
                 }
-                queryable = dbquery.Where(objSpecification.GetExpression());
+                queryable = dbquery.Where(specification.GetExpression());
             }
             else
-                queryable = dbset.AsNoTracking().Where(objSpecification.GetExpression());
+                queryable = dbset.AsNoTracking().Where(specification.GetExpression());
 
-            if (objSortPredicate != null)
+            if (sortPredicate != null)
             {
-                switch (iSortOrder)
+                switch (sortOrder)
                 {
                     case SortOrder.Ascending:
-                        return queryable.OrderBy(objSortPredicate);
+                        return queryable.OrderBy(sortPredicate);
                     case SortOrder.Descending:
-                        return queryable.OrderByDescending(objSortPredicate);
+                        return queryable.OrderByDescending(sortPredicate);
                     default:
                         break;
                 }
             }
             return queryable;
         }
-        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> objSpecification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
+        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
-            if (iPageNumber <= 0)
-                throw new ArgumentOutOfRangeException("iPageNumber", iPageNumber, "The iPageNumber is one-based and should be larger than zero.");
-            if (iPageSize <= 0)
-                throw new ArgumentOutOfRangeException("iPageSize", iPageSize, "The iPageSize is one-based and should be larger than zero.");
-            if (objSortPredicate == null)
-                throw new ArgumentNullException("objSortPredicate");
+            if (PageIndex <= 0)
+                throw new ArgumentOutOfRangeException("PageIndex", PageIndex, "The PageIndex is one-based and should be larger than zero.");
+            if (pageSize <= 0)
+                throw new ArgumentOutOfRangeException("pageSize", pageSize, "The pageSize is one-based and should be larger than zero.");
+            if (sortPredicate == null)
+                throw new ArgumentNullException("sortPredicate");
 
-            int skip = (iPageNumber - 1) * iPageSize;
-            int take = iPageSize;
+            int skip = (PageIndex - 1) * pageSize;
+            int take = pageSize;
 
-            var dbset = objContext.Context.Set<TAggregateRoot>();
-            IQueryable<TAggregateRoot> queryable = null;
-            if (objEagerLoadingProperties != null &&
-                objEagerLoadingProperties.Length > 0)
+            var dbset = objContext.Context.Set<TModel>();
+            IQueryable<TModel> queryable = null;
+            if (eagerLoadingProperties != null &&
+                eagerLoadingProperties.Length > 0)
             {
-                var eagerLoadingProperty = objEagerLoadingProperties[0];
+                var eagerLoadingProperty = eagerLoadingProperties[0];
                 var eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                 var dbquery = dbset.AsNoTracking().Include(eagerLoadingPath);
-                for (int i = 1; i < objEagerLoadingProperties.Length; i++)
+                for (int i = 1; i < eagerLoadingProperties.Length; i++)
                 {
-                    eagerLoadingProperty = objEagerLoadingProperties[i];
+                    eagerLoadingProperty = eagerLoadingProperties[i];
                     eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
                     dbquery = dbquery.Include(eagerLoadingPath);
                 }
-                queryable = dbquery.Where(objSpecification.GetExpression());
+                queryable = dbquery.Where(specification.GetExpression());
             }
             else
-                queryable = dbset.AsNoTracking().Where(objSpecification.GetExpression());
+                queryable = dbset.AsNoTracking().Where(specification.GetExpression());
 
-            switch (iSortOrder)
+            switch (sortOrder)
             {
                 case SortOrder.Ascending:
-                    var pagedGroupAscending = queryable.OrderBy(objSortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = queryable.Count() }).FirstOrDefault();
+                    var pagedGroupAscending = queryable.OrderBy(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = queryable.Count() }).FirstOrDefault();
                     if (pagedGroupAscending == null)
                         return null;
-                    return new PagedResult<TAggregateRoot>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + iPageSize - 1) / iPageSize, iPageSize, iPageNumber, pagedGroupAscending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupAscending.Select(p => p).ToList());
                 case SortOrder.Descending:
-                    var pagedGroupDescending = queryable.OrderByDescending(objSortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = queryable.Count() }).FirstOrDefault();
+                    var pagedGroupDescending = queryable.OrderByDescending(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = queryable.Count() }).FirstOrDefault();
                     if (pagedGroupDescending == null)
                         return null;
-                    return new PagedResult<TAggregateRoot>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + iPageSize - 1) / iPageSize, iPageSize, iPageNumber, pagedGroupDescending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupDescending.Select(p => p).ToList());
                 default:
                     break;
             }
 
             return null;
         }
-        protected override bool DoExists(ISpecification<TAggregateRoot> objSpecification)
-        {
-            return this.objContext.Context.Set<TAggregateRoot>().AsNoTracking().Count(objSpecification.GetExpression()) > 0;
-        }
-        protected override bool DoExists(Expression<Func<TAggregateRoot, bool>> objSpecification)
-        {
-            return this.objContext.Context.Set<TAggregateRoot>().AsNoTracking().Count(objSpecification) > 0;
-        }
-        protected override bool DoExists<TModel>(ISpecification<TModel> objSpecification)
-        {
-            return this.objContext.Context.Set<TModel>().AsNoTracking().Count(objSpecification.GetExpression()) > 0;
-        }
-        protected override bool DoExists<TModel>(Expression<Func<TModel, bool>> objSpecification)
-        {
-            return this.objContext.Context.Set<TModel>().AsNoTracking().Count(objSpecification) > 0;
-        }
-        protected override TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> objSpecification)
-        {
-            return this.objContext.Context.Set<TAggregateRoot>().AsNoTracking().Where(objSpecification).FirstOrDefault();
-        }
-        protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> objSpecification)
-        {
-            return objContext.Context.Set<TAggregateRoot>().AsNoTracking().Where(objSpecification.IsSatisfiedBy).FirstOrDefault();
-        }
-        protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> objSpecification, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties)
-        {
-            var dbset = objContext.Context.Set<TAggregateRoot>();
-            if (objEagerLoadingProperties != null &&
-                objEagerLoadingProperties.Length > 0)
-            {
-                var eagerLoadingProperty = objEagerLoadingProperties[0];
-                var eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
-                var dbquery = dbset.AsNoTracking().Include(eagerLoadingPath);
-                for (int i = 1; i < objEagerLoadingProperties.Length; i++)
-                {
-                    eagerLoadingProperty = objEagerLoadingProperties[i];
-                    eagerLoadingPath = this.GetEagerLoadingPath(eagerLoadingProperty);
-                    dbquery = dbquery.Include(eagerLoadingPath);
-                }
-                return dbquery.Where(objSpecification.GetExpression()).FirstOrDefault();
-            }
-            else
-                return dbset.AsNoTracking().Where(objSpecification.GetExpression()).FirstOrDefault();
-        }
+        #endregion
+
         #endregion
     }
 }
