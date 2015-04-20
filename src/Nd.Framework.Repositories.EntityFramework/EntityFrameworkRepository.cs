@@ -36,9 +36,9 @@ namespace Nd.Framework.Repositories.EntityFramework
             return GetMemberInfo(objLambda);
         }
 
-        private string GetEagerLoadingPath(Expression<Func<TAggregateRoot, dynamic>> objEagerLoadingProperty)
+        private string GetEagerLoadingPath(Expression<Func<TAggregateRoot, dynamic>> eagerLoadingProperty)
         {
-            return GetEagerLoadingPath(objEagerLoadingProperty);
+            return GetEagerLoadingPath(eagerLoadingProperty);
         }
         private MemberExpression GetMemberInfo<TModel>(LambdaExpression objLambda)
         {
@@ -63,10 +63,10 @@ namespace Nd.Framework.Repositories.EntityFramework
             return memberExpr;
         }
 
-        private string GetEagerLoadingPath<TModel>(Expression<Func<TModel, dynamic>> objEagerLoadingProperty)
+        private string GetEagerLoadingPath<TModel>(Expression<Func<TModel, dynamic>> eagerLoadingProperty)
         {
-            MemberExpression memberExpression = this.GetMemberInfo(objEagerLoadingProperty);
-            var parameterName = objEagerLoadingProperty.Parameters.First().Name;
+            MemberExpression memberExpression = this.GetMemberInfo(eagerLoadingProperty);
+            var parameterName = eagerLoadingProperty.Parameters.First().Name;
             var memberExpressionStr = memberExpression.ToString();
             var path = memberExpressionStr.Replace(parameterName + ".", "");
             return path;
@@ -100,17 +100,17 @@ namespace Nd.Framework.Repositories.EntityFramework
         {
             return DoFindAll(specification, sortPredicate, sortOrder);
         }
-        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize)
+        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, PageIndex, pageSize);
+            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize);
         }
         protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
             return DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
         }
-        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+        protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, PageIndex, pageSize, eagerLoadingProperties);
+            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
         }
         #endregion
 
@@ -169,10 +169,10 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             return query;
         }
-        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize)
+        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
         {
-            if (PageIndex <= 0)
-                throw new ArgumentOutOfRangeException("PageIndex", PageIndex, "The PageIndex is one-based and should be larger than zero.");
+            if (pageIndex <= 0)
+                throw new ArgumentOutOfRangeException("pageIndex", pageIndex, "The pageIndex is one-based and should be larger than zero.");
             if (pageSize <= 0)
                 throw new ArgumentOutOfRangeException("pageSize", pageSize, "The pageSize is one-based and should be larger than zero.");
             if (sortPredicate == null)
@@ -180,7 +180,7 @@ namespace Nd.Framework.Repositories.EntityFramework
 
             var query = objContext.Context.Set<TModel>().AsNoTracking()
                 .Where(specification.GetExpression());
-            int skip = (PageIndex - 1) * pageSize;
+            int skip = (pageIndex - 1) * pageSize;
             int take = pageSize;
 
             switch (sortOrder)
@@ -189,12 +189,12 @@ namespace Nd.Framework.Repositories.EntityFramework
                     var pagedGroupAscending = query.OrderBy(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
                     if (pagedGroupAscending == null)
                         return null;
-                    return new PagedResult<TModel>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupAscending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, pageIndex, pagedGroupAscending.Select(p => p).ToList());
                 case SortOrder.Descending:
                     var pagedGroupDescending = query.OrderByDescending(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
                     if (pagedGroupDescending == null)
                         return null;
-                    return new PagedResult<TModel>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupDescending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, pageIndex, pagedGroupDescending.Select(p => p).ToList());
                 default:
                     break;
             }
@@ -235,16 +235,16 @@ namespace Nd.Framework.Repositories.EntityFramework
             }
             return queryable;
         }
-        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int PageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
+        protected override PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
-            if (PageIndex <= 0)
-                throw new ArgumentOutOfRangeException("PageIndex", PageIndex, "The PageIndex is one-based and should be larger than zero.");
+            if (pageIndex <= 0)
+                throw new ArgumentOutOfRangeException("pageIndex", pageIndex, "The pageIndex is one-based and should be larger than zero.");
             if (pageSize <= 0)
                 throw new ArgumentOutOfRangeException("pageSize", pageSize, "The pageSize is one-based and should be larger than zero.");
             if (sortPredicate == null)
                 throw new ArgumentNullException("sortPredicate");
 
-            int skip = (PageIndex - 1) * pageSize;
+            int skip = (pageIndex - 1) * pageSize;
             int take = pageSize;
 
             var dbset = objContext.Context.Set<TModel>();
@@ -272,12 +272,12 @@ namespace Nd.Framework.Repositories.EntityFramework
                     var pagedGroupAscending = queryable.OrderBy(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = queryable.Count() }).FirstOrDefault();
                     if (pagedGroupAscending == null)
                         return null;
-                    return new PagedResult<TModel>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupAscending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, pageIndex, pagedGroupAscending.Select(p => p).ToList());
                 case SortOrder.Descending:
                     var pagedGroupDescending = queryable.OrderByDescending(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = queryable.Count() }).FirstOrDefault();
                     if (pagedGroupDescending == null)
                         return null;
-                    return new PagedResult<TModel>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, PageIndex, pagedGroupDescending.Select(p => p).ToList());
+                    return new PagedResult<TModel>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, pageIndex, pagedGroupDescending.Select(p => p).ToList());
                 default:
                     break;
             }
