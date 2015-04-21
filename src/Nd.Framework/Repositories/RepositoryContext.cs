@@ -4,6 +4,9 @@ using System.Threading;
 
 namespace Nd.Framework.Repositories
 {
+    /// <summary>
+    /// 仓储上下文抽象基类
+    /// </summary>
     public abstract class RepositoryContext : BooleanDisposable, IRepositoryContext
     {
         #region 私有字段

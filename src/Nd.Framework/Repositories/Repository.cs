@@ -1,12 +1,15 @@
 ﻿using Nd.Framework.Specifications;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Nd.Framework.Repositories
 {
+    /// <summary>
+    /// 仓储抽象基类
+    /// </summary>
+    /// <typeparam name="TAggregateRoot"></typeparam>
     public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
