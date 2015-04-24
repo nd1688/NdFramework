@@ -6,12 +6,12 @@ using System.Linq.Expressions;
 
 namespace Nd.Framework.Repositories.EntityFramework
 {
-    public class EntityFrameworkRepositoryContext<TAggregateRoot> : Repository<TAggregateRoot>
+    public class EntityFrameworkRepository<TAggregateRoot> : Repository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
         private IEntityFrameworkRepositoryContext objContext = null;
 
-        public EntityFrameworkRepositoryContext(IRepositoryContext objContext)
+        public EntityFrameworkRepository(IRepositoryContext objContext)
             : base(objContext)
         {
             this.objContext = base.Context as IEntityFrameworkRepositoryContext;
