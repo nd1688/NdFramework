@@ -13,13 +13,6 @@ namespace Nd.Framework.Repositories
     public interface IRepository<TAggregateRoot> : IRepository
         where TAggregateRoot : class, IAggregateRoot
     {
-        Guid Id
-        {
-            get;
-        }
-
-        IRepositoryContext Context { get; }
-
         void Create(TAggregateRoot aggregateRoot);
         void Delete(TAggregateRoot aggregateRoot);
         void Update(TAggregateRoot aggregateRoot);
@@ -54,6 +47,13 @@ namespace Nd.Framework.Repositories
 
     public interface IRepository
     {
+        Guid Id
+        {
+            get;
+        }
+
+        IRepositoryContext Context { get; }
+
         void Create<TModel>(TModel model) where TModel : class;
         void Delete<TModel>(TModel model) where TModel : class;
         void Update<TModel>(TModel model) where TModel : class;

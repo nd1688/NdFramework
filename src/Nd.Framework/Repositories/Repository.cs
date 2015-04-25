@@ -10,24 +10,15 @@ namespace Nd.Framework.Repositories
     /// 仓储抽象基类
     /// </summary>
     /// <typeparam name="TAggregateRoot"></typeparam>
-    public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot>
+    public abstract class Repository<TAggregateRoot> : Repository, IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        #region 私有字段
-        private IRepositoryContext context;
-        private Guid id = Guid.NewGuid();
-        #endregion
-
         #region 构造函数
         public Repository(IRepositoryContext context)
-        {
-            this.context = context;
-        }
+            : base(context) { }
         #endregion
 
         #region 保护方法
-
-        #region 操作对象为聚合
         protected abstract bool DoExists(ISpecification<TAggregateRoot> specification);
         protected abstract bool DoExists(Expression<Func<TAggregateRoot, bool>> specification);
 
@@ -82,93 +73,18 @@ namespace Nd.Framework.Repositories
         protected abstract PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TAggregateRoot, dynamic>>[] objEagerLoadingProperties);
         #endregion
 
-        #region 操作对象为所有实体
-        protected abstract bool DoExists<TModel>(ISpecification<TModel> specification) where TModel : class;
-        protected abstract bool DoExists<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class;
-
-        protected abstract TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class;
-        protected abstract TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
-        protected abstract TModel DoFind<TModel>(ISpecification<TModel> specification) where TModel : class;
-        protected abstract TModel DoFind<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
-
-        protected virtual IQueryable<TModel> DoFindAll<TModel>() where TModel : class
-        {
-            return this.DoFindAll(new AnySpecification<TModel>(), null, SortOrder.Unspecified);
-        }
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder) where TModel : class
-        {
-            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder);
-        }
-        protected virtual PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize) where TModel : class
-        {
-            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder, iPageNumber, iPageSize);
-        }
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class
-        {
-            return this.DoFindAll(specification, null, SortOrder.Unspecified);
-        }
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification) where TModel : class
-        {
-            return this.DoFindAll(specification, null, SortOrder.Unspecified);
-        }
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
-        {
-            return DoFindAll(new AnySpecification<TModel>(), null, SortOrder.Unspecified, objEagerLoadingProperties);
-        }
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
-        {
-            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder, objEagerLoadingProperties);
-        }
-        protected virtual PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
-        {
-            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
-        }
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
-        {
-            return this.DoFindAll(specification, null, SortOrder.Unspecified, objEagerLoadingProperties);
-        }
-        protected abstract IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder) where TModel : class;
-        protected abstract PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize) where TModel : class;
-        protected abstract IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
-        protected abstract PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
-        protected virtual IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
-        {
-            return this.DoFindAll(specification, null, SortOrder.Unspecified, objEagerLoadingProperties);
-        }
-        protected abstract IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder) where TModel : class;
-        protected abstract PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize) where TModel : class;
-        protected abstract IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
-        protected abstract PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
-        #endregion
-
-        #endregion
-
         #region IRepository<TAggregateRoot> 成员
-        public Guid Id
-        {
-            get
-            {
-                return this.id;
-            }
-        }
-        public virtual IRepositoryContext Context
-        {
-            get
-            {
-                return this.context;
-            }
-        }
         public virtual void Create(TAggregateRoot model)
         {
-            this.context.Create(model);
+            this.Context.Create(model);
         }
         public virtual void Update(TAggregateRoot model)
         {
-            this.context.Update(model);
+            this.Context.Update(model);
         }
         public virtual void Delete(TAggregateRoot model)
         {
-            this.context.Delete(model);
+            this.Context.Delete(model);
         }
 
         public bool Exists(ISpecification<TAggregateRoot> specification)
@@ -270,8 +186,100 @@ namespace Nd.Framework.Repositories
             return this.DoFindAll(specification, objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
         }
         #endregion
+    }
+
+    /// <summary>
+    /// 仓储抽象基类
+    /// </summary>
+    public abstract class Repository : IRepository
+    {
+        #region 私有字段
+        private IRepositoryContext context;
+        private Guid id = Guid.NewGuid();
+        #endregion
+
+        #region 构造函数
+        public Repository(IRepositoryContext context)
+        {
+            this.context = context;
+        }
+        #endregion
+
+        #region 保护方法
+        protected abstract bool DoExists<TModel>(ISpecification<TModel> specification) where TModel : class;
+        protected abstract bool DoExists<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class;
+
+        protected abstract TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class;
+        protected abstract TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
+        protected abstract TModel DoFind<TModel>(ISpecification<TModel> specification) where TModel : class;
+        protected abstract TModel DoFind<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
+
+        protected virtual IQueryable<TModel> DoFindAll<TModel>() where TModel : class
+        {
+            return this.DoFindAll(new AnySpecification<TModel>(), null, SortOrder.Unspecified);
+        }
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder) where TModel : class
+        {
+            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder);
+        }
+        protected virtual PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize) where TModel : class
+        {
+            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder, iPageNumber, iPageSize);
+        }
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification) where TModel : class
+        {
+            return this.DoFindAll(specification, null, SortOrder.Unspecified);
+        }
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification) where TModel : class
+        {
+            return this.DoFindAll(specification, null, SortOrder.Unspecified);
+        }
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
+        {
+            return DoFindAll(new AnySpecification<TModel>(), null, SortOrder.Unspecified, objEagerLoadingProperties);
+        }
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
+        {
+            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder, objEagerLoadingProperties);
+        }
+        protected virtual PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
+        {
+            return this.DoFindAll(new AnySpecification<TModel>(), objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
+        }
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
+        {
+            return this.DoFindAll(specification, null, SortOrder.Unspecified, objEagerLoadingProperties);
+        }
+        protected abstract IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder) where TModel : class;
+        protected abstract PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize) where TModel : class;
+        protected abstract IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
+        protected abstract PagedResult<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
+        protected virtual IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class
+        {
+            return this.DoFindAll(specification, null, SortOrder.Unspecified, objEagerLoadingProperties);
+        }
+        protected abstract IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder) where TModel : class;
+        protected abstract PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize) where TModel : class;
+        protected abstract IQueryable<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
+        protected abstract PagedResult<TModel> DoFindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> objSortPredicate, SortOrder iSortOrder, int iPageNumber, int iPageSize, params Expression<Func<TModel, dynamic>>[] objEagerLoadingProperties) where TModel : class;
+        #endregion
 
         #region IRepository 成员
+        public Guid Id
+        {
+            get
+            {
+                return this.id;
+            }
+        }
+        public virtual IRepositoryContext Context
+        {
+            get
+            {
+                return this.context;
+            }
+        }
+
         public virtual void Create<TModel>(TModel model) where TModel : class
         {
             this.context.Create(model);
