@@ -9,11 +9,11 @@ namespace Nd.Framework.ObjectContainers.Castle
 {
     public class CastleInterceptor : ICastleInterceptor
     {
-        #region Private Field
+        #region 私有字段
         private ILogger logger = AppRuntime.Instance.Logger;
         #endregion
 
-        #region ICastleInterceptor Member
+        #region ICastleInterceptor 成员
         public void Intercept(IInvocation invocation)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -26,7 +26,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         }
         #endregion
 
-        #region Public Method
+        #region 公共方法
         public virtual void PerformProceed(IInvocation invocation)
         {
             try
@@ -49,7 +49,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         }
         #endregion
 
-        #region Private Method
+        #region 私有方法
         private void LogInfo(IInvocation invocation)
         {
             StringBuilder sb = new StringBuilder();

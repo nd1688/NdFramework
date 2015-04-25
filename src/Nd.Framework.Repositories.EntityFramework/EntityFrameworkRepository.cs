@@ -23,7 +23,7 @@ namespace Nd.Framework.Repositories.EntityFramework
                 return base.Context;
             }
         }
-        #region Private Methods
+        #region 私有方法
         private MemberExpression GetMemberInfo(LambdaExpression objLambda)
         {
             if (objLambda == null)
@@ -64,7 +64,6 @@ namespace Nd.Framework.Repositories.EntityFramework
 
         #region Protected Methods
 
-        #region 操作对象为聚合
         protected override bool DoExists(ISpecification<TAggregateRoot> specification)
         {
             return DoExists<TAggregateRoot>(specification);
@@ -121,9 +120,10 @@ namespace Nd.Framework.Repositories.EntityFramework
         {
             return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
         }
-        #endregion
 
-        #region 操作对象为所有实体
+
+
+
         protected override bool DoExists<TModel>(Expression<Func<TModel, bool>> specification)
         {
             return this.context.Context.Set<TModel>().AsNoTracking().Count(specification) > 0;
@@ -314,7 +314,6 @@ namespace Nd.Framework.Repositories.EntityFramework
         {
             return DoFindAll(specification.GetExpression(), sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
         }
-        #endregion
 
         #endregion
     }

@@ -11,13 +11,13 @@ namespace Nd.Framework.ObjectContainers.Castle
 {
     public class CastleContainer : INdContainer
     {
-        #region Private Field
+        #region 私有字段
         private readonly IConfigSource configSource;
         private readonly CastleInterceptorFacility interceptorFacility = new CastleInterceptorFacility();
         private readonly WindsorContainer container = new WindsorContainer(new DefaultConfigurationStore());
         #endregion
 
-        #region Ctor
+        #region 构造函数
         public CastleContainer(IConfigSource configSource)
         {
             this.configSource = configSource;
@@ -29,7 +29,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         }
         #endregion
 
-        #region INdContainer Member
+        #region INdContainer 成员
         public NdLifeStyle DefaultLifeStyle
         {
             get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), this.configSource.Config.ObjectContainers.DefaultLifeStyle)); }
@@ -190,7 +190,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         }
         #endregion
 
-        #region Private Method
+        #region 私有方法
         private LifestyleType WindsorLifestyleTypeGet(NdLifeStyle lifeStyle)
         {
             switch (lifeStyle)

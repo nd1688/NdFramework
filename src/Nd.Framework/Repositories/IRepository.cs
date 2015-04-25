@@ -45,6 +45,9 @@ namespace Nd.Framework.Repositories
         PagedResult<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
     }
 
+    /// <summary>
+    /// 仓储服务
+    /// </summary>
     public interface IRepository
     {
         Guid Id
