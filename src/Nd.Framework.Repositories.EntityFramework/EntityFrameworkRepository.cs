@@ -78,59 +78,59 @@ namespace Nd.Framework.Repositories.EntityFramework
         #region 操作对象为聚合
         protected override bool DoExists(ISpecification<TAggregateRoot> specification)
         {
-            return DoExists(specification);
+            return DoExists<TAggregateRoot>(specification);
         }
         protected override bool DoExists(Expression<Func<TAggregateRoot, bool>> specification)
         {
-            return DoExists(specification);
+            return DoExists<TAggregateRoot>(specification);
         }
         protected override TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> specification)
         {
-            return DoFind(specification);
+            return DoFind<TAggregateRoot>(specification);
         }
         protected override TAggregateRoot DoFind(Expression<Func<TAggregateRoot, bool>> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFind(specification, eagerLoadingProperties);
+            return DoFind<TAggregateRoot>(specification, eagerLoadingProperties);
         }
         protected override IQueryable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder);
         }
         protected override PagedResult<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, pageIndex, pageSize);
         }
         protected override IQueryable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, eagerLoadingProperties);
         }
         protected override PagedResult<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, bool>> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
         }
         protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification)
         {
-            return DoFind(specification);
+            return DoFind<TAggregateRoot>(specification);
         }
         protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFind(specification, eagerLoadingProperties);
+            return DoFind<TAggregateRoot>(specification, eagerLoadingProperties);
         }
         protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder);
         }
         protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, pageIndex, pageSize);
         }
         protected override IQueryable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, eagerLoadingProperties);
         }
         protected override PagedResult<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
         {
-            return DoFindAll(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
+            return DoFindAll<TAggregateRoot>(specification, sortPredicate, sortOrder, pageIndex, pageSize, eagerLoadingProperties);
         }
         #endregion
 
