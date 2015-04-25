@@ -9,12 +9,12 @@ namespace Nd.Framework.Repositories.EntityFramework
     public class EntityFrameworkRepository<TAggregateRoot> : Repository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        private IEntityFrameworkRepositoryContext objContext = null;
+        private IEntityFrameworkRepositoryContext context = null;
 
-        public EntityFrameworkRepository(IRepositoryContext objContext)
-            : base(objContext)
+        public EntityFrameworkRepository(IRepositoryContext context)
+            : base(context)
         {
-            this.objContext = base.Context as IEntityFrameworkRepositoryContext;
+            this.context = base.Context as IEntityFrameworkRepositoryContext;
         }
         public override IRepositoryContext Context
         {
@@ -23,24 +23,8 @@ namespace Nd.Framework.Repositories.EntityFramework
                 return base.Context;
             }
         }
-        public IEntityFrameworkRepositoryContext EFContext
-        {
-            get
-            {
-                return base.Context as IEntityFrameworkRepositoryContext;
-            }
-        }
         #region Private Methods
         private MemberExpression GetMemberInfo(LambdaExpression objLambda)
-        {
-            return GetMemberInfo(objLambda);
-        }
-
-        private string GetEagerLoadingPath(Expression<Func<TAggregateRoot, dynamic>> eagerLoadingProperty)
-        {
-            return GetEagerLoadingPath(eagerLoadingProperty);
-        }
-        private MemberExpression GetMemberInfo<TModel>(LambdaExpression objLambda)
         {
             if (objLambda == null)
                 throw new ArgumentNullException("method");
@@ -61,6 +45,11 @@ namespace Nd.Framework.Repositories.EntityFramework
                 throw new ArgumentException("method");
 
             return memberExpr;
+        }
+
+        private string GetEagerLoadingPath(Expression<Func<TAggregateRoot, dynamic>> eagerLoadingProperty)
+        {
+            return GetEagerLoadingPath<TAggregateRoot>(eagerLoadingProperty);
         }
 
         private string GetEagerLoadingPath<TModel>(Expression<Func<TModel, dynamic>> eagerLoadingProperty)
@@ -137,7 +126,7 @@ namespace Nd.Framework.Repositories.EntityFramework
         #region 操作对象为所有实体
         protected override bool DoExists<TModel>(Expression<Func<TModel, bool>> specification)
         {
-            return this.objContext.Context.Set<TModel>().AsNoTracking().Count(specification) > 0;
+            return this.context.Context.Set<TModel>().AsNoTracking().Count(specification) > 0;
         }
         protected override bool DoExists<TModel>(ISpecification<TModel> specification)
         {
@@ -146,11 +135,11 @@ namespace Nd.Framework.Repositories.EntityFramework
         
         protected override TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification)
         {
-            return this.objContext.Context.Set<TModel>().AsNoTracking().Where(specification).FirstOrDefault();
+            return this.context.Context.Set<TModel>().AsNoTracking().Where(specification).FirstOrDefault();
         }
         protected override TModel DoFind<TModel>(Expression<Func<TModel, bool>> specification, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
-            var dbset = objContext.Context.Set<TModel>();
+            var dbset = context.Context.Set<TModel>();
             if (eagerLoadingProperties != null &&
                 eagerLoadingProperties.Length > 0)
             {
@@ -170,7 +159,7 @@ namespace Nd.Framework.Repositories.EntityFramework
         }
         protected override IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder)
         {
-            var query = objContext.Context.Set<TModel>().AsNoTracking()
+            var query = context.Context.Set<TModel>().AsNoTracking()
                 .Where(specification);
             if (sortPredicate != null)
             {
@@ -195,7 +184,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             if (sortPredicate == null)
                 throw new ArgumentNullException("sortPredicate");
 
-            var query = objContext.Context.Set<TModel>().AsNoTracking()
+            var query = context.Context.Set<TModel>().AsNoTracking()
                 .Where(specification);
             int skip = (pageIndex - 1) * pageSize;
             int take = pageSize;
@@ -220,7 +209,7 @@ namespace Nd.Framework.Repositories.EntityFramework
         }
         protected override IQueryable<TModel> DoFindAll<TModel>(Expression<Func<TModel, bool>> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties)
         {
-            var dbset = objContext.Context.Set<TModel>();
+            var dbset = context.Context.Set<TModel>();
             IQueryable<TModel> queryable = null;
             if (eagerLoadingProperties != null && eagerLoadingProperties.Length > 0)
             {
@@ -264,7 +253,7 @@ namespace Nd.Framework.Repositories.EntityFramework
             int skip = (pageIndex - 1) * pageSize;
             int take = pageSize;
 
-            var dbset = objContext.Context.Set<TModel>();
+            var dbset = context.Context.Set<TModel>();
             IQueryable<TModel> queryable = null;
             if (eagerLoadingProperties != null &&
                 eagerLoadingProperties.Length > 0)

@@ -2,7 +2,7 @@
 
 namespace Nd.Framework.Repositories.EntityFramework
 {
-    public class EntityFrameworkRepositoryContext : RepositoryContext
+    public class EntityFrameworkRepositoryContext : RepositoryContext, IEntityFrameworkRepositoryContext
     {
         #region 私有字段
         private DbContext context = null;
@@ -29,7 +29,7 @@ namespace Nd.Framework.Repositories.EntityFramework
         }
         #endregion
 
-        #region IRepositoryContext接口方法
+        #region IRepositoryContext 成员
         public override void Create<T>(T obj)
         {
             this.context.Entry<T>(obj).State = EntityState.Added;
@@ -47,7 +47,7 @@ namespace Nd.Framework.Repositories.EntityFramework
         }
         #endregion
 
-        #region IUnitOfWork接口方法
+        #region IUnitOfWork 成员
         public override bool DistributedTransactionSupported
         {
             get
@@ -69,6 +69,13 @@ namespace Nd.Framework.Repositories.EntityFramework
         public override void Rollback()
         {
             this.Committed = false;
+        }
+        #endregion
+
+        #region IEntityFrameworkRepositoryContext 成员
+        public DbContext Context
+        {
+            get { return this.context; }
         }
         #endregion
     }
