@@ -3,6 +3,7 @@ using Castle.Core.Configuration;
 using Castle.MicroKernel;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
+using Nd.Framework.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,7 @@ namespace Nd.Framework.ObjectContainers.Castle
             sysAssembly.Add("vjs");
             sysAssembly.Add("Vslang");
             sysAssembly.Add("EnvDTE");
+            sysAssembly.Add("Nd.");
         }
 
         public void Init(IKernel kernel, IConfiguration facilityConfig)
@@ -41,6 +43,10 @@ namespace Nd.Framework.ObjectContainers.Castle
                 return;
             }
             if (handler.ComponentModel.Services.Any(t => t == typeof(ILogger)))
+            {
+                return;
+            }
+            if (handler.ComponentModel.Services.Any(t => t == typeof(IRepositoryContext)))
             {
                 return;
             }
