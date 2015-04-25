@@ -13,7 +13,7 @@ namespace Nd.Framework.Application
     {
         #region 私有字段
         private readonly IConfigSource configSource;
-        private readonly INdContainer objectContainer;
+        private readonly INdContainer container;
         #endregion
 
         #region 构造函数
@@ -31,8 +31,8 @@ namespace Nd.Framework.Application
                 throw new ConfigurationException("框架配置节中未找到核心配置节点");
 
             this.configSource = configSource;
-            Type objectContainerType = Type.GetType(configSource.Config.ObjectContainers.Provider);
-            this.objectContainer = (INdContainer)Activator.CreateInstance(objectContainerType, configSource);
+            Type containerType = Type.GetType(configSource.Config.ObjectContainers.Provider);
+            this.container = (INdContainer)Activator.CreateInstance(containerType, configSource);
         }
         #endregion
 
@@ -44,16 +44,16 @@ namespace Nd.Framework.Application
 
         public INdContainer ObjectContainer
         {
-            get { return this.objectContainer; }
+            get { return this.container; }
         }
 
         public ILogger Logger
         {
             get
             {
-                if (this.objectContainer.HasRegister<ILogger>())
+                if (this.container.HasRegister<ILogger>())
                 {
-                    return this.objectContainer.Resolve<ILogger>();
+                    return this.container.Resolve<ILogger>();
                 }
                 return new TraceLogger();
             }
@@ -63,9 +63,9 @@ namespace Nd.Framework.Application
         {
             get
             {
-                if (this.objectContainer.HasRegister<ICache>())
+                if (this.container.HasRegister<ICache>())
                 {
-                    return this.objectContainer.Resolve<ICache>();
+                    return this.container.Resolve<ICache>();
                 }
                 return null;
             }
@@ -92,7 +92,7 @@ namespace Nd.Framework.Application
 
         public IApp Register(Action<INdContainer> handler)
         {
-            handler(this.objectContainer);
+            handler(this.container);
             return this;
         }
 
@@ -112,9 +112,9 @@ namespace Nd.Framework.Application
         protected override void Dispose(bool disposing)
         {
             if (!disposing) return;
-            if (this.objectContainer != null)
+            if (this.container != null)
             {
-                this.objectContainer.Dispose();
+                this.container.Dispose();
             }
         }
         #endregion
@@ -127,7 +127,7 @@ namespace Nd.Framework.Application
         {
             EventHandler<AppInitEventArgs> handler = this.Initialize;
             if (handler != null)
-                handler(this, new AppInitEventArgs(this.configSource, this.objectContainer));
+                handler(this, new AppInitEventArgs(this.configSource, this.container));
         }
         #endregion
     }
