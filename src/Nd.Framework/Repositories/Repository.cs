@@ -13,12 +13,12 @@ namespace Nd.Framework.Repositories
     public abstract class Repository<TAggregateRoot> : IRepository<TAggregateRoot>
         where TAggregateRoot : class, IAggregateRoot
     {
-        #region Private Fields
+        #region 私有字段
         private IRepositoryContext context;
         private Guid id = Guid.NewGuid();
         #endregion
 
-        #region Ctor
+        #region 构造函数
         public Repository(IRepositoryContext context)
         {
             this.context = context;
@@ -143,7 +143,7 @@ namespace Nd.Framework.Repositories
 
         #endregion
 
-        #region IRepository<TAggregateRoot> Members
+        #region IRepository<TAggregateRoot> 成员
         public Guid Id
         {
             get
@@ -158,8 +158,6 @@ namespace Nd.Framework.Repositories
                 return this.context;
             }
         }
-
-        #region 操作对象为聚合
         public virtual void Create(TAggregateRoot model)
         {
             this.context.Create(model);
@@ -273,7 +271,7 @@ namespace Nd.Framework.Repositories
         }
         #endregion
 
-        #region 操作对象为所有实体
+        #region IRepository 成员
         public virtual void Create<TModel>(TModel model) where TModel : class
         {
             this.context.Create(model);
@@ -385,8 +383,6 @@ namespace Nd.Framework.Repositories
         {
             return this.DoFindAll(specification, objSortPredicate, iSortOrder, iPageNumber, iPageSize, objEagerLoadingProperties);
         }
-        #endregion
-
         #endregion
     }
 }

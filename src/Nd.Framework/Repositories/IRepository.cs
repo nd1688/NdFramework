@@ -10,7 +10,7 @@ namespace Nd.Framework.Repositories
     /// 仓储服务
     /// </summary>
     /// <typeparam name="TAggregateRoot">聚合</typeparam>
-    public interface IRepository<TAggregateRoot>
+    public interface IRepository<TAggregateRoot> : IRepository
         where TAggregateRoot : class, IAggregateRoot
     {
         Guid Id
@@ -20,7 +20,6 @@ namespace Nd.Framework.Repositories
 
         IRepositoryContext Context { get; }
 
-        #region 操作对象为聚合
         void Create(TAggregateRoot aggregateRoot);
         void Delete(TAggregateRoot aggregateRoot);
         void Update(TAggregateRoot aggregateRoot);
@@ -51,9 +50,10 @@ namespace Nd.Framework.Repositories
         IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
         IQueryable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
         PagedResult<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
-        #endregion
+    }
 
-        #region 操作对象为所有实体
+    public interface IRepository
+    {
         void Create<TModel>(TModel model) where TModel : class;
         void Delete<TModel>(TModel model) where TModel : class;
         void Update<TModel>(TModel model) where TModel : class;
@@ -84,6 +84,5 @@ namespace Nd.Framework.Repositories
         IQueryable<TModel> FindAll<TModel>(ISpecification<TModel> specification, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties) where TModel : class;
         IQueryable<TModel> FindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties) where TModel : class;
         PagedResult<TModel> FindAll<TModel>(ISpecification<TModel> specification, Expression<Func<TModel, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TModel, dynamic>>[] eagerLoadingProperties) where TModel : class;
-        #endregion
     }
 }
