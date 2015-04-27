@@ -47,6 +47,10 @@
     <Compile Include="Application\AppInitEventArgs.cs" />
     <Compile Include="Application\AppRuntime.cs" />
     <Compile Include="Application\IApp.cs" />
+    <Compile Include="Bus\BusException.cs" />
+    <Compile Include="Bus\IBus.cs" />
+    <Compile Include="Bus\ICommandBus.cs" />
+    <Compile Include="Bus\IEventBus.cs" />
     <Compile Include="Caching\ICache.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
@@ -59,10 +63,10 @@
       <DependentUpon>NdFrameworkConfiguration.csd</DependentUpon>
     </Compile>
     <Compile Include="Core\INdContainer.cs" />
-    <Compile Include="Core\IBooleanDisposable.cs" />
+    <Compile Include="Core\IDisposableObject.cs" />
     <Compile Include="Core\INdFacility.cs" />
     <Compile Include="Core\INdInterceptor.cs" />
-    <Compile Include="Core\BooleanDisposable.cs" />
+    <Compile Include="Core\DisposableObject.cs" />
     <Compile Include="Core\NdLifeStyle.cs" />
     <Compile Include="Core\Platform.cs" />
     <Compile Include="Events\IDomainEvent.cs" />

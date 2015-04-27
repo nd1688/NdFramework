@@ -6,18 +6,22 @@ using System.Threading;
 namespace Nd.Framework.Core
 {
     [Serializable]
-    public class BooleanDisposable : CriticalFinalizerObject, IBooleanDisposable
+    public class DisposableObject : CriticalFinalizerObject, IDisposableObject
     {
+        #region 私有字段
         [NonSerialized]
         private int currentDisposedFlag;
         private const int DISPOSED_FLAG = 1;
+        #endregion
 
-        ~BooleanDisposable()
+        #region 析构
+        ~DisposableObject()
         {
             this.Dispose(false);
         }
+        #endregion
 
-        #region IDisposable Members
+        #region IDisposable 成员
         public void Dispose()
         {
             var disposed = currentDisposedFlag;
@@ -28,8 +32,9 @@ namespace Nd.Framework.Core
                 GC.SuppressFinalize(this);
             }
         }
-
         #endregion
+
+        #region IDisposableObject 成员
         /// <summary>
         /// 判断当前对象是否释放
         /// </summary>
@@ -42,13 +47,10 @@ namespace Nd.Framework.Core
                 return currentDisposedFlag == DISPOSED_FLAG;
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
-        {
-        }
+        #endregion
+
+        #region 受保护的方法
+        protected virtual void Dispose(bool disposing) { }
 
         /// <summary>
         /// 检查对象是否还没有被释放
@@ -61,5 +63,6 @@ namespace Nd.Framework.Core
                 throw new ObjectDisposedException(this.GetType().Name);
             }
         }
+        #endregion
     }
 }

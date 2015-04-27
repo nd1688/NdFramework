@@ -7,7 +7,7 @@ namespace Nd.Framework.Repositories
     /// <summary>
     /// 仓储上下文抽象基类
     /// </summary>
-    public abstract class RepositoryContext : BooleanDisposable, IRepositoryContext
+    public abstract class RepositoryContext : DisposableObject, IRepositoryContext
     {
         #region 私有字段
         private readonly Guid id = Guid.NewGuid();

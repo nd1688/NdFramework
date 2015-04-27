@@ -9,7 +9,7 @@ namespace Nd.Framework.Application
     /// <summary>
     /// 应用组件
     /// </summary>
-    public class App : BooleanDisposable, IApp
+    public class App : DisposableObject, IApp
     {
         #region 私有字段
         private readonly IConfigSource configSource;

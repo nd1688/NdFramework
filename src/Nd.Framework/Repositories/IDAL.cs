@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace Nd.Framework.Repositories
 {
-    public interface IDAL : IBooleanDisposable
+    public interface IDAL : IDisposableObject
     {
         /// <summary>
         /// 获取连接字符串Key。

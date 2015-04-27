@@ -1,44 +1,52 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Nd.Framework
 {
     /// <summary>
-    /// Represents a collection which contains a set of objects that is from
-    /// a specific page of the entire object set.
+    /// 分页数据对象
     /// </summary>
-    /// <typeparam name="T">The type of the object.</typeparam>
+    /// <typeparam name="T">数据对象</typeparam>
     public class PagedResult<T> : ICollection<T>
     {
-        #region Ctor
+        #region 构造函数
         /// <summary>
-        /// Initializes a new instance of <c>PagedResult</c> class.
+        /// 初始化一个新的<c>PagedResult</c>实例
         /// </summary>
         public PagedResult()
         {
             this.data = new List<T>();
         }
         /// <summary>
-        /// Initializes a new instance of <c>PagedResult</c> class.
+        /// 初始化一个新的<c>PagedResult</c>实例
         /// </summary>
-        /// <param name="totalRecords">Total number of records contained in the entire object set.</param>
-        /// <param name="totalPages">Total number of pages.</param>
-        /// <param name="pageSize">The number of records per page.</param>
-        /// <param name="pageNumber">The current page number.</param>
-        /// <param name="data">The objects contained in the current page.</param>
-        public PagedResult(int? totalRecords, int? totalPages, int? pageSize, int? pageNumber, IList<T> data)
+        /// <param name="totalRecords">总记录数</param>
+        /// <param name="totalPages">总页数</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="data">当前页数据</param>
+        public PagedResult(int? totalRecords, int? totalPages, int? pageSize, int? pageIndex, IList<T> data)
         {
             this.totalRecords = totalRecords;
             this.totalPages = totalPages;
             this.pageSize = pageSize;
-            this.pageNumber = pageNumber;
+            this.pageIndex = pageIndex;
             this.data = data;
         }
         #endregion
 
-        #region Public Properties
+        #region 私有字段
         private int? totalRecords;
+        private int? totalPages;
+        private int? pageSize;
+        private int? pageIndex;
+        private IList<T> data;
+        #endregion
+        
+        #region 公共属性
+        
         /// <summary>
-        /// Gets or sets the total number of the records.
+        /// 总记录数
         /// </summary>
         public int? TotalRecords
         {
@@ -46,9 +54,8 @@ namespace Nd.Framework
             set { totalRecords = value; }
         }
 
-        private int? totalPages;
         /// <summary>
-        /// Gets or sets the total pages available.
+        /// 总页数
         /// </summary>
         public int? TotalPages
         {
@@ -56,29 +63,26 @@ namespace Nd.Framework
             set { totalPages = value; }
         }
 
-        private int? pageSize;
         /// <summary>
-        /// Gets or sets the number of records for each page.
+        /// 每页记录数
         /// </summary>
         public int? PageSize
         {
             get { return pageSize; }
             set { pageSize = value; }
         }
-
-        private int? pageNumber;
+        
         /// <summary>
-        /// Gets or sets the page number.
+        /// 当前页码
         /// </summary>
-        public int? PageNumber
+        public int? PageIndex
         {
-            get { return pageNumber; }
-            set { pageNumber = value; }
+            get { return pageIndex; }
+            set { pageIndex = value; }
         }
-
-        private IList<T> data;
+        
         /// <summary>
-        /// Gets a list of objects contained by the current <c>PagedResult{T}</c> object.
+        /// 当前页数据
         /// </summary>
         public IEnumerable<T> Data
         {
@@ -86,7 +90,7 @@ namespace Nd.Framework
         }
         #endregion
 
-        #region ICollection<T> Members
+        #region ICollection<T> 成员
         /// <summary>
         /// Adds an item to the System.Collections.Generic.ICollection{T}.
         /// </summary>
@@ -152,7 +156,7 @@ namespace Nd.Framework
 
         #endregion
 
-        #region IEnumerable<T> Members
+        #region IEnumerable<T> 成员
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -165,13 +169,13 @@ namespace Nd.Framework
 
         #endregion
 
-        #region IEnumerable Members
+        #region IEnumerable 成员
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>An System.Collections.IEnumerator object that can be used to iterate through
         /// the collection.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return data.GetEnumerator();
         }

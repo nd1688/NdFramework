@@ -2,7 +2,7 @@
 
 namespace Nd.Framework.Core
 {
-    public interface IBooleanDisposable : IDisposable
+    public interface IDisposableObject : IDisposable
     {
         bool IsDisposed { get; }
     }
