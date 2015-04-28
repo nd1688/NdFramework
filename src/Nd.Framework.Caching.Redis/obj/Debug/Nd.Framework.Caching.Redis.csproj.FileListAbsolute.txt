@@ -1,0 +1,13 @@
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\Nd.Framework.Caching.Redis.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\Nd.Framework.Caching.Redis.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\Nd.Framework.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\ServiceStack.Common.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\ServiceStack.Interfaces.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\ServiceStack.Redis.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\ServiceStack.Text.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\bin\Debug\Nd.Framework.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\obj\Debug\Nd.Framework.Caching.Redis.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\obj\Debug\Nd.Framework.Caching.Redis.dll
+G:\Nd\NdFramework\src\Nd.Framework.Caching.Redis\obj\Debug\Nd.Framework.Caching.Redis.pdb
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Caching.Redis.dll
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Caching.Redis.pdb

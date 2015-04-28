@@ -1,0 +1,11 @@
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\obj\Debug\Nd.Framework.Repositories.EntityFramework.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.dll
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\bin\Debug\EntityFramework.dll
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\bin\Debug\Nd.Framework.dll
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\bin\Debug\Nd.Framework.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\obj\Debug\Nd.Framework.Repositories.EntityFramework.dll
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\obj\Debug\Nd.Framework.Repositories.EntityFramework.pdb
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.dll
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.pdb

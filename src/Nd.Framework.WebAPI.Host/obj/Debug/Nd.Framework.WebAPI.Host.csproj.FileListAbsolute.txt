@@ -1,0 +1,12 @@
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\bin\Nd.Framework.WebAPI.Host.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\bin\Nd.Framework.WebAPI.Host.pdb
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\obj\Debug\Nd.Framework.WebAPI.Host.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\obj\Debug\Nd.Framework.WebAPI.Host.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\obj\Debug\Nd.Framework.WebAPI.Host.pdb
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\bin\Nd.Framework.WebAPI.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\bin\Nd.Framework.WebAPI.pdb
+G:\Nd\NdFramework\bin\Nd.Framework.WebAPI.Host.dll
+G:\Nd\NdFramework\bin\Nd.Framework.WebAPI.Host.pdb
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.WebAPI.Host.dll
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.WebAPI.Host.pdb
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\bin\Nd.Framework.WebAPI.Host.dll.config

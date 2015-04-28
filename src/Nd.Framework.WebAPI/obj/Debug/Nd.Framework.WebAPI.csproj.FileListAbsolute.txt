@@ -1,0 +1,7 @@
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\bin\Debug\Nd.Framework.WebAPI.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\bin\Debug\Nd.Framework.WebAPI.pdb
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\bin\Debug\Nd.Framework.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\bin\Debug\Nd.Framework.pdb
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\obj\Debug\Nd.Framework.WebAPI.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\obj\Debug\Nd.Framework.WebAPI.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI\obj\Debug\Nd.Framework.WebAPI.pdb

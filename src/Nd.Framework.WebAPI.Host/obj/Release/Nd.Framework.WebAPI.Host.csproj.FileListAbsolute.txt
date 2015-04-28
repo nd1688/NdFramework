@@ -1,0 +1,5 @@
+G:\Nd\NdFramework\bin\Nd.Framework.WebAPI.Host.dll
+G:\Nd\NdFramework\bin\Nd.Framework.WebAPI.Host.pdb
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\obj\Release\Nd.Framework.WebAPI.Host.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\obj\Release\Nd.Framework.WebAPI.Host.dll
+G:\Nd\NdFramework\src\Nd.Framework.WebAPI.Host\obj\Release\Nd.Framework.WebAPI.Host.pdb

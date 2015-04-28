@@ -1,0 +1,10 @@
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\obj\Debug\Nd.Framework.Logging.Log4Net.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\bin\Debug\Nd.Framework.Logging.Log4Net.dll
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\bin\Debug\Nd.Framework.Logging.Log4Net.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\bin\Debug\log4net.dll
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\bin\Debug\Nd.Framework.dll
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\bin\Debug\Nd.Framework.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\obj\Debug\Nd.Framework.Logging.Log4Net.dll
+G:\Nd\NdFramework\src\Nd.Framework.Logging.Log4Net\obj\Debug\Nd.Framework.Logging.Log4Net.pdb
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Logging.Log4Net.dll
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.Logging.Log4Net.pdb

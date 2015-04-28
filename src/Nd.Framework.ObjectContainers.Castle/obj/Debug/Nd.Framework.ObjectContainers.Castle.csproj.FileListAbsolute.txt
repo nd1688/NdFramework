@@ -1,0 +1,11 @@
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\bin\Debug\Nd.Framework.ObjectContainers.Castle.dll
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\bin\Debug\Nd.Framework.ObjectContainers.Castle.pdb
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\bin\Debug\Castle.Core.dll
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\bin\Debug\Castle.Windsor.dll
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\bin\Debug\Nd.Framework.dll
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\bin\Debug\Nd.Framework.pdb
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\obj\Debug\Nd.Framework.ObjectContainers.Castle.csprojResolveAssemblyReference.cache
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\obj\Debug\Nd.Framework.ObjectContainers.Castle.dll
+G:\Nd\NdFramework\src\Nd.Framework.ObjectContainers.Castle\obj\Debug\Nd.Framework.ObjectContainers.Castle.pdb
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.ObjectContainers.Castle.dll
+G:\Nd\NdFramework\bin\Debug\Nd.Framework.ObjectContainers.Castle.pdb
