@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MSMQBus.cs" />
+    <Compile Include="MSMQCommandBus.cs" />
+    <Compile Include="MSMQEventBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

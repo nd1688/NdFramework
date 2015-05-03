@@ -20,7 +20,7 @@ namespace Nd.Framework.Bus
         /// </summary>
         /// <typeparam name="TMessage">消息类型</typeparam>
         /// <param name="message">消息</param>
-        void Publish<TMessage>(IEnumerable<TMessage> message);
+        void Publish<TMessage>(IEnumerable<TMessage> messages);
 
         /// <summary>
         /// 清理消息

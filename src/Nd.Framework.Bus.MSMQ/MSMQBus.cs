@@ -3,7 +3,7 @@
 namespace Nd.Framework.Bus.MSMQ
 {
     /// <summary>
-    /// 基于消息队列的消息总线基类
+    /// 基于MSMQ的消息总线基类
     /// </summary>
     public abstract class MSMQBus : DisposableObject, IBus
     {
@@ -25,7 +25,7 @@ namespace Nd.Framework.Bus.MSMQ
             throw new System.NotImplementedException();
         }
 
-        public void Publish<TMessage>(System.Collections.Generic.IEnumerable<TMessage> message)
+        public void Publish<TMessage>(System.Collections.Generic.IEnumerable<TMessage> messages)
         {
             throw new System.NotImplementedException();
         }

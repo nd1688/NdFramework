@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,6 +89,12 @@
     <Compile Include="Repositories\IRepositoryContext.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryContext.cs" />
+    <Compile Include="Serialization\IObjectSerializer.cs" />
+    <Compile Include="Serialization\ObjectBinarySerializer.cs" />
+    <Compile Include="Serialization\ObjectDataContractSerializer.cs" />
+    <Compile Include="Serialization\ObjectJsonSerializer.cs" />
+    <Compile Include="Serialization\ObjectXmlSerializer.cs" />
+    <Compile Include="Serialization\SerializationException.cs" />
     <Compile Include="Specifications\AndNotSpecification.cs" />
     <Compile Include="Specifications\AndSpecification.cs" />
     <Compile Include="Specifications\AnySpecification.cs" />
