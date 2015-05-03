@@ -2,6 +2,6 @@ G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\bin\Debug\Nd.Framework.Bus.MSMQ.dll
 G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\bin\Debug\Nd.Framework.Bus.MSMQ.pdb
 G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\bin\Debug\Nd.Framework.dll
 G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\bin\Debug\Nd.Framework.pdb
-G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\obj\Debug\Nd.Framework.Bus.MSMQ.csprojResolveAssemblyReference.cache
 G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\obj\Debug\Nd.Framework.Bus.MSMQ.dll
 G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\obj\Debug\Nd.Framework.Bus.MSMQ.pdb
+G:\Nd\NdFramework\src\Nd.Framework.Bus.MSMQ\obj\Debug\Nd.Framework.Bus.MSMQ.csprojResolveAssemblyReference.cache
