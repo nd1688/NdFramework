@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Caching;
+﻿using Nd.Framework.Bus;
+using Nd.Framework.Caching;
 using Nd.Framework.Configuration;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
@@ -53,6 +54,14 @@ namespace Nd.Framework.Application
         public ICache Cache
         {
             get { return this.currentApplication.Cache; }
+        }
+
+        /// <summary>
+        /// 消息总线
+        /// </summary>
+        public IBus Bus
+        {
+            get { return this.currentApplication.Bus; }
         }
 
         /// <summary>

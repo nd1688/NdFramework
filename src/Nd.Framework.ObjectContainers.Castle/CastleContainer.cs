@@ -15,13 +15,16 @@ namespace Nd.Framework.ObjectContainers.Castle
         private readonly IConfigSource configSource;
         private readonly CastleInterceptorFacility interceptorFacility = new CastleInterceptorFacility();
         private readonly WindsorContainer container = new WindsorContainer(new DefaultConfigurationStore());
+
+        private string defaultLifeStyle;
         #endregion
 
         #region 构造函数
         public CastleContainer(IConfigSource configSource)
         {
             this.configSource = configSource;
-            if (this.configSource.Config.ObjectContainers.HasAOP)
+            this.defaultLifeStyle = configSource.Config.ObjectContainer.DefaultLifeStyle;
+            if (this.configSource.Config.ObjectContainer.HasInterceptor)
             {
                 this.AddFacility(interceptorFacility);
                 this.RegisterType(typeof(CastleInterceptor), NdLifeStyle.Singleton);
@@ -32,7 +35,7 @@ namespace Nd.Framework.ObjectContainers.Castle
         #region INdContainer 成员
         public NdLifeStyle DefaultLifeStyle
         {
-            get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), this.configSource.Config.ObjectContainers.DefaultLifeStyle)); }
+            get { return (NdLifeStyle)(Enum.Parse(typeof(NdLifeStyle), this.defaultLifeStyle)); }
         }
 
         public bool HasRegister(string name)

@@ -10,13 +10,15 @@ namespace Nd.Tests
     {
         static void Main(string[] args)
         {
-            AppRuntime.Create(new AppConfigSource()).Register(o =>
-            {
-                o.Register<ILogger, LoggerManager>();
-                o.Register<ITT, TT>();
-            });
+            //AppRuntime.Create(new AppConfigSource()).Register(o =>
+            //{
+            //    o.Register<ILogger, LoggerManager>();
+            //    o.Register<ITT, TT>();
+            //});
 
-            Core.Test();
+            //Core.Test();
+
+            Bus.Test();
         }
     }
 }

@@ -88,10 +88,10 @@ namespace Nd.Framework.Configuration
         internal const string LoggingPropertyName = "logging";
         
         /// <summary>
-        /// Gets or sets the Logging.
+        /// Gets or sets 日志记录
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Logging.")]
+        [global::System.ComponentModel.DescriptionAttribute("日志记录")]
         [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.LoggingPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
         public virtual global::Nd.Framework.Configuration.LoggingElement Logging
         {
@@ -106,28 +106,54 @@ namespace Nd.Framework.Configuration
         }
         #endregion
         
-        #region ObjectContainers Property
+        #region ObjectContainer Property
         /// <summary>
-        /// The XML name of the <see cref="ObjectContainers"/> property.
+        /// The XML name of the <see cref="ObjectContainer"/> property.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string ObjectContainersPropertyName = "objectContainers";
+        internal const string ObjectContainerPropertyName = "objectContainer";
         
         /// <summary>
-        /// Gets or sets the ObjectContainers.
+        /// Gets or sets iOC
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The ObjectContainers.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainersPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual global::Nd.Framework.Configuration.ObjectContainersElement ObjectContainers
+        [global::System.ComponentModel.DescriptionAttribute("IOC")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainerPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual global::Nd.Framework.Configuration.ObjectContainersElement ObjectContainer
         {
             get
             {
-                return ((global::Nd.Framework.Configuration.ObjectContainersElement)(base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainersPropertyName]));
+                return ((global::Nd.Framework.Configuration.ObjectContainersElement)(base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainerPropertyName]));
             }
             set
             {
-                base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainersPropertyName] = value;
+                base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.ObjectContainerPropertyName] = value;
+            }
+        }
+        #endregion
+        
+        #region Bus Property
+        /// <summary>
+        /// The XML name of the <see cref="Bus"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string BusPropertyName = "bus";
+        
+        /// <summary>
+        /// Gets or sets 消息总线
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("消息总线")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.BusPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual global::Nd.Framework.Configuration.TopicElementCollection Bus
+        {
+            get
+            {
+                return ((global::Nd.Framework.Configuration.TopicElementCollection)(base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.BusPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.BusPropertyName] = value;
             }
         }
         #endregion
@@ -162,10 +188,10 @@ namespace Nd.Framework.Configuration
         internal const string ProviderPropertyName = "provider";
         
         /// <summary>
-        /// Gets or sets the Provider.
+        /// Gets or sets 日志记录器提供者
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Provider.")]
+        [global::System.ComponentModel.DescriptionAttribute("日志记录器提供者")]
         [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.LoggingElement.ProviderPropertyName, IsRequired=true, IsKey=true, IsDefaultCollection=false)]
         public virtual string Provider
         {
@@ -262,10 +288,10 @@ namespace Nd.Framework.Configuration
         internal const string ProviderPropertyName = "provider";
         
         /// <summary>
-        /// Gets or sets the Provider.
+        /// Gets or sets iOC服务提供者
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Provider.")]
+        [global::System.ComponentModel.DescriptionAttribute("IOC服务提供者")]
         [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.ProviderPropertyName, IsRequired=true, IsKey=true, IsDefaultCollection=false)]
         public virtual string Provider
         {
@@ -280,28 +306,28 @@ namespace Nd.Framework.Configuration
         }
         #endregion
         
-        #region HasAOP Property
+        #region HasInterceptor Property
         /// <summary>
-        /// The XML name of the <see cref="HasAOP"/> property.
+        /// The XML name of the <see cref="HasInterceptor"/> property.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string HasAOPPropertyName = "hasAOP";
+        internal const string HasInterceptorPropertyName = "hasInterceptor";
         
         /// <summary>
-        /// Gets or sets the HasAOP.
+        /// Gets or sets 存在拦截器
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The HasAOP.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.HasAOPPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual bool HasAOP
+        [global::System.ComponentModel.DescriptionAttribute("存在拦截器")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.HasInterceptorPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual bool HasInterceptor
         {
             get
             {
-                return ((bool)(base[global::Nd.Framework.Configuration.ObjectContainersElement.HasAOPPropertyName]));
+                return ((bool)(base[global::Nd.Framework.Configuration.ObjectContainersElement.HasInterceptorPropertyName]));
             }
             set
             {
-                base[global::Nd.Framework.Configuration.ObjectContainersElement.HasAOPPropertyName] = value;
+                base[global::Nd.Framework.Configuration.ObjectContainersElement.HasInterceptorPropertyName] = value;
             }
         }
         #endregion
@@ -314,10 +340,10 @@ namespace Nd.Framework.Configuration
         internal const string DefaultLifeStylePropertyName = "defaultLifeStyle";
         
         /// <summary>
-        /// Gets or sets the DefaultLifeStyle.
+        /// Gets or sets 默认生命周期
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The DefaultLifeStyle.")]
+        [global::System.ComponentModel.DescriptionAttribute("默认生命周期")]
         [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.ObjectContainersElement.DefaultLifeStylePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
         public virtual string DefaultLifeStyle
         {
@@ -328,6 +354,354 @@ namespace Nd.Framework.Configuration
             set
             {
                 base[global::Nd.Framework.Configuration.ObjectContainersElement.DefaultLifeStylePropertyName] = value;
+            }
+        }
+        #endregion
+    }
+}
+namespace Nd.Framework.Configuration
+{
+    
+    
+    /// <summary>
+    /// 主题集合
+    /// </summary>
+    [global::System.Configuration.ConfigurationCollectionAttribute(typeof(global::Nd.Framework.Configuration.TopicElement), CollectionType=global::System.Configuration.ConfigurationElementCollectionType.BasicMapAlternate, AddItemName=global::Nd.Framework.Configuration.TopicElementCollection.TopicElementPropertyName)]
+    public partial class TopicElementCollection : global::System.Configuration.ConfigurationElementCollection
+    {
+        
+        #region Constants
+        /// <summary>
+        /// The XML name of the individual <see cref="global::Nd.Framework.Configuration.TopicElement"/> instances in this collection.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string TopicElementPropertyName = "topic";
+        #endregion
+        
+        #region Overrides
+        /// <summary>
+        /// Gets the type of the <see cref="global::System.Configuration.ConfigurationElementCollection"/>.
+        /// </summary>
+        /// <returns>The <see cref="global::System.Configuration.ConfigurationElementCollectionType"/> of this collection.</returns>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public override global::System.Configuration.ConfigurationElementCollectionType CollectionType
+        {
+            get
+            {
+                return global::System.Configuration.ConfigurationElementCollectionType.BasicMapAlternate;
+            }
+        }
+        
+        /// <summary>
+        /// Gets the name used to identify this collection of elements
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        protected override string ElementName
+        {
+            get
+            {
+                return global::Nd.Framework.Configuration.TopicElementCollection.TopicElementPropertyName;
+            }
+        }
+        
+        /// <summary>
+        /// Indicates whether the specified <see cref="global::System.Configuration.ConfigurationElement"/> exists in the <see cref="global::System.Configuration.ConfigurationElementCollection"/>.
+        /// </summary>
+        /// <param name="elementName">The name of the element to verify.</param>
+        /// <returns>
+        /// <see langword="true"/> if the element exists in the collection; otherwise, <see langword="false"/>.
+        /// </returns>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        protected override bool IsElementName(string elementName)
+        {
+            return (elementName == global::Nd.Framework.Configuration.TopicElementCollection.TopicElementPropertyName);
+        }
+        
+        /// <summary>
+        /// Gets the element key for the specified configuration element.
+        /// </summary>
+        /// <param name="element">The <see cref="global::System.Configuration.ConfigurationElement"/> to return the key for.</param>
+        /// <returns>
+        /// An <see cref="object"/> that acts as the key for the specified <see cref="global::System.Configuration.ConfigurationElement"/>.
+        /// </returns>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        protected override object GetElementKey(global::System.Configuration.ConfigurationElement element)
+        {
+            return ((global::Nd.Framework.Configuration.TopicElement)(element)).MessageType;
+        }
+        
+        /// <summary>
+        /// Creates a new <see cref="global::Nd.Framework.Configuration.TopicElement"/>.
+        /// </summary>
+        /// <returns>
+        /// A new <see cref="global::Nd.Framework.Configuration.TopicElement"/>.
+        /// </returns>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        protected override global::System.Configuration.ConfigurationElement CreateNewElement()
+        {
+            return new global::Nd.Framework.Configuration.TopicElement();
+        }
+        #endregion
+        
+        #region Indexer
+        /// <summary>
+        /// Gets the <see cref="global::Nd.Framework.Configuration.TopicElement"/> at the specified index.
+        /// </summary>
+        /// <param name="index">The index of the <see cref="global::Nd.Framework.Configuration.TopicElement"/> to retrieve.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public global::Nd.Framework.Configuration.TopicElement this[int index]
+        {
+            get
+            {
+                return ((global::Nd.Framework.Configuration.TopicElement)(base.BaseGet(index)));
+            }
+        }
+        
+        /// <summary>
+        /// Gets the <see cref="global::Nd.Framework.Configuration.TopicElement"/> with the specified key.
+        /// </summary>
+        /// <param name="messageType">The key of the <see cref="global::Nd.Framework.Configuration.TopicElement"/> to retrieve.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public global::Nd.Framework.Configuration.TopicElement this[object messageType]
+        {
+            get
+            {
+                return ((global::Nd.Framework.Configuration.TopicElement)(base.BaseGet(messageType)));
+            }
+        }
+        #endregion
+        
+        #region Add
+        /// <summary>
+        /// Adds the specified <see cref="global::Nd.Framework.Configuration.TopicElement"/> to the <see cref="global::System.Configuration.ConfigurationElementCollection"/>.
+        /// </summary>
+        /// <param name="topic">The <see cref="global::Nd.Framework.Configuration.TopicElement"/> to add.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public void Add(global::Nd.Framework.Configuration.TopicElement topic)
+        {
+            base.BaseAdd(topic);
+        }
+        #endregion
+        
+        #region Remove
+        /// <summary>
+        /// Removes the specified <see cref="global::Nd.Framework.Configuration.TopicElement"/> from the <see cref="global::System.Configuration.ConfigurationElementCollection"/>.
+        /// </summary>
+        /// <param name="topic">The <see cref="global::Nd.Framework.Configuration.TopicElement"/> to remove.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public void Remove(global::Nd.Framework.Configuration.TopicElement topic)
+        {
+            base.BaseRemove(this.GetElementKey(topic));
+        }
+        #endregion
+        
+        #region GetItem
+        /// <summary>
+        /// Gets the <see cref="global::Nd.Framework.Configuration.TopicElement"/> at the specified index.
+        /// </summary>
+        /// <param name="index">The index of the <see cref="global::Nd.Framework.Configuration.TopicElement"/> to retrieve.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public global::Nd.Framework.Configuration.TopicElement GetItemAt(int index)
+        {
+            return ((global::Nd.Framework.Configuration.TopicElement)(base.BaseGet(index)));
+        }
+        
+        /// <summary>
+        /// Gets the <see cref="global::Nd.Framework.Configuration.TopicElement"/> with the specified key.
+        /// </summary>
+        /// <param name="messageType">The key of the <see cref="global::Nd.Framework.Configuration.TopicElement"/> to retrieve.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public global::Nd.Framework.Configuration.TopicElement GetItemByKey(string messageType)
+        {
+            return ((global::Nd.Framework.Configuration.TopicElement)(base.BaseGet(((object)(messageType)))));
+        }
+        #endregion
+        
+        #region IsReadOnly override
+        /// <summary>
+        /// Gets a value indicating whether the element is read-only.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public override bool IsReadOnly()
+        {
+            return false;
+        }
+        #endregion
+        
+        #region Provider Property
+        /// <summary>
+        /// The XML name of the <see cref="Provider"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string ProviderPropertyName = "provider";
+        
+        /// <summary>
+        /// Gets or sets 消息总线服务提供者
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("消息总线服务提供者")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.TopicElementCollection.ProviderPropertyName, IsRequired=true, IsKey=true, IsDefaultCollection=false)]
+        public virtual string Provider
+        {
+            get
+            {
+                return ((string)(base[global::Nd.Framework.Configuration.TopicElementCollection.ProviderPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.TopicElementCollection.ProviderPropertyName] = value;
+            }
+        }
+        #endregion
+        
+        #region IsAvailable Property
+        /// <summary>
+        /// The XML name of the <see cref="IsAvailable"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string IsAvailablePropertyName = "isAvailable";
+        
+        /// <summary>
+        /// Gets or sets 是否可用
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("是否可用")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.TopicElementCollection.IsAvailablePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual bool IsAvailable
+        {
+            get
+            {
+                return ((bool)(base[global::Nd.Framework.Configuration.TopicElementCollection.IsAvailablePropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.TopicElementCollection.IsAvailablePropertyName] = value;
+            }
+        }
+        #endregion
+        
+        #region Path Property
+        /// <summary>
+        /// The XML name of the <see cref="Path"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string PathPropertyName = "path";
+        
+        /// <summary>
+        /// Gets or sets 主机路径
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("主机路径")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.TopicElementCollection.PathPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual string Path
+        {
+            get
+            {
+                return ((string)(base[global::Nd.Framework.Configuration.TopicElementCollection.PathPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.TopicElementCollection.PathPropertyName] = value;
+            }
+        }
+        #endregion
+    }
+}
+namespace Nd.Framework.Configuration
+{
+    
+    
+    /// <summary>
+    /// The TopicElement Configuration Element.
+    /// </summary>
+    public partial class TopicElement : global::System.Configuration.ConfigurationElement
+    {
+        
+        #region IsReadOnly override
+        /// <summary>
+        /// Gets a value indicating whether the element is read-only.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public override bool IsReadOnly()
+        {
+            return false;
+        }
+        #endregion
+        
+        #region Name Property
+        /// <summary>
+        /// The XML name of the <see cref="Name"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string NamePropertyName = "name";
+        
+        /// <summary>
+        /// Gets or sets 主题名称
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("主题名称")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.TopicElement.NamePropertyName, IsRequired=true, IsKey=false, IsDefaultCollection=false)]
+        public virtual string Name
+        {
+            get
+            {
+                return ((string)(base[global::Nd.Framework.Configuration.TopicElement.NamePropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.TopicElement.NamePropertyName] = value;
+            }
+        }
+        #endregion
+        
+        #region QueueNumber Property
+        /// <summary>
+        /// The XML name of the <see cref="QueueNumber"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string QueueNumberPropertyName = "queueNumber";
+        
+        /// <summary>
+        /// Gets or sets 队列数量
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("队列数量")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.TopicElement.QueueNumberPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual int QueueNumber
+        {
+            get
+            {
+                return ((int)(base[global::Nd.Framework.Configuration.TopicElement.QueueNumberPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.TopicElement.QueueNumberPropertyName] = value;
+            }
+        }
+        #endregion
+        
+        #region MessageType Property
+        /// <summary>
+        /// The XML name of the <see cref="MessageType"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string MessageTypePropertyName = "messageType";
+        
+        /// <summary>
+        /// Gets or sets 消息类型
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("消息类型")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.TopicElement.MessageTypePropertyName, IsRequired=true, IsKey=true, IsDefaultCollection=false)]
+        public virtual string MessageType
+        {
+            get
+            {
+                return ((string)(base[global::Nd.Framework.Configuration.TopicElement.MessageTypePropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.TopicElement.MessageTypePropertyName] = value;
             }
         }
         #endregion

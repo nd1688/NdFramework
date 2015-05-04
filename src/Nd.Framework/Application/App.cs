@@ -1,4 +1,5 @@
-﻿using Nd.Framework.Caching;
+﻿using Nd.Framework.Bus;
+using Nd.Framework.Caching;
 using Nd.Framework.Configuration;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
@@ -24,14 +25,23 @@ namespace Nd.Framework.Application
         public App(IConfigSource configSource)
         {
             if (configSource == null)
-                throw new ArgumentNullException("配置源不能为空");
+                throw new ArgumentNullException("configSource");
             if (configSource.Config == null)
-                throw new ConfigurationException("框架配置节未定义");
-            if (configSource.Config.ObjectContainers == null)
-                throw new ConfigurationException("框架配置节中未找到核心配置节点");
+                throw new ConfigurationException("NdFrameworkConfigSection has not been defined in the ConfigSource instance.");
+            if (configSource.Config.ObjectContainer == null)
+                throw new ConfigurationException("No ObjectContainer instance has been specified in the NdFrameworkConfigSection.");
 
             this.configSource = configSource;
-            Type containerType = Type.GetType(configSource.Config.ObjectContainers.Provider);
+
+            string objectContainerProviderName = configSource.Config.ObjectContainer.Provider;
+            if (string.IsNullOrEmpty(objectContainerProviderName) ||
+                string.IsNullOrWhiteSpace(objectContainerProviderName))
+                throw new ConfigurationException("The ObjectContainer provider has not been defined in the ConfigSource.");
+
+            Type containerType = Type.GetType(objectContainerProviderName);
+            if (containerType == null)
+                throw new ConfigurationException("The ObjectContainer defined by type {0} doesn't exist.", objectContainerProviderName);
+
             this.container = (INdContainer)Activator.CreateInstance(containerType, configSource);
         }
         #endregion
@@ -66,6 +76,18 @@ namespace Nd.Framework.Application
                 if (this.container.HasRegister<ICache>())
                 {
                     return this.container.Resolve<ICache>();
+                }
+                return null;
+            }
+        }
+
+        public IBus Bus
+        {
+            get
+            {
+                if (this.container.HasRegister<IBus>())
+                {
+                    return this.container.Resolve<IBus>();
                 }
                 return null;
             }

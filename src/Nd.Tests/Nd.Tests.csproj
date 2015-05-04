@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bus.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Program.cs" />
@@ -51,6 +52,10 @@
     <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nd.Framework.Bus.RabbitMQ\Nd.Framework.Bus.RabbitMQ.csproj">
+      <Project>{7c492550-975e-4dbf-b497-c4042beab119}</Project>
+      <Name>Nd.Framework.Bus.RabbitMQ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nd.Framework.Logging.Log4Net\Nd.Framework.Logging.Log4Net.csproj">
       <Project>{46272284-a37d-4ad1-b9c5-351240b189c1}</Project>
       <Name>Nd.Framework.Logging.Log4Net</Name>

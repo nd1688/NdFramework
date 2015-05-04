@@ -13,12 +13,17 @@
 		<xs:choice minOccurs="0" maxOccurs="unbounded">
 			<xs:element minOccurs="0" name="logging" type="tns:Nd.Framework.Configuration.LoggingElementCT">
 				<xs:annotation>
-					<xs:documentation>The Logging.</xs:documentation>
+					<xs:documentation>日志记录</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element minOccurs="0" name="objectContainers" type="tns:Nd.Framework.Configuration.ObjectContainersElementCT">
+			<xs:element minOccurs="0" name="objectContainer" type="tns:Nd.Framework.Configuration.ObjectContainersElementCT">
 				<xs:annotation>
-					<xs:documentation>The ObjectContainers.</xs:documentation>
+					<xs:documentation>IOC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="bus" type="tns:Nd.Framework.Configuration.TopicElementCollectionCT">
+				<xs:annotation>
+					<xs:documentation>消息总线</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:choice>
@@ -26,7 +31,7 @@
 	<xs:complexType name="Nd.Framework.Configuration.LoggingElementCT">
 		<xs:attribute name="provider" use="required" type="xs:string">
 			<xs:annotation>
-				<xs:documentation>The Provider.</xs:documentation>
+				<xs:documentation>日志记录器提供者</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="errorLogger" use="optional" type="xs:string">
@@ -43,17 +48,58 @@
 	<xs:complexType name="Nd.Framework.Configuration.ObjectContainersElementCT">
 		<xs:attribute name="provider" use="required" type="xs:string">
 			<xs:annotation>
-				<xs:documentation>The Provider.</xs:documentation>
+				<xs:documentation>IOC服务提供者</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="hasAOP" use="optional" type="xs:boolean">
+		<xs:attribute name="hasInterceptor" use="optional" type="xs:boolean">
 			<xs:annotation>
-				<xs:documentation>The HasAOP.</xs:documentation>
+				<xs:documentation>存在拦截器</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="defaultLifeStyle" use="optional" type="xs:string">
 			<xs:annotation>
-				<xs:documentation>The DefaultLifeStyle.</xs:documentation>
+				<xs:documentation>默认生命周期</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Nd.Framework.Configuration.TopicElementCollectionCT">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="topic" type="tns:Nd.Framework.Configuration.TopicElementCT">
+				<xs:annotation>
+					<xs:documentation>The TopicElement Configuration Element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="provider" use="required" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>消息总线服务提供者</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="isAvailable" use="optional" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>是否可用</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="path" use="optional" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>主机路径</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Nd.Framework.Configuration.TopicElementCT">
+		<xs:attribute name="name" use="required" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>主题名称</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="queueNumber" use="optional" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>队列数量</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="messageType" use="required" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>消息类型</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>

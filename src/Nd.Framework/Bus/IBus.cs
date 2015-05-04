@@ -9,14 +9,14 @@ namespace Nd.Framework.Bus
     public interface IBus : IUnitOfWork, IDisposable
     {
         /// <summary>
-        /// 发布消息到消息总线
+        /// 发送消息到消息总线
         /// </summary>
         /// <typeparam name="TMessage">消息类型</typeparam>
         /// <param name="message">消息</param>
         void Publish<TMessage>(TMessage message);
 
         /// <summary>
-        /// 发布消息到消息总线
+        /// 发送消息到消息总线
         /// </summary>
         /// <typeparam name="TMessage">消息类型</typeparam>
         /// <param name="message">消息</param>
