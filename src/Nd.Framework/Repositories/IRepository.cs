@@ -57,6 +57,9 @@ namespace Nd.Framework.Repositories
 
         IRepositoryContext Context { get; }
 
+        T CreateSequence<T>();
+        T CreateSequence<T>(string sequenceCode);
+
         void Create<TModel>(TModel model) where TModel : class;
         void Delete<TModel>(TModel model) where TModel : class;
         void Update<TModel>(TModel model) where TModel : class;

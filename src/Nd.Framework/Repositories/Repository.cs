@@ -280,6 +280,15 @@ namespace Nd.Framework.Repositories
             }
         }
 
+        public virtual T CreateSequence<T>()
+        {
+            return default(T);
+        }
+        public virtual T CreateSequence<T>(string strSequenceCode)
+        {
+            return default(T);
+        }
+
         public virtual void Create<TModel>(TModel model) where TModel : class
         {
             this.context.Create(model);
