@@ -1,4 +1,6 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace Nd.Framework.Repositories.EntityFramework
 {
@@ -37,11 +39,15 @@ namespace Nd.Framework.Repositories.EntityFramework
         }
         public override void Update<T>(T obj)
         {
+            RemoveHoldingEntityInContext(obj);
+
             this.context.Entry<T>(obj).State = EntityState.Modified;
             this.Committed = false;
         }
         public override void Delete<T>(T obj)
         {
+            RemoveHoldingEntityInContext(obj);
+
             this.context.Entry<T>(obj).State = EntityState.Deleted;
             this.Committed = false;
         }
@@ -76,6 +82,29 @@ namespace Nd.Framework.Repositories.EntityFramework
         public DbContext Context
         {
             get { return this.context; }
+        }
+        #endregion
+
+        #region 私有方法
+        /// <summary>
+        /// 监测Context中的Entity是否存在，如果存在，将其Detach，防止出现问题
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private bool RemoveHoldingEntityInContext<T>(T obj) where T : class
+        {
+            ObjectContext objContext = ((IObjectContextAdapter)this.context).ObjectContext;
+            var objSet = objContext.CreateObjectSet<T>();
+            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, obj);
+            object foundEntity;
+            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
+            if (exists)
+            {
+                objContext.Detach(foundEntity);
+            }
+
+            return (exists);
         }
         #endregion
     }
