@@ -26,3 +26,6 @@ G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.Bus.RabbitMQ.dll
 G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\RabbitMQ.Client.dll
 G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Nd.Framework.Bus.RabbitMQ.pdb
 G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\RabbitMQ.Client.xml
+G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\log4net.xml
+G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Castle.Core.xml
+G:\Nd\NdFramework\src\Nd.Tests\bin\Debug\Castle.Windsor.xml
