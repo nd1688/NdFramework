@@ -9,3 +9,4 @@ G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\obj\Debug\Nd.Fra
 G:\Nd\NdFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.dll
 G:\Nd\NdFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.pdb
 G:\Nd\NdFramework\bin\Debug\Nd.Framework.Repositories.EntityFramework.dll.config
+G:\Nd\NdFramework\src\Nd.Framework.Repositories.EntityFramework\obj\Debug\Nd.Framework.Repositories.EntityFramework.csprojResolveAssemblyReference.cache

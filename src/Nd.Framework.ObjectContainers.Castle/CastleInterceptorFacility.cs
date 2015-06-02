@@ -47,15 +47,15 @@ namespace Nd.Framework.ObjectContainers.Castle
             {
                 return;
             }
-            if (handler.ComponentModel.Services.Any(t => t == typeof(IRequest)))
+            if (handler.ComponentModel.Services.Any(t => typeof(RequestBase).IsAssignableFrom(t)))
             {
                 return;
             }
-            if (handler.ComponentModel.Services.Any(t => t == typeof(IResponse)))
+            if (handler.ComponentModel.Services.Any(t => typeof(ResponseBase).IsAssignableFrom(t)))
             {
                 return;
             }
-            if (handler.ComponentModel.Services.Any(t => t == typeof(IService)))
+            if (handler.ComponentModel.Services.Any(t => typeof(IService).IsAssignableFrom(t)))
             {
                 return;
             }
