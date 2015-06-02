@@ -4,6 +4,7 @@ using Castle.MicroKernel;
 using Nd.Framework.Core;
 using Nd.Framework.Logging;
 using Nd.Framework.Repositories;
+using Nd.Framework.Web;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,6 +44,18 @@ namespace Nd.Framework.ObjectContainers.Castle
                 return;
             }
             if (handler.ComponentModel.Services.Any(t => t == typeof(ILogger)))
+            {
+                return;
+            }
+            if (handler.ComponentModel.Services.Any(t => t == typeof(IRequest)))
+            {
+                return;
+            }
+            if (handler.ComponentModel.Services.Any(t => t == typeof(IResponse)))
+            {
+                return;
+            }
+            if (handler.ComponentModel.Services.Any(t => t == typeof(IService)))
             {
                 return;
             }

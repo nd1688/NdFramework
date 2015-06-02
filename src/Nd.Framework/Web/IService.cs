@@ -1,5 +1,5 @@
 ﻿
-namespace Nd.Framework
+namespace Nd.Framework.Web
 {
     /// <summary>
     /// 服务

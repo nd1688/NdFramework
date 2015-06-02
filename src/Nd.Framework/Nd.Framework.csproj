@@ -78,7 +78,9 @@
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IHandler.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="Web\IRequest.cs" />
+    <Compile Include="Web\IResponse.cs" />
+    <Compile Include="Web\IService.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\TraceLogger.cs" />
