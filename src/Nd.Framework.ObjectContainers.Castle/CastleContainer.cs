@@ -66,22 +66,22 @@ namespace Nd.Framework.ObjectContainers.Castle
 
         public void RegisterType(Type serviceType)
         {
-            this.Register<object>(o => o.ImplementedBy(serviceType));
+            this.container.Register(Component.For(serviceType));
         }
 
         public void RegisterType(Type serviceType, string name)
         {
-            this.Register<object>(o => o.ImplementedBy(serviceType).Named(name));
+            this.container.Register(Component.For(serviceType).Named(name));
         }
 
         public void RegisterType(Type serviceType, NdLifeStyle lifeStyle)
         {
-            this.Register<object>(o => o.ImplementedBy(serviceType).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
+            this.container.Register(Component.For(serviceType).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
 
         public void RegisterType(Type serviceType, string name, NdLifeStyle lifeStyle)
         {
-            this.Register<object>(o => o.ImplementedBy(serviceType).Named(name).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
+            this.container.Register(Component.For(serviceType).Named(name).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
 
         public void Register<TService>() where TService : class
@@ -152,7 +152,7 @@ namespace Nd.Framework.ObjectContainers.Castle
             this.Register<TService>(o => o.Instance(objInstance).Named(name).LifeStyle.Is(this.WindsorLifestyleTypeGet(lifeStyle)));
         }
 
-        public object Resolve(System.Type serviceType)
+        public object Resolve(Type serviceType)
         {
             return this.container.Resolve(serviceType);
         }
