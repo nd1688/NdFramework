@@ -51,7 +51,7 @@ namespace Nd.Framework.ObjectContainers.Castle
             {
                 return;
             }
-            if (handler.ComponentModel.Services.Any(t => typeof(ResponseBase).IsAssignableFrom(t)))
+            if (handler.ComponentModel.Services.Any(t => typeof(IResponse).IsAssignableFrom(t)))
             {
                 return;
             }
