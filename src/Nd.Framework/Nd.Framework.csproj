@@ -114,6 +114,7 @@
     <Compile Include="Specifications\ParameterRebinder.cs" />
     <Compile Include="Specifications\Specification.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="Web\MethodAttribute.cs" />
     <Compile Include="Web\RequestBase.cs" />
   </ItemGroup>
   <ItemGroup>
