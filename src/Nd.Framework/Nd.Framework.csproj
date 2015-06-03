@@ -78,6 +78,7 @@
     <Compile Include="IAggregateRoot.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IHandler.cs" />
+    <Compile Include="Web\Format.cs" />
     <Compile Include="Web\IRequest.cs" />
     <Compile Include="Web\IResponse.cs" />
     <Compile Include="Web\IService.cs" />
