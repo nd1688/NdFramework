@@ -5,3 +5,5 @@ G:\Nd\NdFramework\src\Nd.Framework.Services\bin\Release\Nd.Framework.dll
 G:\Nd\NdFramework\src\Nd.Framework.Services\bin\Release\Nd.Framework.pdb
 G:\Nd\NdFramework\src\Nd.Framework.Services\obj\Release\Nd.Framework.Services.dll
 G:\Nd\NdFramework\src\Nd.Framework.Services\obj\Release\Nd.Framework.Services.pdb
+G:\Nd\NdFramework\bin\Release\Nd.Framework.Services.dll
+G:\Nd\NdFramework\bin\Release\Nd.Framework.Services.pdb

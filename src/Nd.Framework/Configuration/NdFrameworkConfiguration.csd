@@ -28,6 +28,11 @@
             <configurationElementCollectionMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/TopicElementCollection" />
           </type>
         </elementProperty>
+        <elementProperty name="WebAPI" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="webAPI" isReadOnly="false">
+          <type>
+            <configurationElementMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/WebAPIElement" />
+          </type>
+        </elementProperty>
       </elementProperties>
     </configurationSection>
     <configurationElement name="LoggingElement" documentation="The logging element">
@@ -105,6 +110,15 @@
         <attributeProperty name="MessageType" isRequired="true" isKey="true" isDefaultCollection="false" xmlName="messageType" isReadOnly="false" documentation="消息类型">
           <type>
             <externalTypeMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/String" />
+          </type>
+        </attributeProperty>
+      </attributeProperties>
+    </configurationElement>
+    <configurationElement name="WebAPIElement">
+      <attributeProperties>
+        <attributeProperty name="IsNeedMethodAttribute" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="isNeedMethodAttribute" isReadOnly="false">
+          <type>
+            <externalTypeMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/Boolean" />
           </type>
         </attributeProperty>
       </attributeProperties>

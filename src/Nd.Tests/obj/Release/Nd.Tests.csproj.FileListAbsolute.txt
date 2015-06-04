@@ -8,3 +8,17 @@ G:\Nd\NdFramework\src\Nd.Tests\obj\Release\Nd.Tests.pdb
 G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Services.dll
 G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Services.pdb
 G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Tests.exe.config
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Bus.RabbitMQ.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Logging.Log4Net.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.ObjectContainers.Castle.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\RabbitMQ.Client.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\log4net.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Castle.Core.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Castle.Windsor.dll
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Bus.RabbitMQ.pdb
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.Logging.Log4Net.pdb
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Nd.Framework.ObjectContainers.Castle.pdb
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\RabbitMQ.Client.xml
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\log4net.xml
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Castle.Core.xml
+G:\Nd\NdFramework\src\Nd.Tests\bin\Release\Castle.Windsor.xml

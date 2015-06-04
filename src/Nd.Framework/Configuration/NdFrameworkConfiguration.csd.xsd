@@ -26,6 +26,11 @@
 					<xs:documentation>消息总线</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element minOccurs="0" name="webAPI" type="tns:Nd.Framework.Configuration.WebAPIElementCT">
+				<xs:annotation>
+					<xs:documentation>The WebAPI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 	</xs:complexType>
 	<xs:complexType name="Nd.Framework.Configuration.LoggingElementCT">
@@ -100,6 +105,13 @@
 		<xs:attribute name="messageType" use="required" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>消息类型</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Nd.Framework.Configuration.WebAPIElementCT">
+		<xs:attribute name="isNeedMethodAttribute" use="optional" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>The IsNeedMethodAttribute.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>

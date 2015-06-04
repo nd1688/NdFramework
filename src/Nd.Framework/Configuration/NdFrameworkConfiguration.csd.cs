@@ -157,6 +157,32 @@ namespace Nd.Framework.Configuration
             }
         }
         #endregion
+        
+        #region WebAPI Property
+        /// <summary>
+        /// The XML name of the <see cref="WebAPI"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string WebAPIPropertyName = "webAPI";
+        
+        /// <summary>
+        /// Gets or sets the WebAPI.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("The WebAPI.")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.NdFrameworkConfigSection.WebAPIPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual global::Nd.Framework.Configuration.WebAPIElement WebAPI
+        {
+            get
+            {
+                return ((global::Nd.Framework.Configuration.WebAPIElement)(base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.WebAPIPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.NdFrameworkConfigSection.WebAPIPropertyName] = value;
+            }
+        }
+        #endregion
     }
 }
 namespace Nd.Framework.Configuration
@@ -702,6 +728,54 @@ namespace Nd.Framework.Configuration
             set
             {
                 base[global::Nd.Framework.Configuration.TopicElement.MessageTypePropertyName] = value;
+            }
+        }
+        #endregion
+    }
+}
+namespace Nd.Framework.Configuration
+{
+    
+    
+    /// <summary>
+    /// The WebAPIElement Configuration Element.
+    /// </summary>
+    public partial class WebAPIElement : global::System.Configuration.ConfigurationElement
+    {
+        
+        #region IsReadOnly override
+        /// <summary>
+        /// Gets a value indicating whether the element is read-only.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        public override bool IsReadOnly()
+        {
+            return false;
+        }
+        #endregion
+        
+        #region IsNeedMethodAttribute Property
+        /// <summary>
+        /// The XML name of the <see cref="IsNeedMethodAttribute"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string IsNeedMethodAttributePropertyName = "isNeedMethodAttribute";
+        
+        /// <summary>
+        /// Gets or sets the IsNeedMethodAttribute.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("The IsNeedMethodAttribute.")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.WebAPIElement.IsNeedMethodAttributePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual bool IsNeedMethodAttribute
+        {
+            get
+            {
+                return ((bool)(base[global::Nd.Framework.Configuration.WebAPIElement.IsNeedMethodAttributePropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.WebAPIElement.IsNeedMethodAttributePropertyName] = value;
             }
         }
         #endregion
