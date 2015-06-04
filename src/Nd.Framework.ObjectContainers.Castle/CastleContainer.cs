@@ -210,7 +210,8 @@ namespace Nd.Framework.ObjectContainers.Castle
         {
             ComponentRegistration<TService> register = new ComponentRegistration<TService>();
             registerHandler(register.LifeStyle.Is(this.WindsorLifestyleTypeGet(this.DefaultLifeStyle)));
-            this.container.Register(register);
+            if (!HasRegister<TService>())
+                this.container.Register(register);
         }
         #endregion
     }
