@@ -114,5 +114,15 @@
 				<xs:documentation>The IsNeedMethodAttribute.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="currentAppHostUrl" use="optional" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The CurrentAppHostUrl.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dbConnectionKey" use="optional" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The DbConnectionKey.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 </xs:schema>

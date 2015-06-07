@@ -121,6 +121,16 @@
             <externalTypeMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/Boolean" />
           </type>
         </attributeProperty>
+        <attributeProperty name="CurrentAppHostUrl" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="currentAppHostUrl" isReadOnly="false">
+          <type>
+            <externalTypeMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/String" />
+          </type>
+        </attributeProperty>
+        <attributeProperty name="DbConnectionKey" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="dbConnectionKey" isReadOnly="false">
+          <type>
+            <externalTypeMoniker name="/3275c2b1-34de-404b-9db4-f39a102a756b/String" />
+          </type>
+        </attributeProperty>
       </attributeProperties>
     </configurationElement>
   </configurationElements>

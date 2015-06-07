@@ -779,5 +779,57 @@ namespace Nd.Framework.Configuration
             }
         }
         #endregion
+        
+        #region CurrentAppHostUrl Property
+        /// <summary>
+        /// The XML name of the <see cref="CurrentAppHostUrl"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string CurrentAppHostUrlPropertyName = "currentAppHostUrl";
+        
+        /// <summary>
+        /// Gets or sets the CurrentAppHostUrl.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("The CurrentAppHostUrl.")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.WebAPIElement.CurrentAppHostUrlPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual string CurrentAppHostUrl
+        {
+            get
+            {
+                return ((string)(base[global::Nd.Framework.Configuration.WebAPIElement.CurrentAppHostUrlPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.WebAPIElement.CurrentAppHostUrlPropertyName] = value;
+            }
+        }
+        #endregion
+        
+        #region DbConnectionKey Property
+        /// <summary>
+        /// The XML name of the <see cref="DbConnectionKey"/> property.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        internal const string DbConnectionKeyPropertyName = "dbConnectionKey";
+        
+        /// <summary>
+        /// Gets or sets the DbConnectionKey.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.ComponentModel.DescriptionAttribute("The DbConnectionKey.")]
+        [global::System.Configuration.ConfigurationPropertyAttribute(global::Nd.Framework.Configuration.WebAPIElement.DbConnectionKeyPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
+        public virtual string DbConnectionKey
+        {
+            get
+            {
+                return ((string)(base[global::Nd.Framework.Configuration.WebAPIElement.DbConnectionKeyPropertyName]));
+            }
+            set
+            {
+                base[global::Nd.Framework.Configuration.WebAPIElement.DbConnectionKeyPropertyName] = value;
+            }
+        }
+        #endregion
     }
 }
