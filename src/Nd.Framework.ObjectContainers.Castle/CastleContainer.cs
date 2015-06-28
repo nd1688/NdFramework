@@ -1,4 +1,5 @@
 ﻿using Castle.Core;
+using Castle.DynamicProxy;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -13,7 +14,6 @@ namespace Nd.Framework.ObjectContainers.Castle
     {
         #region 私有字段
         private readonly IConfigSource configSource;
-        private readonly CastleInterceptorFacility interceptorFacility = new CastleInterceptorFacility();
         private readonly WindsorContainer container = new WindsorContainer(new DefaultConfigurationStore());
 
         private string defaultLifeStyle;
@@ -26,8 +26,8 @@ namespace Nd.Framework.ObjectContainers.Castle
             this.defaultLifeStyle = configSource.Config.ObjectContainer.DefaultLifeStyle;
             if (this.configSource.Config.ObjectContainer.HasInterceptor)
             {
-                this.AddFacility(interceptorFacility);
-                this.RegisterType(typeof(CastleInterceptor), NdLifeStyle.Singleton);
+                this.container.AddFacility<CastleInterceptorFacility>();
+                this.container.Register(Component.For<IInterceptor>().ImplementedBy<CastleInterceptor>().Named("CastleInterceptor").LifestyleSingleton());
             }
         }
         #endregion

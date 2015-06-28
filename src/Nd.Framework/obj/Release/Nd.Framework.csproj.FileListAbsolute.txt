@@ -4,3 +4,4 @@ G:\Nd\NdFramework\src\Nd.Framework\obj\Release\Nd.Framework.dll
 G:\Nd\NdFramework\src\Nd.Framework\obj\Release\Nd.Framework.pdb
 G:\Nd\NdFramework\bin\Release\Nd.Framework.dll
 G:\Nd\NdFramework\bin\Release\Nd.Framework.pdb
+G:\Nd\NdFramework\src\Nd.Framework\obj\Release\Nd.Framework.csprojResolveAssemblyReference.cache

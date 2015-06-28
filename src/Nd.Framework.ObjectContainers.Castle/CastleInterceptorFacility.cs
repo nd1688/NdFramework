@@ -71,7 +71,7 @@ namespace Nd.Framework.ObjectContainers.Castle
             {
                 return;
             }
-            handler.ComponentModel.Interceptors.Add(new InterceptorReference(typeof(CastleInterceptor)));
+            handler.ComponentModel.Interceptors.Add(new InterceptorReference("CastleInterceptor"));
         }
     }
 }
